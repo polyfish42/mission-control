@@ -1,0 +1,53 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.splash {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.splash__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.splash__nav_logo {
+  width: 150px;
+}
+
+.splash__nav_right_li {
+  margin-left: 10px;
+}
+
+.splash__nav_right_link {
+  font-weight: bold;
+  color: #007bb6;
+}
+
+.splash__nav_right_link:visited {
+  color: #007bb6;
+}
+
+.splash__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.splash__h1, .splash__h2 {
+  color: #283c46;
+}
+
+.splash__h1 {
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.splash__h2 {
+  font-size: 24px;
+}
+
+.splash__section__elem {
+  margin-bottom: 16px;
+}

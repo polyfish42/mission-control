@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: "Times New Roman"
+}
+
+.button {
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 20px;
+  font-family: sans-serif;
+}
+
+.button--blue {
+  background-color: #007bb6;
+  color: white;
+}
