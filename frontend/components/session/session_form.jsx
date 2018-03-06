@@ -7,16 +7,26 @@ class SessionForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.buttonText = this.buttonText.bind(this);
+    this.errors = this.errors.bind(this);
   }
 
   render () {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleInput("email")} type="text" value={this.state.email} />
-        <input onChange={this.handleInput("password")} type="password"  value={this.state.password} />
-        <button type="submit">{ this.buttonText() }</button>
-      </form>
+      <div>
+        { this.props.errors && this.errors() }
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleInput("email")} type="text" value={this.state.email} />
+          <input onChange={this.handleInput("password")} type="password"  value={this.state.password} />
+          <button type="submit">{ this.buttonText() }</button>
+        </form>
+      </div>
     );
+  }
+
+  errors () {
+    return this.props.errors.map((error, key) => {
+      return <li key={key}>{ error }</li>;
+    });
   }
 
   handleInput (field) {
