@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .splash {
-  width: 800px;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -33,6 +33,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 800px;
+  margin: 0 auto;
 }
 .splash__h1, .splash__h2 {
   color: #283c46;
