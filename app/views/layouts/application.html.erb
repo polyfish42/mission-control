@@ -17,6 +17,11 @@
         ).html_safe %>
       <% end %>
     </script>
+
+    <script type="text/javascript">
+      window.splash_img = "<%= asset_path("frontend/splash_page.jpg") %>"
+      window.logo = "<%= asset_path("frontend/logo.png") %>"
+    </script>
     <%= yield %>
   </body>
 </html>

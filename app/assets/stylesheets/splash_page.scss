@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .splash {
-  width: 95%;
+  width: 98%;
   margin: 0 auto;
 }
 
@@ -10,18 +10,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .splash__nav_logo {
-  width: 150px;
+  width: 230px;
 }
 
 .splash__nav_right_li {
   margin-left: 10px;
+  font-size: 18px;
 }
 
 .splash__nav_right_link {
-  font-weight: bold;
+  font-weight: bolder;
   color: #007bb6;
 }
 
@@ -33,7 +36,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 800px;
+  max-width: 800px;
   margin: 0 auto;
 }
 .splash__h1, .splash__h2 {

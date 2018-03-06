@@ -18,13 +18,21 @@ body {
 }
 
 .button {
-  padding: 0.5em 1em;
+  padding: 0.4em 1em;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 35px;
   font-family: sans-serif;
+}
+
+.button--big {
+  padding: 1em 2.6em;
 }
 
 .button--blue {
   background-color: #007bb6;
   color: white;
+}
+
+.button--blue:hover {
+  background-color: #283c46;
 }
