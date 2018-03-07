@@ -4,10 +4,16 @@ class ProjectHeader extends React.Component {
   constructor (props) {
     super(props);
     this.state = {logout_panel_showing: false};
+
     this.togglePanel = this.togglePanel.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   render () {
+    if (!this.props.loggedIn) {
+      return null;
+    }
+
     return (
       <div>
         <nav className="project-header">
@@ -22,9 +28,14 @@ class ProjectHeader extends React.Component {
   logoutPanel() {
     return (
       <div className="project-header__logout-panel" >
-        <p className="project-header__logout" onClick={this.props.logout}>Log out</p>
+        <p className="project-header__logout" onClick={this.logout}>Log out</p>
       </div>
     );
+  }
+
+  logout () {
+    this.props.logout();
+    this.setState({logout_panel_showing: false});
   }
 
   togglePanel () {

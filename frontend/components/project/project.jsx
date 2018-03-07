@@ -7,18 +7,20 @@ import { Link } from 'react-router-dom';
 class Project extends React.Component {
   render () {
     return (
-      <div className="project">
-        <h1 className="project__h1">Mission Control</h1>
-        <div className="project__tools">
-          <Link to="/messages" className="project__link">
-            <MessageBoardToolContainer />
-          </Link>
-          <Link to="/todolists" className="project__link">
-            <TodosToolContainer />
-          </Link>
-          <Link to="/schedule" className="project__link">
-            <ScheduleToolContainer />
-          </Link>
+      <div className="main-content">
+        <h1 className="main-content__h1">Mission Control</h1>
+          <div className="project">
+            <div className="project__tools">
+              <Link to="/messages" className="project__link">
+                <MessageBoardToolContainer />
+              </Link>
+              <Link to="/todolists" className="project__link">
+                <TodosToolContainer />
+              </Link>
+              <Link to="/schedule" className="project__link">
+                <ScheduleToolContainer />
+              </Link>
+          </div>
         </div>
       </div>
     );

@@ -8,4 +8,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ProjectHeader);
+const mapStateToProps = state => {
+  return {
+    loggedIn: Boolean(state.session.currentUser)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectHeader);

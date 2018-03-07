@@ -3,8 +3,10 @@ import React from 'react';
 class MessageBoard extends React.Component {
   render () {
     return (
-      <h1>Coming Soon</h1>
-    ); 
+      <div className="main-content">
+        <h1 className="main-content__h1">MessageBoard</h1>
+      </div>
+    );
   }
 }
 

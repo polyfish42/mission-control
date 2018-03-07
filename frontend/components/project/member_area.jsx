@@ -6,7 +6,6 @@ class MemberArea extends React.Component {
   render () {
     return (
       <div>
-        <ProjectHeaderContainer />
         <Project />
       </div>
     );

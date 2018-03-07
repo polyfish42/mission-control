@@ -3,7 +3,9 @@ import React from 'react';
 class Todos extends React.Component {
   render () {
     return (
-      <h1>here</h1>
+      <div className="main-content">
+        <h1 className="main-content__h1">To-dos</h1>
+      </div>
     );
   }
 }
