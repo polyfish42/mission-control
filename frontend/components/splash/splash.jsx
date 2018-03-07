@@ -28,7 +28,7 @@ class Splash extends React.Component {
           <img className="splash__section__elem" src={ window.splash_img } />
           <h1 className="splash__h1 splash__section__elem">We've been expecting you.</h1>
           <h2 className="splash__h2 splash__section__elem">All growing businesses run into the same fundamental problems. Hair on fire, buried under email, stuff everywhere. The good news? Basecamp solves them.</h2>
-          <Link to="/demo" className="button button--blue splash__button--big">Get Started</Link>
+          <Link to="/demo" className="button button--blue splash__button--big">Try a free demo</Link>
         </section>
       </div>
     );
