@@ -1,10 +1,25 @@
 import React from 'react';
+import MessageBoardToolContainer from './tools/message_board_tool_container';
+import TodosToolContainer from './tools/todos_tool_container';
+import ScheduleToolContainer from './tools/schedule_todo_container';
+import { Link } from 'react-router-dom';
 
 class Project extends React.Component {
   render () {
     return (
       <div className="project">
-        <h1 className="project__h1">Project Name</h1>
+        <h1 className="project__h1">Mission Control</h1>
+        <div className="project__tools">
+          <Link to="/messages" className="project__link">
+            <MessageBoardToolContainer />
+          </Link>
+          <Link to="/todolists" className="project__link">
+            <TodosToolContainer />
+          </Link>
+          <Link to="/schedule" className="project__link">
+            <ScheduleToolContainer />
+          </Link>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>event-bg</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="event-bg" fill-rule="nonzero">
+            <circle id="Oval" fill="#FF2D55" cx="20" cy="20" r="20"></circle>
+            <path d="M25.5555556,21.2692308 L20,21.2692308 L20,26.8461538 L25.5555556,26.8461538 L25.5555556,21.2692308 Z M24.4444444,9 L24.4444444,11.2307692 L15.5555556,11.2307692 L15.5555556,9 L13.3333333,9 L13.3333333,11.2307692 L12.2222222,11.2307692 C10.952381,11.2307692 10,12.1868132 10,13.4615385 L10,29.0769231 C10,30.3516484 10.952381,31.3076923 12.2222222,31.3076923 L27.7777778,31.3076923 C29.047619,31.3076923 30,30.3516484 30,29.0769231 L30,13.4615385 C30,12.1868132 29.047619,11.2307692 27.7777778,11.2307692 L26.6666667,11.2307692 L26.6666667,9 L24.4444444,9 Z M27.7777778,29.0769231 L12.2222222,29.0769231 L12.2222222,16.8076923 L27.7777778,16.8076923 L27.7777778,29.0769231 Z" id="XMLID_13_" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>
