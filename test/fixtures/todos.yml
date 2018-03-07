@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  due_date: 2018-03-07
+  notes: MyText
+  done: false
+  assigned_id: 1
+  todo_list_id: 1
+  user_id: 1
+
+two:
+  title: MyString
+  due_date: 2018-03-07
+  notes: MyText
+  done: false
+  assigned_id: 1
+  todo_list_id: 1
+  user_id: 1

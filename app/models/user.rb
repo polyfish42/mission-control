@@ -4,6 +4,13 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6, allow_nil: true}
   before_validation :ensure_session_token
 
+  has_many :assignments
+  has_many :assigned_todos,
+    through: :assignments,
+    source: :todo
+  has_many :todo_lists
+  has_many :todos
+
   attr_reader :password
 
   def self.find_by_credentials(email, password)

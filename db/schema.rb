@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307145225) do
+ActiveRecord::Schema.define(version: 20180307190257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "todo_id", null: false
+  end
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_todo_lists_on_user_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string "name", null: false
+    t.date "due_date"
+    t.text "description"
+    t.boolean "done", default: false
+    t.integer "todo_list_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todo_list_id"], name: "index_todos_on_todo_list_id"
+    t.index ["user_id"], name: "index_todos_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
