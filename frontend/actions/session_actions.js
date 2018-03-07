@@ -14,6 +14,15 @@ export const signup = (user) => {
   };
 };
 
+export const demo = () => {
+  return (dispatch) => {
+    return APIUtil.demo().then(
+      currentUser => dispatch(receiveCurrentUser(currentUser)),
+      errors => dispatch(receiveErrors(errors))
+    );
+  };
+};
+
 export const login = (user) => {
   return (dispatch) => {
     return APIUtil.login(user).then(

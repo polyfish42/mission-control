@@ -6,6 +6,13 @@ export const signup = (user) => (
   })
 );
 
+export const demo = () => (
+  $.ajax({
+    url: 'api/users/demo',
+    method: 'POST'
+  })
+);
+
 export const login = (user) => (
   $.ajax({
     url: 'api/session',
