@@ -1,0 +1,33 @@
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(246, 242, 239, .8);
+}
+
+.project-header__img {
+  align-self: center;
+  width: 30px;
+  cursor: pointer;
+}
+
+.project-header__logout-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin-top: 46px;
+  width: 120px;
+  height: 40px;
+  padding-top: 10px;
+  padding-left: 30px;
+  background-color: white;
+  box-shadow: 0px 2px 10px #0000001d;
+}
+
+.project-header__logout {
+  cursor: pointer;
+}

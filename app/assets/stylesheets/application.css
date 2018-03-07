@@ -13,23 +13,43 @@
  *= require_tree .
  *= require_self
  */
+ * {
+    box-sizing: border-box
+}
+
 body {
-  font-family: "Times New Roman"
+  font-family: "helvetica neue", sans-serif;
+  background-color: #f6f2ef;
+  color: #283c46;
+}
+
+body.splash {
+  background-color: white;
+}
+
+input:focus {
+  outline: none;
+  border: 0.5px solid #a4d2ff;
+  box-shadow: 0 0 6px rgba(27,106,201,0.5);
 }
 
 .button {
-  padding: 0.4em 1em;
   text-decoration: none;
   border-radius: 35px;
   font-family: sans-serif;
 }
 
-.button--big {
-  padding: 1em 2.6em;
+.button:hover {
+  cursor: pointer;
 }
 
 .button--blue {
   background-color: #007bb6;
+  color: white;
+}
+
+.button--green {
+  background-color: #2da562;
   color: white;
 }
 

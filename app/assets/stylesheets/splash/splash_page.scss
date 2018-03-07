@@ -2,16 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .splash {
-  width: 98%;
-  margin: 0 auto;
+  background-color: white;
+  font-family: "Times New Roman", serif;
 }
 
 .splash__nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px auto 20px auto;
+  width: 98%
 }
 
 .splash__nav_logo {
@@ -54,5 +54,14 @@
 }
 
 .splash__section__elem {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.splash__button {
+  padding: 0.4em 1em;
+}
+
+.splash__button--big {
+  padding: 1em 2.6em;
+  font-size: 20px;
 }
