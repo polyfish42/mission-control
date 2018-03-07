@@ -1,4 +1,5 @@
 import React from 'react';
+import DropDownMenu from './dropdown_menu';
 
 class ProjectHeader extends React.Component {
   constructor (props) {
@@ -7,6 +8,7 @@ class ProjectHeader extends React.Component {
 
     this.togglePanel = this.togglePanel.bind(this);
     this.logout = this.logout.bind(this);
+    this.resetParentState = this.resetParentState.bind(this);
   }
 
   render () {
@@ -20,21 +22,16 @@ class ProjectHeader extends React.Component {
           <img src={ window.small_logo } className="project-header__img"/>
           <img src={ window.avatar } className="project-header__img" onClick={this.togglePanel}/>
       </nav>
-      { this.state.logout_panel_showing && this.logoutPanel() }
+      { this.state.logout_panel_showing && <DropDownMenu resetParentState={this.resetParentState} logout={this.logout}/> }
     </div>
     );
   }
 
-  logoutPanel() {
-    return (
-      <div className="project-header__logout-panel" >
-        <p className="project-header__logout" onClick={this.logout}>Log out</p>
-      </div>
-    );
+  logout() {
+    this.props.logout();
   }
 
-  logout () {
-    this.props.logout();
+  resetParentState () {
     this.setState({logout_panel_showing: false});
   }
 

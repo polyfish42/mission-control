@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     post '/users/demo', to: 'users#demo'
 
     resource :session, only: [:create, :destroy]
-    resources :todo_lists, expect: [:new, :edit]
+    resources :todo_lists, except: [:new, :edit]
+    resources :todos, except: [:index, :new, :edit]
   end
 
   root 'static_pages#root'

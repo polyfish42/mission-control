@@ -1,6 +1,7 @@
 class Api::TodoListsController < ApplicationController
   def create
     @todo_list = TodoList.new(todo_list_params)
+    @todo_list.user = current_user
 
     if @todo_list.save
       render "api/todo_lists/show"
@@ -36,6 +37,6 @@ class Api::TodoListsController < ApplicationController
   end
 
   def todo_list_params
-    params.require(:todo_list).permit(:name, :description, :user_id)
+    params.require(:todo_list).permit(:name, :description)
   end
 end

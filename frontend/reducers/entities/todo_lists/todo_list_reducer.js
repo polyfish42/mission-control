@@ -16,7 +16,7 @@ export default (state = {}, action) => {
     case REMOVE_TODO_LIST:
       const newTodoLists = merge({}, state);
       delete newTodoLists[action.todoList.id];
-      return newTodoList;
+      return newTodoLists;
     default:
       return state;
   }
