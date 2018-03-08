@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  */
- * {
-    box-sizing: border-box
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -29,14 +29,21 @@ body.splash {
 
 input:focus {
   outline: none;
-  border: 0.5px solid #a4d2ff;
-  box-shadow: 0 0 6px rgba(27,106,201,0.5);
+}
+
+textarea {
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 .button {
   text-decoration: none;
   border-radius: 35px;
   font-family: sans-serif;
+  border: none;
 }
 
 .button:hover {
@@ -48,11 +55,17 @@ input:focus {
   color: white;
 }
 
+.button--blue:hover {
+  background-color: #283c46;
+}
+
 .button--green {
   background-color: #2da562;
   color: white;
 }
 
-.button--blue:hover {
-  background-color: #283c46;
+.button--clear {
+  border: 1px solid #2da562;
+  color: #2da562;
+  background-color: white;
 }

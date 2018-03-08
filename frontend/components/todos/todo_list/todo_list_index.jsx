@@ -2,11 +2,11 @@ import React from "react";
 import ToolHeader from "../../app/tool_header";
 import TodoListItem from "./todo_list_item";
 import CreateTodoListFormContainer from "./create_todo_list_form_container";
+
 class TodoListIndex extends React.Component {
   componentWillMount() {
     this.props.fetchTodoLists();
   }
-  // <h1 className="main-content__h1">To-dos</h1>
 
   render() {
     return (
@@ -14,10 +14,10 @@ class TodoListIndex extends React.Component {
         <ToolHeader
           title="To-dos"
           buttonText="New list"
-          buttonAction={() => console.log("fix me")}
+          buttonAction={this.props.showCreateTodoListForm}
         />
-        <CreateTodoListFormContainer />
         <div className="todoListIndex">
+          <CreateTodoListFormContainer />
           {this.props.todoLists &&
             this.props.todoLists.reverse().map((todoList, key) => {
               return <TodoListItem todoList={todoList} key={key} />;

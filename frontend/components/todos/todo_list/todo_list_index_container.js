@@ -1,7 +1,8 @@
-import TodoListIndex from './todo_list_index';
-import { fetchTodoLists } from '../../../actions/todo_list_actions';
-import { selectTodoLists } from '../../../reducers/selectors/todo_list_selectors';
-import { connect } from 'react-redux';
+import TodoListIndex from "./todo_list_index";
+import { fetchTodoLists } from "../../../actions/todo_list_actions";
+import { selectTodoLists } from "../../../reducers/selectors/todo_list_selectors";
+import { showCreateTodoListForm } from "../../../actions/ui/todo_list_ui_actions";
+import { connect } from "react-redux";
 
 const mapStateToProps = ({ entities }) => {
   return {
@@ -11,7 +12,8 @@ const mapStateToProps = ({ entities }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTodoLists: () => dispatch(fetchTodoLists())
+    fetchTodoLists: () => dispatch(fetchTodoLists()),
+    showCreateTodoListForm: () => dispatch(showCreateTodoListForm())
   };
 };
 

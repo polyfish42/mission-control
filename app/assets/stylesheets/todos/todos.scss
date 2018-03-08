@@ -14,6 +14,52 @@
   font-weight: bold;
 }
 
+.todosForm {
+  width: 690px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(229, 229, 229);
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.todosForm__input {
+  border: none;
+}
+
+.todosForm__input--name {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(40, 60, 70);
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.todosForm__input--description {
+  font-size: 14px;
+  color: #a9a9a9;
+}
+
+.todosForm__buttons {
+  display: flex;
+}
+
+.todosForm__button {
+  padding: 5px 13px 5px 13px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  font-size: 13px;
+  align-self: flex-start;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.todosForm__button:first-child {
+  margin-right: 5px;
+}
+
 .todo {
   margin-bottom: 15px;
   list-style: none;

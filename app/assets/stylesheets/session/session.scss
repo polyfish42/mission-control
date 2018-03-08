@@ -39,12 +39,17 @@
   align-items: left;
 }
 
+.session__input:focus {
+  border: 0.5px solid #a4d2ff;
+  box-shadow: 0 0 6px rgba(27, 106, 201, 0.5);
+}
+
 .session__input {
   width: 100%;
   font-size: 16px;
   line-height: 1.5;
   padding: 0.5em;
-  border-radius: .4em;
+  border-radius: 0.4em;
   border: 1px solid #d9d9d9;
 }
 
@@ -61,7 +66,7 @@
   margin-top: 15px;
   width: 100%;
   line-height: 24px;
-  padding: .7em;
+  padding: 0.7em;
 }
 
 .session__error {
