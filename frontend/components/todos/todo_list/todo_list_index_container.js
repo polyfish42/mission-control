@@ -1,10 +1,11 @@
 import TodoListIndex from './todo_list_index';
 import { fetchTodoLists } from '../../../actions/todo_list_actions';
+import { selectTodoLists } from '../../../reducers/selectors/todo_list_selectors';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ entities: { todoLists } }) => {
+const mapStateToProps = ({ entities }) => {
   return {
-    todoLists: Object.values(todoLists)
+    todoLists: selectTodoLists(entities)
   };
 };
 

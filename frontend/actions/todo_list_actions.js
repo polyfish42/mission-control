@@ -17,7 +17,7 @@ export const createTodoList = (todoList) => {
 export const fetchTodoList = (id) => {
   return (dispatch) => {
     return TodoListUtil.fetchTodoList(id).then(
-      (todoList) => dispatch(receiveTodoList(todoList)),
+      (response) => dispatch(receiveTodoList(response)),
       (errors) => dispatch(receiveTodoListErrors(errors))
     );
   };
@@ -26,7 +26,7 @@ export const fetchTodoList = (id) => {
 export const fetchTodoLists = () => {
   return (dispatch) => {
     return TodoListUtil.fetchTodoLists().then(
-      (todoLists) => dispatch(receiveTodoLists(todoLists)),
+      (response) => dispatch(receiveTodoLists(response)),
       (errors) => dispatch(receiveTodoListErrors(errors))
     );
   };
@@ -50,14 +50,16 @@ export const deleteTodoList = (todoList) => {
   };
 };
 
-const receiveTodoList = (todoList) => ({
+const receiveTodoList = ({todoList, todos}) => ({
   type: RECEIVE_TODO_LIST,
-  todoList
+  todoList,
+  todos
 });
 
-const receiveTodoLists = (todoLists) => ({
+const receiveTodoLists = ({todoLists, todos}) => ({
   type: RECEIVE_TODO_LISTS,
-  todoLists
+  todoLists,
+  todos
 });
 
 const removeTodoList = (todoList) => ({
