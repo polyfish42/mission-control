@@ -21,7 +21,7 @@ class TodoListForm extends React.Component {
     if (this.state.name === "") {
       this.setState({ errors: ["Name can't be blank"] });
     } else {
-      this.setState({ errors: [] });
+      this.setState({ errors: [], name: "", description: "" });
       this.props.handleSubmit(this.state);
       this.closeForm();
     }

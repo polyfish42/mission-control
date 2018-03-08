@@ -1,10 +1,11 @@
 .todoListIndex {
-  padding-left: 125px;
-  padding-right: 125px;
+  padding-left: 150px;
+  padding-right: 150px;
+  margin-top: 20px;
 }
 
 .todoListItem {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   list-style: none;
 }
 
@@ -12,6 +13,19 @@
   margin-bottom: 15px;
   display: inline-block;
   font-weight: bold;
+  color: #1b6ac9;
+}
+
+.todoListItem__description {
+  width: 670px;
+  height: 20px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(109, 109, 109);
+  font-style: italic;
 }
 
 .todosForm {
@@ -61,17 +75,40 @@
 }
 
 .todo {
+  position: relative;
+}
+.todo__text {
   margin-bottom: 15px;
   list-style: none;
-  padding-left: 20px;
+  padding-left: 32px;
   display: block;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .todo__checkbox {
   display: inline-block;
+  position: absolute;
+  left: 0px;
+  flex-basis: 20px;
   width: 22px;
   height: 22px;
   color: white;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+}
+
+.todo__checkbox--checked {
+  // content: "";
+  background-image: url(asset_path("todos/check_box_check.svg"));
+  background-repeat: no-repeat;
+  background-size: 65%;
+  background-color: #a1d0b4;
+  background-position: center;
+}
+
+.todo__text_link {
+  font-size: 16px;
+  color: rgb(40, 60, 70);
+  text-decoration: none;
 }

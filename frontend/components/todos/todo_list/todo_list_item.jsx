@@ -8,6 +8,7 @@ const TodoListItem = ({ todoList }) => {
       <Link to={`/todolists/${todoList.id}`} className="todoListItem__name">
         {todoList.name}
       </Link>
+      <div className="todoListItem__description">{todoList.description}</div>
       <ul>
         {todoList.todos.map((todo, key) => {
           return <TodoContainer todo={todo} key={key} />;

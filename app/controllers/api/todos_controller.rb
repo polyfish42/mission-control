@@ -19,7 +19,7 @@ class Api::TodosController < ApplicationController
   def update
     @todo = Todo.find(params[:id])
 
-    if @todo.update_attributes(todo_params)
+    if @todo.update_attributes(todos_params)
       render "api/todos/show"
     else
       render json: {errors: @todo.errors.full_messages}, status: 422

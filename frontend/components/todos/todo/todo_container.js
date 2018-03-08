@@ -1,15 +1,16 @@
-import Todo from './todo';
-import { connect } from 'react-redux';
+import Todo from "./todo";
+import { updateTodo } from "../../../actions/todo_actions";
+import { connect } from "react-redux";
 
 const mapStateToProps = () => {
-  return {
-
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    updateTodo: todo => {
+      dispatch(updateTodo(todo));
+    }
   };
 };
 
