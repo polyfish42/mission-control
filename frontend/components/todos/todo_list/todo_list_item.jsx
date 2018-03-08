@@ -1,5 +1,6 @@
 import React from "react";
 import TodoContainer from "../todo/todo_container";
+import CreateTodoFormContainer from "../todo/create_todo_form_container";
 import { Link } from "react-router-dom";
 
 const TodoListItem = ({ todoList }) => {
@@ -17,7 +18,7 @@ const TodoListItem = ({ todoList }) => {
           return <TodoContainer todo={todo} key={key} />;
         })}
       </ul>
-      <p>DIVIDE</p>
+      <CreateTodoFormContainer />
       <ul>
         {done.map((todo, key) => {
           return <TodoContainer todo={todo} key={key} />;

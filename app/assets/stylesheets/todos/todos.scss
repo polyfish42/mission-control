@@ -77,13 +77,19 @@
 .todo {
   position: relative;
 }
+
 .todo__text {
-  margin-bottom: 15px;
   list-style: none;
-  padding-left: 32px;
+  padding: 4px 0px 4px 32px;
   display: block;
   font-size: 16px;
   line-height: 24px;
+}
+
+.todo__text--checked {
+  padding-left: 24px;
+  margin-bottom: 5px;
+  line-height: 19.5px;
 }
 
 .todo__checkbox {
@@ -100,11 +106,13 @@
 }
 
 .todo__checkbox--checked {
-  // content: "";
+  width: 16px;
+  height: 16px;
+  top: 3px;
   background-image: url(asset_path("todos/check_box_check.svg"));
   background-repeat: no-repeat;
   background-size: 65%;
-  background-color: #a1d0b4;
+  background-color: #2da562;
   background-position: center;
 }
 
@@ -112,4 +120,17 @@
   font-size: 16px;
   color: rgb(40, 60, 70);
   text-decoration: none;
+}
+
+.todo__text_link--checked {
+  font-size: 13px;
+}
+
+.createTodo__open_button {
+  padding: 5px 13px 5px 13px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  font-size: 13px;
+  margin-left: 28px;
+  margin-bottom: 10px;
 }

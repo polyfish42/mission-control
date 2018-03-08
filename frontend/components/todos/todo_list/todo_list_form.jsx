@@ -10,6 +10,16 @@ class TodoListForm extends React.Component {
     this.errors = this.errors.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.nameInput) {
+      this.nameInput.focus();
+    }
+  }
+
+  componentWillUnmount() {
+    this.closeForm();
+  }
+
   handleInput(field) {
     return e => {
       this.setState({ [field]: e.target.value });
@@ -54,6 +64,9 @@ class TodoListForm extends React.Component {
           placeholder="Name this list..."
           onChange={this.handleInput("name")}
           value={this.state.name}
+          ref={input => {
+            this.nameInput = input;
+          }}
         />
         <textarea
           className="todosForm__input todosForm__input--description"
@@ -72,7 +85,7 @@ class TodoListForm extends React.Component {
           </button>
           <button
             onClick={this.closeForm}
-            className="button button--clear todosForm__button"
+            className="button button--clearGreen todosForm__button"
             type="button"
           >
             Cancel

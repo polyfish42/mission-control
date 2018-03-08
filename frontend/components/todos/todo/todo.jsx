@@ -8,6 +8,7 @@ class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.check = this.check.bind(this);
+    this.checkedClass = this.checkedClass.bind(this);
   }
 
   check() {
@@ -18,18 +19,22 @@ class Todo extends React.Component {
     this.props.updateTodo(newTodo);
   }
 
+  checkedClass(className) {
+    return (
+      className +
+      (this.props.todo.done === true ? ` ${className}--checked` : "")
+    );
+  }
+
   render() {
     return (
       <div className="todo">
-        <li className="todo__text">
+        <li className={this.checkedClass("todo__text")}>
           <span
-            className={
-              "todo__checkbox" +
-              (this.props.todo.done === true ? " todo__checkbox--checked" : "")
-            }
+            className={this.checkedClass("todo__checkbox")}
             onClick={this.check}
           />
-          <Link to="#" className="todo__text_link">
+          <Link to="#" className={this.checkedClass("todo__text_link")}>
             {this.props.todo.name}
           </Link>
         </li>

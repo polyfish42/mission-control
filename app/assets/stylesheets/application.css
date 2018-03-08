@@ -64,8 +64,14 @@ textarea:focus {
   color: white;
 }
 
-.button--clear {
+.button--clearGreen {
   border: 1px solid #2da562;
   color: #2da562;
+  background-color: white;
+}
+
+.button--clearWhite {
+  border: 1px solid rgb(217, 217, 217);
+  color: rgb(40, 60, 70);
   background-color: white;
 }

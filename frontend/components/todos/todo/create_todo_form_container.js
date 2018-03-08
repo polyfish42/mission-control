@@ -1,4 +1,4 @@
-import TodoListForm from "./todo_list_form";
+import TodoForm from "./todo_form";
 import { connect } from "react-redux";
 
 const mapStateToProps = () => {
@@ -9,4 +9,4 @@ const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoListForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
