@@ -19,7 +19,7 @@ class ProjectHeader extends React.Component {
     return (
       <div>
         <nav className="project-header">
-          <img src={ window.small_logo } className="project-header__img"/>
+          <img src={ window.smallLogo } className="project-header__img"/>
           <img src={ window.avatar } className="project-header__img" onClick={this.togglePanel}/>
       </nav>
       { this.state.logout_panel_showing && <DropDownMenu resetParentState={this.resetParentState} logout={this.logout}/> }

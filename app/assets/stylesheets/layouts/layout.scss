@@ -5,5 +5,81 @@
   margin: 0 auto;
   margin-top: 50px;
   border-radius: 5px;
+  box-sizing: border-box;
   box-shadow: 0px 2px 10px #0000001d;
+}
+
+.main-content__h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 50px;
+}
+
+.tool_header__edit_wrapper {
+  display: block;
+  width: 930px;
+  height: 60px;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.tool_header__edit {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 100%;
+  float: right;
+  background-image: url(asset_path("layout/edit_dots.svg"));
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.tool_header__container {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+  align-items: center;
+  width: 768px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.tool_header__h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.tool_header__plus_white {
+  display: inline-block;
+}
+
+.tool_header__button {
+  align-self: center;
+  padding: 8px 13px 8px 29px;
+  font-size: 13px;
+  width: 93px;
+  box-sizing: border-box;
+  background-image: url(asset_path("layout/plus_white.svg"));
+  background-repeat: no-repeat;
+  background-position: 11px 7px;
+  background-size: 16px;
+  border: none;
+  letter-spacing: 0.3px;
+}
+
+.tool_header__line {
+  height: 1px;
+  width: 770px;
+  border-top: 3px solid #283c46;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+// TODO create filter
+.tool_header__filter {
+  width: 95px;
 }

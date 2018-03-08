@@ -17,7 +17,7 @@ class SessionForm extends React.Component {
   render () {
     return (
       <div className="session">
-        <img className="session__small-logo" src={ window.small_logo } />
+        <img className="session__small-logo" src={ window.smallLogo } />
         <div className="session__container">
           <div className="session__text">
             <h2 className="session__h2">Happy Friday!</h2>
