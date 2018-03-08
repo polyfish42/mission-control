@@ -1,23 +1,21 @@
 import React from "react";
 import TruncateText from "../../utils/truncate_text";
+import update from "immutability-helper";
 import { Link } from "react-router-dom";
 import { merge } from "lodash";
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { checked: false, todo: this.props.todo };
-
     this.check = this.check.bind(this);
   }
 
   check() {
-    const checked = this.state.checked === true ? false : true;
-    const newTodo = merge({}, this.state.todo);
-    newTodo.done = true;
-    debugger;
-    this.setState({ checked: true, todo: newTodo });
-    this.props.updateTodo(this.state.todo);
+    let isDone = this.props.todo.done === true ? false : true;
+    let newTodo = update(this.props.todo, {
+      done: { $set: isDone }
+    });
+    this.props.updateTodo(newTodo);
   }
 
   render() {
@@ -27,7 +25,7 @@ class Todo extends React.Component {
           <span
             className={
               "todo__checkbox" +
-              (this.state.checked ? " todo__checkbox--checked" : "")
+              (this.props.todo.done === true ? " todo__checkbox--checked" : "")
             }
             onClick={this.check}
           />
