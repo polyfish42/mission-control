@@ -10,11 +10,13 @@ class TodoListIndex extends React.Component {
     return (
       <div className="main-content">
         <h1 className="main-content__h1">To-dos</h1>
-        {
-          this.props.todoLists && this.props.todoLists.map((todoList, key) => {
-            return <TodoListItem todoList={todoList} key={key} />;
-          })
-        }
+        <div className="todoListIndex">
+          {
+            this.props.todoLists && this.props.todoLists.map((todoList, key) => {
+              return <TodoListItem todoList={todoList} key={key} />;
+            })
+          }
+        </div>
       </div>
     );
   }

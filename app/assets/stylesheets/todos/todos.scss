@@ -1,0 +1,31 @@
+.todoListIndex {
+  padding-left: 125px;
+  padding-right: 125px;
+}
+
+.todoListItem {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+.todoListItem__name {
+  margin-bottom: 15px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.todo {
+  margin-bottom: 15px;
+  list-style: none;
+  padding-left: 20px;
+  display: block;
+}
+
+.todo__checkbox {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}

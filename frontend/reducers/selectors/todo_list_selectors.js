@@ -1,4 +1,4 @@
-export const selectTodoList = ({todoLists, todos}, id) => {
+export const selectTodoList = ({ todoLists, todos }, id) => {
   if (todoLists[id]) {
     const todoList = todoLists[id];
     return mapTodosToList(todoList, todos);
