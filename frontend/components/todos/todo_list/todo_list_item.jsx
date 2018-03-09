@@ -4,16 +4,16 @@ import CreateTodoFormContainer from "../todo/create_todo_form_container";
 import { Link } from "react-router-dom";
 
 const TodoListItem = ({ todoList }) => {
-  debugger;
   const done = todoList.todos.filter(todo => todo.done);
   const notDone = todoList.todos.filter(todo => !todo.done);
-
   return (
     <li className="todoListItem">
       <Link to={`/todolists/${todoList.id}`} className="todoListItem__name">
         {todoList.name}
       </Link>
-      <div className="todoListItem__description">{todoList.description}</div>
+      {todoList.description != "" && (
+        <div className="todoListItem__description">{todoList.description}</div>
+      )}
       <ul>
         {notDone.map((todo, key) => {
           return <TodoContainer todo={todo} key={key} />;

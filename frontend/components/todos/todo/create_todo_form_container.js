@@ -6,8 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     todo: {
       name: "",
-      description: "",
-      todo_list_id: ownProps.todoListId
+      description: ""
     }
   };
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import update from "immutability-helper";
+import { merge } from "lodash";
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class TodoForm extends React.Component {
       todo: this.props.todo,
       formShowed: false
     };
-
     this.toggleForm = this.toggleForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,11 +23,11 @@ class TodoForm extends React.Component {
   }
 
   handleInput(field) {
+    const that = this;
     return e => {
       let newState = update(this.state, {
         todo: { [field]: { $set: e.target.value } }
       });
-
       this.setState(newState);
     };
   }
@@ -37,8 +37,11 @@ class TodoForm extends React.Component {
     if (this.state.todo.name === "") {
       this.setState({ errors: ["Name can't be blank"] });
     } else {
-      // this.setState({ errors: [], name: "", description: "" });
-      this.props.handleSubmit(this.state.todo);
+      // this.setState({ errors: [], name: "", description: "" })
+      const newState = update(this.state.todo, {
+        todo_list_id: { $set: this.props.todoListId }
+      });
+      this.props.handleSubmit(newState);
       this.toggleForm();
     }
   }
