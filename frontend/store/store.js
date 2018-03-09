@@ -1,8 +1,9 @@
 import RootReducer from '../reducers/root_reducer';
 import { createStore, applyMiddleware} from 'redux';
+import { loadingBarMiddleware } from 'react-redux-loading-bar'
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 export default (preloadedState = {}) => (
-  createStore(RootReducer, preloadedState, applyMiddleware(thunk, logger))
+  createStore(RootReducer, preloadedState, applyMiddleware(loadingBarMiddleware(), thunk, logger))
 );
