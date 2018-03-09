@@ -2,11 +2,11 @@ import React from "react";
 
 class TodoListForm extends React.Component {
   constructor(props) {
-  super(props);
-  this.state = {
-    name: props.todoList.name,
-    description: props.todoList.description,
-    formShowing: false
+    super(props);
+    this.state = {
+      name: props.todoList.name,
+      description: props.todoList.description,
+      formShowing: false
   };
 
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,12 +14,21 @@ class TodoListForm extends React.Component {
   this.errors = this.errors.bind(this);
 }
 
-// TODO this needs to change only the first time. Need to reshape state
 componentDidUpdate(prevProps, prevState) {
   if (this.nameInput && this.state.formShowing === false) {
     this.nameInput.focus();
     this.setState({
       formShowing: true
+    });
+  }
+}
+
+componentWillReceiveProps(nextProps) {
+  if (this.props.showing === true && nextProps.showing === false) {
+    this.setState({
+      errors: [],
+      name: "",
+      description: ""
     });
   }
 }
@@ -44,12 +53,6 @@ handleSubmit(e) {
     });
   } else {
     this.props.handleSubmit(this.state);
-    this.setState({
-      errors: [],
-      name: "",
-      description: ""
-    });
-    this.closeForm();
   }
 }
 

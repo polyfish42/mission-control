@@ -1,7 +1,7 @@
 import {
   TODO_LISTS_SUCCESS,
-  RECEIVE_TODO_LIST,
-  RECEIVE_TODO_LIST_ERRORS,
+  TODO_LIST_SUCCESS,
+  TODO_LIST_FAILURE,
   CLEAR_TODO_ERRORS
 } from '../../actions/todo_list_actions';
 
@@ -10,11 +10,11 @@ const _nullErrors = [];
 export default (state = _nullErrors, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_TODO_LIST_ERRORS:
+    case TODO_LIST_FAILURE:
       return action.errors.responseJSON.errors;
     case TODO_LISTS_SUCCESS:
       return _nullErrors;
-    case RECEIVE_TODO_LIST:
+    case TODO_LIST_SUCCESS:
       return _nullErrors;
     case CLEAR_TODO_ERRORS:
       return _nullErrors;

@@ -1,6 +1,6 @@
 import {
-  RECEIVE_CURRENT_USER,
-  RECEIVE_SESSION_ERRORS,
+  SESSION_SUCCESS,
+  SESSION_FAILURE,
   LOGOUT
 } from '../../actions/session_actions';
 import { merge } from 'lodash';
@@ -12,7 +12,7 @@ const _nullUser = {
 export default (state = _nullUser, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_CURRENT_USER:
+    case SESSION_SUCCESS:
       const currentUser = action.currentUser;
       return merge({}, state, { currentUser });
     case LOGOUT:

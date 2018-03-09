@@ -1,12 +1,15 @@
 import * as SessionUtil from '../util/session_util';
 
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
-export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+export const SESSION_REQUEST = 'SESSION_REQUEST';
+export const SESSION_SUCCESS = 'SESSION_SUCCESS';
+export const SESSION_FAILURE = 'SESSION_FAILURE';
 export const CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 export const LOGOUT = 'LOGOUT';
 
 export const signup = (user) => {
   return (dispatch) => {
+    dispatch({ type: SESSION_REQUEST });
+
     return SessionUtil.signup(user).then(
       currentUser => dispatch(receiveCurrentUser(currentUser)),
       errors => dispatch(receiveErrors(errors))
@@ -16,6 +19,8 @@ export const signup = (user) => {
 
 export const demo = () => {
   return (dispatch) => {
+    dispatch({ type: SESSION_REQUEST });
+
     return SessionUtil.demo().then(
       currentUser => dispatch(receiveCurrentUser(currentUser)),
       errors => dispatch(receiveErrors(errors))
@@ -25,6 +30,8 @@ export const demo = () => {
 
 export const login = (user) => {
   return (dispatch) => {
+    dispatch({ type: SESSION_REQUEST });
+
     return SessionUtil.login(user).then(
       currentUser => dispatch(receiveCurrentUser(currentUser)),
       errors => dispatch(receiveErrors(errors))
@@ -46,11 +53,11 @@ export const clearErrors = () => ({
 });
 
 const receiveCurrentUser = (currentUser) => ({
-  type: RECEIVE_CURRENT_USER,
+  type: SESSION_SUCCESS,
   currentUser
 });
 
 const receiveErrors = (errors) => ({
-  type: RECEIVE_SESSION_ERRORS,
+  type: SESSION_FAILURE,
   errors
 });

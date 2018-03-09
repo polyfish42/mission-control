@@ -1,6 +1,6 @@
 import {
-  RECEIVE_CURRENT_USER,
-  RECEIVE_SESSION_ERRORS,
+  SESSION_SUCCESS,
+  SESSION_FAILURE,
   CLEAR_SESSION_ERRORS,
   LOGOUT
 } from '../../actions/session_actions';
@@ -10,9 +10,9 @@ const _nullErrors = [];
 export default (state = _nullErrors, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_SESSION_ERRORS:
+    case SESSION_FAILURE:
       return action.errors.responseJSON.errors;
-    case RECEIVE_CURRENT_USER:
+    case SESSION_SUCCESS:
       return _nullErrors;
     case CLEAR_SESSION_ERRORS:
       return _nullErrors;

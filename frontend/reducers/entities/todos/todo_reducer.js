@@ -1,10 +1,10 @@
 import {
-  RECEIVE_TODO,
-  RECEIVE_TODOS,
-  REMOVE_TODO
+  TODO_SUCCESS,
+  TODOS_SUCCESS,
+  REMOVE_TODO_SUCCESS
 } from '../../../actions/todo_actions';
 import {
-  RECEIVE_TODO_LIST,
+  TODO_LIST_SUCCESS,
   TODO_LISTS_SUCCESS
 } from '../../../actions/todo_list_actions';
 import { merge } from 'lodash';
@@ -12,16 +12,16 @@ import { merge } from 'lodash';
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_TODO:
+    case TODO_SUCCESS:
       const newTodo = { [action.todo.id]: action.todo };
       return merge({}, state, newTodo);
-    case RECEIVE_TODOS:
+    case TODOS_SUCCESS:
       return action.todos;
-    case REMOVE_TODO:
+    case REMOVE_TODO_SUCCESS:
       const newTodos = merge({}, state);
       delete newTodos[action.todo.id];
       return newTodos;
-    case RECEIVE_TODO_LIST:
+    case TODO_LIST_SUCCESS:
       return merge({}, state, action.todos);
     case TODO_LISTS_SUCCESS:
       return merge({}, state, action.todos);

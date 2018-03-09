@@ -21,7 +21,7 @@ class ProjectHeader extends React.Component {
 
     return (
       <div className="project-header">
-        <LoadingBar className="loading-bar"/>
+        <LoadingBar progressIncrease={35} className="loading-bar"/>
         <nav className="project-header__nav">
           <Link to="/project">
             <img src={window.smallLogo} className="project-header__img" />
