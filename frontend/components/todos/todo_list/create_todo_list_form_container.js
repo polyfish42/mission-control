@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 const mapStateToProps = state => {
   return {
     todoList: { name: "", description: "" },
-    showing: state.ui.todoList.createTodoListFormShowing
+    showing: state.ui.todoList.createTodoListFormShowing,
+    submitting: state.ui.todoList.createTodoListFormSubmitting
   };
 };
 

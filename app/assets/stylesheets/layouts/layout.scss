@@ -89,3 +89,18 @@
 .tool_header__filter {
   width: 95px;
 }
+
+.button--saving {
+  box-sizing: border-box;
+  background-color: red;
+  background-image: url(asset_path("todos/pulse_loader.svg"));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  from {background-size: 0px;}
+  to {background-size: 160px;}
+}

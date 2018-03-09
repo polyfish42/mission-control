@@ -11,6 +11,7 @@ class TodoListForm extends React.Component {
 
   this.handleSubmit = this.handleSubmit.bind(this);
   this.closeForm = this.closeForm.bind(this);
+  this.submitButton = this.submitButton.bind(this);
   this.errors = this.errors.bind(this);
 }
 
@@ -23,8 +24,8 @@ componentDidUpdate(prevProps, prevState) {
   }
 }
 
-componentWillReceiveProps(nextProps) {
-  if (this.props.showing === true && nextProps.showing === false) {
+componentWillUpdate(nextProps) {
+  if (this.props.submitting === true && nextProps.submitting === false) {
     this.setState({
       errors: [],
       name: "",
@@ -64,6 +65,30 @@ closeForm() {
   this.props.close();
 }
 
+submitButton () {
+  switch (this.props.submitting) {
+    case true:
+      return (
+          <button
+                  className="button button--green button--saving todosForm__button"
+                  disabled
+                  type="button"
+                  >
+                Saving...
+          </button>);
+
+    default:
+      return (<button
+                className="button button--green todosForm__button"
+                onClick={this.handleSubmit}
+                type="submit"
+                >
+                Add this list
+              </button>);
+
+  }
+}
+
 errors() {
   return this.state.errors.map((error, key) => {
     return (
@@ -97,13 +122,7 @@ errors() {
         />
         <ul>{this.state.errors && this.errors()}</ul>
         <div className="todosForm__buttons">
-          <button
-            className="button button--green todosForm__button"
-            onClick={this.handleSubmit}
-            type="submit"
-          >
-            Add this list
-          </button>
+          { this.submitButton() }
           <button
             onClick={this.closeForm}
             className="button button--clearGreen todosForm__button"
