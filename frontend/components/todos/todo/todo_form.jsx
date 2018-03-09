@@ -8,11 +8,44 @@ class TodoForm extends React.Component {
     this.state = {
       formShowing: false,
       todo: this.props.todo,
-      formShowed: false
+      formShowed: false,
+      formSubmitting: false
     };
+
+    this.handleEsc = this.handleEsc.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.submitButton = this.submitButton.bind(this);
+  }
+
+  componentWillMount() {
+    document.addEventListener("keydown", this.handleEsc, false);
+  }
+
+  componentWillUnmount(nextProps, nextState) {
+    document.removeEventListener("keydown", this.handleEsc, false);
+  }
+
+  handleEsc (e) {
+    if (e.keyCode === 27) {
+      this.setState({
+        formShowing: false
+      });
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    if (this.props.submitting === true && nextProps.submitting === false) {
+      this.setState({
+        todo: {
+          name: "",
+          description: ""
+        },
+        formShowed: false,
+        formSubmitting: false
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,12 +70,13 @@ class TodoForm extends React.Component {
     if (this.state.todo.name === "") {
       this.setState({ errors: ["Name can't be blank"] });
     } else {
-      // this.setState({ errors: [], name: "", description: "" })
       const newState = update(this.state.todo, {
         todo_list_id: { $set: this.props.todoListId }
       });
       this.props.handleSubmit(newState);
-      this.toggleForm();
+      this.setState({
+        formSubmitting: true
+      });
     }
   }
 
@@ -52,6 +86,30 @@ class TodoForm extends React.Component {
       formShowing: oppositeShowing,
       formShowed: this.state.formShowing
     });
+  }
+
+  submitButton () {
+    switch (this.state.formSubmitting) {
+      case true:
+        return (
+            <button
+                    className="button button--green button--saving todosForm__button"
+                    disabled
+                    type="button"
+                    >
+                  Saving...
+            </button>);
+
+      default:
+        return (<button
+                  className="button button--green todosForm__button"
+                  onClick={this.handleSubmit}
+                  type="submit"
+                  >
+                  Add this to-do
+                </button>);
+
+    }
   }
 
   render() {
@@ -70,6 +128,7 @@ class TodoForm extends React.Component {
 
     return (
       <form className="todosForm todosForm--createTodo">
+        { this.state.errors }
         <div className="todosForm__checkbox_wrapper">
           <span className={"todosForm__checkbox todo__checkbox"} />
         </div>
@@ -77,7 +136,7 @@ class TodoForm extends React.Component {
           className="todosForm__input todosForm__input--name"
           placeholder="Describe this to-do..."
           onChange={this.handleInput("name")}
-          value={this.state.name}
+          value={this.state.todo.name}
           ref={input => {
             this.nameInput = input;
           }}
@@ -86,16 +145,10 @@ class TodoForm extends React.Component {
           className="todosForm__input todosForm__input--description"
           placeholder="Add extra details..."
           onChange={this.handleInput("description")}
-          value={this.state.description}
+          value={this.state.todo.description}
         />
         <div className="todosForm__buttons">
-          <button
-            className="button button--green todosForm__button"
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            Add this to-do
-          </button>
+          { this.submitButton() }
           <button
             className="button button--clearGreen todosForm__button"
             type="button"

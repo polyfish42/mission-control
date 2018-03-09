@@ -17,7 +17,6 @@ class ProjectHeader extends React.Component {
     if (!this.props.loggedIn) {
       return null;
     }
-    // <p>{this.state.logout_panel_showing.toString()}</p>
 
     return (
       <div className="project-header">
