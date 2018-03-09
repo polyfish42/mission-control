@@ -5,7 +5,7 @@ import {
 } from '../../../actions/todo_actions';
 import {
   RECEIVE_TODO_LIST,
-  RECEIVE_TODO_LISTS
+  TODO_LISTS_SUCCESS
 } from '../../../actions/todo_list_actions';
 import { merge } from 'lodash';
 
@@ -23,7 +23,7 @@ export default (state = {}, action) => {
       return newTodos;
     case RECEIVE_TODO_LIST:
       return merge({}, state, action.todos);
-    case RECEIVE_TODO_LISTS:
+    case TODO_LISTS_SUCCESS:
       return merge({}, state, action.todos);
     default:
       return state;

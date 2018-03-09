@@ -16,8 +16,10 @@ class DropDownMenu extends React.Component {
 
   menu () {
     return (
-      <div className="project-header__logout-panel">
-        <p className="project-header__logout" onClick={this.logout}>Log out</p>
+      <div>
+        <div className="project-header__logout-panel">
+          <p className="project-header__logout" onClick={this.logout}>Log out</p>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import {
   RECEIVE_TODO_LIST,
-  RECEIVE_TODO_LISTS,
+  TODO_LISTS_SUCCESS,
   REMOVE_TODO_LIST
 } from '../../../actions/todo_list_actions';
 import { merge } from 'lodash';
@@ -11,7 +11,7 @@ export default (state = {}, action) => {
     case RECEIVE_TODO_LIST:
       const newTodoList = { [action.todoList.id]: action.todoList };
       return merge({}, state, newTodoList);
-    case RECEIVE_TODO_LISTS:
+    case TODO_LISTS_SUCCESS:
       return action.todoLists;
     case REMOVE_TODO_LIST:
       const newTodoLists = merge({}, state);

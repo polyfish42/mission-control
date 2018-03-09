@@ -1,5 +1,5 @@
 import {
-  RECEIVE_TODO_LISTS,
+  TODO_LISTS_SUCCESS,
   RECEIVE_TODO_LIST,
   RECEIVE_TODO_LIST_ERRORS,
   CLEAR_TODO_ERRORS
@@ -12,7 +12,7 @@ export default (state = _nullErrors, action) => {
   switch (action.type) {
     case RECEIVE_TODO_LIST_ERRORS:
       return action.errors.responseJSON.errors;
-    case RECEIVE_TODO_LISTS:
+    case TODO_LISTS_SUCCESS:
       return _nullErrors;
     case RECEIVE_TODO_LIST:
       return _nullErrors;

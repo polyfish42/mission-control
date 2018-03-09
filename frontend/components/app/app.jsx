@@ -1,5 +1,4 @@
 import React from "react";
-import LoadingBar from 'react-redux-loading-bar';
 import ProjectHeaderContainer from "../project/project_header/project_header_container";
 import SplashContainer from "../splash/splash_container";
 import SignupSessionFormContainer from "../session/signup_session_form_container";
@@ -14,7 +13,6 @@ import { AuthRoute, ProtectedRoute } from "../../util/route_util";
 const App = () => {
   return (
     <div>
-      <LoadingBar />
       <ProjectHeaderContainer />
       <AuthRoute path="/" exact component={SplashContainer} />
       <AuthRoute path="/signup" component={SignupSessionFormContainer} />

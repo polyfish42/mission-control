@@ -1,12 +1,14 @@
 .project-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
+  top: 0;
   overflow: hidden;
   position: fixed;
-  top: 0;
   width: 100%;
   background-color: rgba(246, 242, 239, .8);
+}
+.project-header__nav {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .project-header__img {

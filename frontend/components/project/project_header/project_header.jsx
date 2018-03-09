@@ -1,4 +1,5 @@
 import React from "react";
+import LoadingBar from 'react-redux-loading-bar';
 import DropDownMenu from "./dropdown_menu";
 import { Link } from "react-router-dom";
 
@@ -16,10 +17,12 @@ class ProjectHeader extends React.Component {
     if (!this.props.loggedIn) {
       return null;
     }
+    // <p>{this.state.logout_panel_showing.toString()}</p>
 
     return (
-      <div>
-        <nav className="project-header">
+      <div className="project-header">
+        <LoadingBar className="loading-bar"/>
+        <nav className="project-header__nav">
           <Link to="/project">
             <img src={window.smallLogo} className="project-header__img" />
           </Link>
@@ -48,11 +51,7 @@ class ProjectHeader extends React.Component {
   }
 
   togglePanel() {
-    if (this.state.logout_panel_showing === true) {
-      this.setState({ logout_panel_showing: false });
-    } else {
-      this.setState({ logout_panel_showing: true });
-    }
+    this.setState({ logout_panel_showing: true });
   }
 }
 
