@@ -1,4 +1,5 @@
 import * as TodoUtil from "../util/todo_util";
+import { receiveTodoList, receiveTodoListErrors } from "./todo_list_actions";
 export const RECEIVE_TODO = "RECEIVE_TODO";
 export const RECEIVE_TODOS = "RECEIVE_TODOS";
 export const REMOVE_TODO = "REMOVE_TODO";
@@ -8,8 +9,8 @@ export const CLEAR_TODO_ERRORS = "CLEAR_TODO_ERRORS";
 export const createTodo = todo => {
   return dispatch => {
     return TodoUtil.createTodo(todo).then(
-      todo => dispatch(receiveTodo(todo)),
-      errors => dispatch(receiveTodoErrors(errors))
+      todoList => dispatch(receiveTodoList(todoList)),
+      errors => dispatch(receiveTodoListErrors(errors))
     );
   };
 };

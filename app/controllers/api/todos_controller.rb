@@ -1,11 +1,14 @@
 class Api::TodosController < ApplicationController
   def create
-    @todo = Todo.new(todo_params)
+    @todo = Todo.new(todos_params)
     @todo.user = current_user
-    @todo.assignees << User.find(params[:todo][:assignee_id])
+    #TODO when doing assignments this will be missing
+    # @todo.assignees << User.find(params[:todo][:assignee_id])
 
     if @todo.save
-      render "api/todos/show"
+      @todo_list = @todo.todo_list
+
+      render "api/todo_lists/show"
     else
       render json: {errors: @todo.errors.full_messages}, status: 422
     end

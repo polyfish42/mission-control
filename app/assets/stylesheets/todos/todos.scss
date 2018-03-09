@@ -1,6 +1,6 @@
 .todoListIndex {
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 120px;
+  padding-right: 120px;
   margin-top: 20px;
 }
 
@@ -38,6 +38,11 @@
   padding-top: 10px;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 20px;
+}
+
+.todosForm--createTodo {
+  padding-left: 58px;
 }
 
 .todosForm__input {
@@ -80,22 +85,23 @@
 
 .todo__text {
   list-style: none;
-  padding: 4px 0px 4px 32px;
+  padding: 4px 0px 4px 58px;
   display: block;
   font-size: 16px;
   line-height: 24px;
 }
 
 .todo__text--checked {
-  padding-left: 24px;
-  margin-bottom: 5px;
+  padding-left: 52px;
+  margin-bottom: 0px;
   line-height: 19.5px;
 }
 
 .todo__checkbox {
   display: inline-block;
   position: absolute;
-  left: 0px;
+  top: 5px;
+  left: 28px;
   flex-basis: 20px;
   width: 22px;
   height: 22px;
@@ -105,10 +111,20 @@
   cursor: pointer;
 }
 
+.todosForm__checkbox_wrapper {
+  position: relative;
+}
+
+.todosForm__checkbox {
+  top: 1px;
+  left: -31px;
+}
+
 .todo__checkbox--checked {
   width: 16px;
   height: 16px;
-  top: 3px;
+  top: 6px;
+  left: 28px;
   background-image: url(asset_path("todos/check_box_check.svg"));
   background-repeat: no-repeat;
   background-size: 65%;
@@ -131,6 +147,7 @@
   line-height: 1.5;
   box-sizing: border-box;
   font-size: 13px;
+  margin-top: 10px;
   margin-left: 28px;
   margin-bottom: 10px;
 }

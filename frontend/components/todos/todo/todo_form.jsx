@@ -1,22 +1,54 @@
 import React from "react";
+import update from "immutability-helper";
 
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { formShowing: false };
+    this.state = {
+      formShowing: false,
+      todo: this.props.todo,
+      formShowed: false
+    };
 
     this.toggleForm = this.toggleForm.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.nameInput) {
+    if (this.nameInput && this.state.formShowed === false) {
       this.nameInput.focus();
+      this.setState({ formShowed: true });
+    }
+  }
+
+  handleInput(field) {
+    return e => {
+      let newState = update(this.state, {
+        todo: { [field]: { $set: e.target.value } }
+      });
+
+      this.setState(newState);
+    };
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.todo.name === "") {
+      this.setState({ errors: ["Name can't be blank"] });
+    } else {
+      // this.setState({ errors: [], name: "", description: "" });
+      this.props.handleSubmit(this.state.todo);
+      this.toggleForm();
     }
   }
 
   toggleForm() {
-    const showing = this.state.formShowing ? false : true;
-    this.setState({ formShowing: showing });
+    const oppositeShowing = this.state.formShowing ? false : true;
+    this.setState({
+      formShowing: oppositeShowing,
+      formShowed: this.state.formShowing
+    });
   }
 
   render() {
@@ -34,10 +66,15 @@ class TodoForm extends React.Component {
     }
 
     return (
-      <form className="todosForm">
+      <form className="todosForm todosForm--createTodo">
+        <div className="todosForm__checkbox_wrapper">
+          <span className={"todosForm__checkbox todo__checkbox"} />
+        </div>
         <input
           className="todosForm__input todosForm__input--name"
           placeholder="Describe this to-do..."
+          onChange={this.handleInput("name")}
+          value={this.state.name}
           ref={input => {
             this.nameInput = input;
           }}
@@ -45,12 +82,14 @@ class TodoForm extends React.Component {
         <textarea
           className="todosForm__input todosForm__input--description"
           placeholder="Add extra details..."
+          onChange={this.handleInput("description")}
+          value={this.state.description}
         />
         <div className="todosForm__buttons">
           <button
             className="button button--green todosForm__button"
             type="submit"
-            onClick={this.toggleForm}
+            onClick={this.handleSubmit}
           >
             Add this to-do
           </button>

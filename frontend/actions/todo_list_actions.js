@@ -50,7 +50,7 @@ export const deleteTodoList = todoList => {
   };
 };
 
-const receiveTodoList = ({ todoList, todos }) => ({
+export const receiveTodoList = ({ todoList, todos }) => ({
   type: RECEIVE_TODO_LIST,
   todoList,
   todos
@@ -67,7 +67,7 @@ const removeTodoList = todoList => ({
   todoList
 });
 
-const receiveTodoListErrors = errors => ({
+export const receiveTodoListErrors = errors => ({
   type: RECEIVE_TODO_LIST_ERRORS,
   errors
 });

@@ -4,6 +4,7 @@ import CreateTodoFormContainer from "../todo/create_todo_form_container";
 import { Link } from "react-router-dom";
 
 const TodoListItem = ({ todoList }) => {
+  debugger;
   const done = todoList.todos.filter(todo => todo.done);
   const notDone = todoList.todos.filter(todo => !todo.done);
 
@@ -18,7 +19,7 @@ const TodoListItem = ({ todoList }) => {
           return <TodoContainer todo={todo} key={key} />;
         })}
       </ul>
-      <CreateTodoFormContainer />
+      <CreateTodoFormContainer todoListId={todoList.id} />
       <ul>
         {done.map((todo, key) => {
           return <TodoContainer todo={todo} key={key} />;

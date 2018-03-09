@@ -10,11 +10,12 @@ class TodoListForm extends React.Component {
     this.errors = this.errors.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.nameInput) {
-      this.nameInput.focus();
-    }
-  }
+  // TODO this needs to change only the first time. Need to reshape state
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.nameInput) {
+  //     this.nameInput.focus();
+  //   }
+  // }
 
   componentWillUnmount() {
     this.closeForm();

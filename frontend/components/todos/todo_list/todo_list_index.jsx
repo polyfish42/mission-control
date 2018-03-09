@@ -16,8 +16,8 @@ class TodoListIndex extends React.Component {
           buttonText="New list"
           buttonAction={this.props.showCreateTodoListForm}
         />
-        <CreateTodoListFormContainer />
         <div className="todoListIndex">
+          <CreateTodoListFormContainer />
           {this.props.todoLists &&
             this.props.todoLists.reverse().map((todoList, key) => {
               return <TodoListItem todoList={todoList} key={key} />;
