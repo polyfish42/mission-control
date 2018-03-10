@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     todo: {
       name: "",
+      assignee: "",
       description: ""
     },
     showing: state.ui.todo.createTodoFormShowing,

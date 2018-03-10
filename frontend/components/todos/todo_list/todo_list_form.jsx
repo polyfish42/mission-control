@@ -92,7 +92,7 @@ submitButton () {
 errors() {
   return this.state.errors.map((error, key) => {
     return (
-      <li key = {key} className = "session__error" >
+      <li key = {key} className = "error" >
         {error}
       </li>
     );

@@ -1,5 +1,6 @@
 import React from "react";
 import update from "immutability-helper";
+import CreateTodoAssigneeInput from "./create_todo_assignee_input_container";
 import { merge } from "lodash";
 
 class TodoForm extends React.Component {
@@ -15,6 +16,7 @@ class TodoForm extends React.Component {
     this.handleEsc = this.handleEsc.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.assignTodo = this.assignTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitButton = this.submitButton.bind(this);
   }
@@ -40,6 +42,7 @@ class TodoForm extends React.Component {
       this.setState({
         todo: {
           name: "",
+          assignee: "",
           description: ""
         },
         formShowed: false,
@@ -75,16 +78,25 @@ class TodoForm extends React.Component {
       });
       this.props.handleSubmit(newState);
       this.setState({
-        formSubmitting: true
+        formSubmitting: true,
+        errors: []
       });
     }
+  }
+
+  assignTodo(assignee) {
+    let newState = update(this.state, {
+      todo: { assignee: { $set: assignee } }
+    });
+    this.setState(newState);
   }
 
   toggleForm() {
     const oppositeShowing = this.state.formShowing ? false : true;
     this.setState({
       formShowing: oppositeShowing,
-      formShowed: this.state.formShowing
+      formShowed: this.state.formShowing,
+      errors: []
     });
   }
 
@@ -112,6 +124,16 @@ class TodoForm extends React.Component {
     }
   }
 
+  errors() {
+    return this.state.errors.map((error, key) => {
+      return (
+        <li key={key} className="error">
+          {error}
+        </li>
+      );
+    });
+  }
+
   render() {
     const { formShowing } = this.state;
 
@@ -128,7 +150,6 @@ class TodoForm extends React.Component {
 
     return (
       <form className="todosForm todosForm--createTodo">
-        { this.state.errors }
         <div className="todosForm__checkbox_wrapper">
           <span className={"todosForm__checkbox todo__checkbox"} />
         </div>
@@ -141,12 +162,25 @@ class TodoForm extends React.Component {
             this.nameInput = input;
           }}
         />
-        <textarea
+      <div className="todosForm__input-with-label">
+        <label className="todosForm__label">Assigned to</label>
+        <CreateTodoAssigneeInput
+          formShowed={this.state.formShowed}
+          formShowing={this.state.formShowing}
+          assignTodo={this.assignTodo}
+          assignee={this.state.todo.assignee}
+        />
+      </div>
+      <div className="todosForm__input-with-label">
+        <label className="todosForm__label">Notes</label>
+        <input
           className="todosForm__input todosForm__input--description"
           placeholder="Add extra details..."
           onChange={this.handleInput("description")}
           value={this.state.todo.description}
         />
+      </div>
+      {this.state.errors && this.errors()}
         <div className="todosForm__buttons">
           { this.submitButton() }
           <button

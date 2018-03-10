@@ -11,12 +11,12 @@ class Api::TodoListsController < ApplicationController
   end
 
   def show
-    @todo_list = TodoList.find(params[:id])
+    @todo_list = TodoList.find(params[:id]).includes(:todos)
     render "api/todo_lists/show"
   end
 
   def index
-    @todo_lists = TodoList.all
+    @todo_lists = TodoList.includes(:todos)
     render "api/todo_lists/index"
   end
 

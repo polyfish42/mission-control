@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 //test
-import { signup, login, logout } from './actions/session_actions';
-import { createTodoList } from './actions/todo_list_actions';
+import { fetchUsers } from './actions/user_actions';
 
 document.addEventListener("DOMContentLoaded", () =>{
   let store;
@@ -16,10 +15,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     store = configureStore();
   }
 
-  window.signup = signup;
-  window.login = login;
-  window.logout = logout;
-  window.createTodoList = createTodoList;
+  window.fetchUsers = fetchUsers;
   window.dispatch = store.dispatch;
   window.state = store.getState;
 

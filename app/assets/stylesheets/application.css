@@ -75,3 +75,10 @@ textarea:focus {
   color: rgb(40, 60, 70);
   background-color: white;
 }
+
+.error {
+  color: #d4442e;
+  list-style: none;
+  font-size: 12px;
+  padding-top: 10px;
+}

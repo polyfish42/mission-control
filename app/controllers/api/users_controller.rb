@@ -20,6 +20,11 @@ class Api::UsersController < ApplicationController
     render "api/users/index"
   end
 
+  def search
+    @users = User.all
+    render "api/users/search"
+  end
+
   def demo
     @user = demo_user
 

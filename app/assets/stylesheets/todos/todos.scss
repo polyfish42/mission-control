@@ -50,6 +50,7 @@
 }
 
 .todosForm__input--name {
+  padding-bottom: 8px;
   font-size: 18px;
   font-weight: bold;
   color: rgb(40, 60, 70);
@@ -57,8 +58,28 @@
 }
 
 .todosForm__input--description {
+  width: 488px;
   font-size: 14px;
   color: #a9a9a9;
+}
+
+.todosForm__input-with-label {
+  display: flex;
+  align-items: center;
+  padding-top: 8.4px;
+  padding-bottom: 8.4px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.todosForm__input-with-label:nth-last-of-type(2) {
+  border: none;
+}
+
+.todosForm__label {
+  width: 130px;
+  text-align: right;
+  padding-right: 10px;
+  color: rgb(40,60,70);
 }
 
 .todosForm__buttons {
@@ -74,8 +95,6 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
-
-
 
 .todosForm__button:first-child {
   margin-right: 5px;

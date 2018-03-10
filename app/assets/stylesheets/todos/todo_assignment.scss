@@ -1,0 +1,28 @@
+.todo-assignment {
+  position: relative;
+}
+.todo-assignment__search-results {
+  visibility: hidden;
+  position: absolute;
+  width: 240px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px #0000001d;
+  z-index: 2;
+}
+
+.todo-assignment__search-results--open {
+  visibility: visible;
+}
+
+.todo-assignment__search-item {
+  padding: 6px 12px 6px 12px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.todo-assignment__search-item:first-of-type {
+  background-color: blue;
+  color: white;
+}

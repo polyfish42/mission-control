@@ -1,5 +1,4 @@
 import React from "react";
-import TruncateText from "../../utils/truncate_text";
 import update from "immutability-helper";
 import { Link } from "react-router-dom";
 import { merge } from "lodash";
