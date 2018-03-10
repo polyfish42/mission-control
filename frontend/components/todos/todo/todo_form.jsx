@@ -103,23 +103,26 @@ class TodoForm extends React.Component {
   submitButton () {
     switch (this.state.formSubmitting) {
       case true:
-        return (
-            <button
-                    className="button button--green button--saving todosForm__button"
-                    disabled
-                    type="button"
-                    >
-                  Saving...
-            </button>);
+      return (
+        <button
+          className="button button--green button--saving todosForm__button"
+          disabled
+          type="button"
+          >
+          Saving...
+        </button>
+      );
 
       default:
-        return (<button
-                  className="button button--green todosForm__button"
-                  onClick={this.handleSubmit}
-                  type="submit"
-                  >
-                  Add this to-do
-                </button>);
+      return (
+        <button
+          className="button button--green todosForm__button"
+          onClick={this.handleSubmit}
+          type="submit"
+          >
+          Add this to-do
+        </button>
+      );
 
     }
   }
@@ -142,7 +145,7 @@ class TodoForm extends React.Component {
         <button
           onClick={this.toggleForm}
           className="button button--clearWhite createTodo__open_button"
-        >
+          >
           Add a to-do
         </button>
       );
@@ -161,33 +164,35 @@ class TodoForm extends React.Component {
           ref={input => {
             this.nameInput = input;
           }}
-        />
-      <div className="todosForm__input-with-label">
-        <label className="todosForm__label">Assigned to</label>
-        <CreateTodoAssigneeInput
-          formShowed={this.state.formShowed}
-          formShowing={this.state.formShowing}
-          assignTodo={this.assignTodo}
-          assignee={this.state.todo.assignee}
-        />
-      </div>
-      <div className="todosForm__input-with-label">
-        <label className="todosForm__label">Notes</label>
-        <input
-          className="todosForm__input todosForm__input--description"
-          placeholder="Add extra details..."
-          onChange={this.handleInput("description")}
-          value={this.state.todo.description}
-        />
-      </div>
-      {this.state.errors && this.errors()}
+          />
+        <div className="todosForm__input-with-label">
+          <label className="todosForm__label">
+            Assigned to
+          </label>
+          <CreateTodoAssigneeInput
+            formShowed={this.state.formShowed}
+            formShowing={this.state.formShowing}
+            assignTodo={this.assignTodo}
+            assignee={this.state.todo.assignee}
+            />
+        </div>
+        <div className="todosForm__input-with-label">
+          <label className="todosForm__label">Notes</label>
+          <input
+            className="todosForm__input todosForm__input--description"
+            placeholder="Add extra details..."
+            onChange={this.handleInput("description")}
+            value={this.state.todo.description}
+            />
+        </div>
+        {this.state.errors && this.errors()}
         <div className="todosForm__buttons">
           { this.submitButton() }
           <button
             className="button button--clearGreen todosForm__button"
             type="button"
             onClick={this.toggleForm}
-          >
+            >
             Cancel
           </button>
         </div>

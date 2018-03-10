@@ -65,16 +65,20 @@ class TodoAssigneeInput extends React.Component {
           onChange={this.handleInput("assignee")}
           onKeyDown={ this.assignTodo }
           value={this.state.assignee}
-        />
-      <ul className={ this.searchResultsClass() }>
+          />
+        <ul className={ this.searchResultsClass() }>
           {
             this.state.results.map((result, key) => {
-              return <li key={key} className="todo-assignment__search-item">{ result.name }</li>;
+              return <li
+                key={key}
+                className="todo-assignment__search-item">
+                { result.name }
+              </li>;
             })
           }
         </ul>
       </div>
-  );
+    );
   }
 }
 
