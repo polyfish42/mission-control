@@ -17,6 +17,7 @@ class TodoForm extends React.Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.assignTodo = this.assignTodo.bind(this);
+    this.cancelAssignee = this.cancelAssignee.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitButton = this.submitButton.bind(this);
   }
@@ -42,7 +43,7 @@ class TodoForm extends React.Component {
       this.setState({
         todo: {
           name: "",
-          assignee: "",
+          assignees: [],
           description: ""
         },
         formShowed: false,
@@ -74,7 +75,8 @@ class TodoForm extends React.Component {
       this.setState({ errors: ["Name can't be blank"] });
     } else {
       const newState = update(this.state.todo, {
-        todo_list_id: { $set: this.props.todoListId }
+        todo_list_id: { $set: this.props.todoListId },
+        assignments: { $set: this.state.todo.assignees.map(a => parseInt(a.id))}
       });
       this.props.handleSubmit(newState);
       this.setState({
@@ -86,9 +88,19 @@ class TodoForm extends React.Component {
 
   assignTodo(assignee) {
     let newState = update(this.state, {
-      todo: { assignee: { $set: assignee } }
+      todo: { assignees: { $push: [assignee] } }
     });
     this.setState(newState);
+  }
+
+  cancelAssignee(assignee) {
+    let assignees = merge([], this.state.todo.assignees)
+    let remainingAssignees = assignees.filter(a => a.id !== assignee.id)
+
+    let newState = update(this.state, {
+      todo: { assignees: {$set: remainingAssignees}}
+    })
+    this.setState(newState)
   }
 
   toggleForm() {
@@ -165,15 +177,17 @@ class TodoForm extends React.Component {
             this.nameInput = input;
           }}
           />
-        <div className="todosForm__input-with-label">
-          <label className="todosForm__label">
+        <div className="todosForm__input-with-label--no-padding todosForm__input-with-label">
+          <label className="todosForm__label todosForm__label--with-margin">
             Assigned to
           </label>
           <CreateTodoAssigneeInput
             formShowed={this.state.formShowed}
             formShowing={this.state.formShowing}
             assignTodo={this.assignTodo}
-            assignee={this.state.todo.assignee}
+            cancelAssignee={this.cancelAssignee}
+            assignees={this.state.todo.assignees}
+            assigneeInput={this.props.assigneeInput}
             />
         </div>
         <div className="todosForm__input-with-label">

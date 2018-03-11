@@ -2,8 +2,7 @@ class Api::TodosController < ApplicationController
   def create
     @todo = Todo.new(todos_params)
     @todo.user = current_user
-    #TODO when doing assignments this will be missing
-    # @todo.assignees << User.find(params[:todo][:assignee_id])
+    @todo.assignees << User.find(params[:todo][:assignments].map(&:to_i))
 
     if @todo.save
       @todo_list = @todo.todo_list

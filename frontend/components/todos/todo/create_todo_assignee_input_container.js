@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    assignee: ownProps.assignee,
+    assignees: ownProps.assignees,
+    assigneeInput: ownProps.assigneeInput,
+    cancelAssignee: ownProps.cancelAssignee,
     users: Object.values(state.entities.users)
   };
 };

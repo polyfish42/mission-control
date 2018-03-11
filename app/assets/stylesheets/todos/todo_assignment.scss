@@ -1,6 +1,14 @@
 .todo-assignment {
   position: relative;
 }
+
+.todo-assignment__flex-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 485px;
+}
+
 .todo-assignment__search-results {
   visibility: hidden;
   position: absolute;
@@ -20,9 +28,32 @@
   padding: 6px 12px 6px 12px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+  cursor: pointer;
 }
 
 .todo-assignment__search-item:first-of-type {
   background-color: blue;
   color: white;
+}
+
+.todo-assignee {
+  margin: 4.4px 10px 4.4px 0px;
+  padding: 4px 17px 4px 12px;
+  font-size: 14px;
+  color: #283c46;
+  background-color: #faf8f7;
+  border: 1px solid #bfbfbf;
+  border-radius: 15px;
+  white-space: nowrap;
+  position: relative;
+  cursor: pointer;
+}
+
+.todo-assignee__x {
+  font-size: 10px;
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  font-style: bold;
+  color: #AFAEAD;
 }

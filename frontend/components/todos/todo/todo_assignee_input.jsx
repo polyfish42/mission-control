@@ -1,16 +1,19 @@
 import React from 'react';
 import Fuse from 'fuse.js';
+import TodoAssignee from './todo_assignee';
 
 class TodoAssigneeInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      assignee: this.props.assignee,
+      assigneeInput: this.props.assigneeInput,
       results: []
     };
 
     this.initializeFuse = this.initializeFuse.bind(this);
     this.assignTodo = this.assignTodo.bind(this);
+    this.assignToodOnEnter = this.assignToodOnEnter.bind(this);
+    this.unassigned = this.unassigned.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,9 +29,9 @@ class TodoAssigneeInput extends React.Component {
   initializeFuse(users) {
     const options = {
       shouldSort: true,
-      threshold: 0.6,
+      threshold: 0.8,
       location: 0,
-      distance: 100,
+      distance: 15,
       maxPatternLength: 32,
       minMatchCharLength: 1,
       keys: ["name"]
@@ -49,29 +52,53 @@ class TodoAssigneeInput extends React.Component {
     (this.state.results.length > 1 ? " todo-assignment__search-results--open" : "");
   }
 
-  assignTodo(e) {
+  assignTodo(e, assignee) {
+    e.preventDefault();
+    this.props.assignTodo(assignee);
+    this.setState({assigneeInput: "", results: []})
+  }
+
+  assignToodOnEnter(e) {
     if (e.keyCode === 13) {
-      e.preventDefault();
-      this.props.assignTodo(this.state.results[0]);
+      this.assignTodo(e, this.unassigned()[0])
     }
+  }
+
+  assignTodoOnClick(e, result) {
+    this.assignTodo(e, result)
+  }
+
+  unassigned() {
+    return this.state.results.filter(r => !this.props.assignees.includes(r))
   }
 
   render () {
     return (
       <div className="todo-assignment">
-        <input
-          className="todosForm__input todosForm__input--description"
-          placeholder="Type names to assign..."
-          onChange={this.handleInput("assignee")}
-          onKeyDown={ this.assignTodo }
-          value={this.state.assignee}
-          />
+        <div className="todo-assignment__flex-wrapper">
+          {
+            this.props.assignees.map((assignee, key) => {
+              return <TodoAssignee
+                key={key}
+                assignee={assignee}
+                cancelAssignee={this.props.cancelAssignee}/>
+            })
+          }
+          <input
+            className="todosForm__input todosForm__input--assignee"
+            placeholder="Type names to assign..."
+            onChange={this.handleInput("assigneeInput")}
+            onKeyDown={ this.assignToodOnEnter }
+            value={this.state.assigneeInput}
+            />
+        </div>
         <ul className={ this.searchResultsClass() }>
           {
-            this.state.results.map((result, key) => {
+            this.unassigned().slice(0,8).map((result, key) => {
               return <li
                 key={key}
-                className="todo-assignment__search-item">
+                className="todo-assignment__search-item"
+                onClick={(e) => this.assignTodoOnClick(e, result)}>
                 { result.name }
               </li>;
             })
