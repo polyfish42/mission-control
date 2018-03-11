@@ -6,7 +6,8 @@ import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, { match: { params } }) => {
   return {
-    todoList: selectTodoList(state.entities, params.todoListId)
+    todoList: selectTodoList(state.entities, params.todoListId),
+    deleteMe: state.entities.todos
   };
 };
 

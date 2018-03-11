@@ -9,10 +9,25 @@ class TodoListForm extends React.Component {
       formShowing: false
   };
 
+  this.handleEsc = this.handleEsc.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.closeForm = this.closeForm.bind(this);
   this.submitButton = this.submitButton.bind(this);
   this.errors = this.errors.bind(this);
+}
+
+componentWillMount() {
+  document.addEventListener("keydown", this.handleEsc, false);
+}
+
+componentWillUnmount(nextProps, nextState) {
+  document.removeEventListener("keydown", this.handleEsc, false);
+}
+
+handleEsc (e) {
+  if (e.keyCode === 27) {
+    this.closeForm();
+  }
 }
 
 componentDidUpdate(prevProps, prevState) {
@@ -29,7 +44,8 @@ componentWillUpdate(nextProps) {
     this.setState({
       errors: [],
       name: "",
-      description: ""
+      description: "",
+      formShowing: false
     });
   }
 }

@@ -11,7 +11,7 @@ class Api::TodoListsController < ApplicationController
   end
 
   def show
-    @todo_list = TodoList.find(params[:id]).includes(:todos)
+    @todo_list = TodoList.includes(:todos).find(params[:id])
     render "api/todo_lists/show"
   end
 

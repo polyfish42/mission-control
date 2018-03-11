@@ -1,12 +1,12 @@
 import React from 'react';
+import ToolHeaderEdit from '../../app/tool_header_edit';
 import TodoContainer from '../todo/todo_container';
+import TodoListTodos from './todo_list_todos';
+import { isEmpty } from 'lodash';
 
 class TodoListShow extends React.Component {
-  constructor (props) {
-    super(props);
-  }
-
   componentWillMount() {
+    window.scrollTo(0,0);
     this.props.fetchTodoList(this.props.match.params.todoListId);
   }
 
@@ -17,15 +17,29 @@ class TodoListShow extends React.Component {
   }
 
   render () {
+    const { todoList } = this.props;
+
     return (
-      <div>
-        <div className="main-content">
-          <h1 className="main-content__h1">{ this.props.todoList.name }</h1>
-          {
-            this.props.todoList.todos && this.props.todoList.todos.map((todo, key) => {
-              return <TodoContainer todo={todo} key={key} />;
-            })
-          }
+      <div className="main-content">
+        <div className="tool_header">
+          <div className="tool_header__edit_wrapper">
+            <ToolHeaderEdit editable={ true }/>
+          </div>
+        </div>
+        <div className="main-content__inner">
+            <h1 className="todoListItem__name">
+              { todoList.name }
+            </h1>
+            {
+              todoList.description &&
+              <div className="todoListItem__description todoListItem__description--show">
+                { todoList.description }
+              </div>
+            }
+            {
+              !isEmpty(todoList) &&
+              <TodoListTodos todoList={todoList} />
+            }
         </div>
       </div>
     );

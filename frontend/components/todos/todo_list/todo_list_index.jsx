@@ -5,6 +5,7 @@ import CreateTodoListFormContainer from "./create_todo_list_form_container";
 
 class TodoListIndex extends React.Component {
   componentWillMount() {
+    window.scrollTo(0,0);
     this.props.fetchTodoLists();
   }
 
@@ -15,8 +16,9 @@ class TodoListIndex extends React.Component {
           title="To-dos"
           buttonText="New list"
           buttonAction={this.props.showCreateTodoListForm}
+          editable={false}
         />
-        <div className="todoListIndex">
+        <div className="main-content__inner">
           <CreateTodoListFormContainer />
           {this.props.todoLists &&
             this.props.todoLists.reverse().map((todoList, key) => {

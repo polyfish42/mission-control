@@ -1,10 +1,11 @@
 import React from "react";
+import ToolHeaderEdit from './tool_header_edit';
 
-const ToolHeader = ({ title, buttonText, buttonAction }) => {
+const ToolHeader = ({ title, buttonText, buttonAction, editable }) => {
   return (
     <div className="tool_header">
       <div className="tool_header__edit_wrapper">
-        <div className="tool_header__edit" />
+        <ToolHeaderEdit editable={ editable }/>
       </div>
       <div className="tool_header__container">
         <button

@@ -12,7 +12,7 @@ class TodoAssigneeInput extends React.Component {
 
     this.initializeFuse = this.initializeFuse.bind(this);
     this.assignTodo = this.assignTodo.bind(this);
-    this.assignToodOnEnter = this.assignToodOnEnter.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.unassigned = this.unassigned.bind(this);
   }
 
@@ -58,10 +58,19 @@ class TodoAssigneeInput extends React.Component {
     this.setState({assigneeInput: "", results: []})
   }
 
-  assignToodOnEnter(e) {
-    if (e.keyCode === 13) {
-      this.assignTodo(e, this.unassigned()[0])
-    }
+  handleKeyDown(e) {
+    switch (e.keyCode) {
+      case 13:
+        if (this.unassigned().length > 0) {
+          this.assignTodo(e, this.unassigned()[0])
+        }
+        break;
+      case 8:
+        this.props.backspaceAssignee();
+        break;
+      default:
+        undefined
+      }
   }
 
   assignTodoOnClick(e, result) {
@@ -88,7 +97,7 @@ class TodoAssigneeInput extends React.Component {
             className="todosForm__input todosForm__input--assignee"
             placeholder="Type names to assign..."
             onChange={this.handleInput("assigneeInput")}
-            onKeyDown={ this.assignToodOnEnter }
+            onKeyDown={ this.handleKeyDown }
             value={this.state.assigneeInput}
             />
         </div>

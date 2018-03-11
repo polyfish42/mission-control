@@ -1,15 +1,17 @@
-.todoListIndex {
-  padding-left: 120px;
-  padding-right: 120px;
-  margin-top: 20px;
-}
-
 .todoListItem {
   margin-bottom: 25px;
   list-style: none;
 }
 
 .todoListItem__name {
+  margin-bottom: 15px;
+  display: inline-block;
+  font-weight: bold;
+  color: rgb(40,60,70);
+  font-size: 23px;
+}
+
+.todoListItem__name--link {
   margin-bottom: 15px;
   display: inline-block;
   font-weight: bold;
@@ -26,6 +28,13 @@
   text-overflow: ellipsis;
   color: rgb(109, 109, 109);
   font-style: italic;
+}
+
+.todoListItem__description--show {
+  font-style: normal;
+  margin-top: 7px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgb(191, 191, 191)
 }
 
 .todosForm {

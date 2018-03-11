@@ -2,7 +2,7 @@ class Api::TodosController < ApplicationController
   def create
     @todo = Todo.new(todos_params)
     @todo.user = current_user
-    @todo.assignees << User.find(params[:todo][:assignments].map(&:to_i))
+    @todo.assignee_ids << assignee_ids
 
     if @todo.save
       @todo_list = @todo.todo_list
@@ -38,5 +38,15 @@ class Api::TodosController < ApplicationController
 
   def todos_params
     params.require(:todo).permit(:name, :due_date, :description, :done, :todo_list_id, :assignee_id)
+  end
+
+  def assignee_ids
+    assignee_ids = (params[:todo][:assignments])
+
+    if assignee_ids
+      assignee_ids.map(&:to_i)
+    else
+      []
+    end
   end
 end

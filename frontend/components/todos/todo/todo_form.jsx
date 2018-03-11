@@ -17,6 +17,7 @@ class TodoForm extends React.Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.assignTodo = this.assignTodo.bind(this);
+    this.backspaceAssignee = this.backspaceAssignee.bind(this);
     this.cancelAssignee = this.cancelAssignee.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitButton = this.submitButton.bind(this);
@@ -89,6 +90,13 @@ class TodoForm extends React.Component {
   assignTodo(assignee) {
     let newState = update(this.state, {
       todo: { assignees: { $push: [assignee] } }
+    });
+    this.setState(newState);
+  }
+
+  backspaceAssignee() {
+    let newState = update(this.state, {
+      todo: { assignees: { $apply: as => as.slice(0, as.length - 1) } }
     });
     this.setState(newState);
   }
@@ -185,6 +193,7 @@ class TodoForm extends React.Component {
             formShowed={this.state.formShowed}
             formShowing={this.state.formShowing}
             assignTodo={this.assignTodo}
+            backspaceAssignee={this.backspaceAssignee}
             cancelAssignee={this.cancelAssignee}
             assignees={this.state.todo.assignees}
             assigneeInput={this.props.assigneeInput}
