@@ -26,7 +26,7 @@ class TodoListShow extends React.Component {
 
   render () {
     const { todoList } = this.props;
-
+    
     return (
       <div className="main-content">
         <div className="tool_header">

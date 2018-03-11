@@ -7,6 +7,7 @@ class TodoListForm extends React.Component {
     this.state = {
       name: props.todoList.name,
       description: props.todoList.description,
+      id: props.todoList.id,
       formShowing: false
   };
 
@@ -53,7 +54,7 @@ componentWillUpdate(nextProps) {
 
 componentWillReceiveProps(nextProps) {
   if (this.props.formType === "edit") {
-    this.setState({ name: nextProps.todoList.name, description: nextProps.todoList.description })
+    this.setState({ name: nextProps.todoList.name, description: nextProps.todoList.description, id: nextProps.todoList.id })
   }
 }
 

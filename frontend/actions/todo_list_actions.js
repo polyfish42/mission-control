@@ -43,11 +43,11 @@ export const fetchTodoLists = () => {
   };
 };
 
-export const updateTodoList = () => {
+export const updateTodoList = (todoList) => {
   return dispatch => {
     dispatch({ type: UPDATE_TODO_LIST_REQUEST });
 
-    return TodoListUtil.updateTodoList().then(
+    return TodoListUtil.updateTodoList(todoList).then(
       todoList => dispatch(receiveTodoList(todoList)),
       errors => dispatch(receiveTodoListErrors(errors))
     );
