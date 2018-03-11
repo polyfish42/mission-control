@@ -18,15 +18,16 @@ class TodoListShow extends React.Component {
   }
 
   description(todoList) {
-    todoList.description &&
-    <div className="todoListItem__description todoListItem__description--show">
-      { todoList.description }
-    </div>
+    if (todoList.description) {
+      return (<div className="todoListItem__description todoListItem__description--show">
+        { todoList.description }
+      </div>)
+    }
   }
 
   render () {
     const { todoList } = this.props;
-    
+
     return (
       <div className="main-content">
         <div className="tool_header">
@@ -38,7 +39,7 @@ class TodoListShow extends React.Component {
         </div>
         <div className="main-content__inner">
           {
-            this.props.formShowing !== true &&
+            this.props.formShowing === false &&
             <div>
               <h1 className="todoListItem__name">
                 { todoList.name }
