@@ -4,7 +4,7 @@ import {
   SHOW_EDIT_TODO_LIST_FORM,
   CLOSE_EDIT_TODO_LIST_FORM
 } from "../../actions/ui/todo_list_ui_actions";
-import { CREATE_TODO_LIST_REQUEST, TODO_LIST_SUCCESS } from  "../../actions/todo_list_actions";
+import { CREATE_TODO_LIST_REQUEST, UPDATE_TODO_LIST_REQUEST, TODO_LIST_SUCCESS } from  "../../actions/todo_list_actions";
 import { merge } from "lodash";
 
 const defaultState = {
@@ -26,8 +26,10 @@ export default (state = defaultState, action) => {
       return merge({}, state, { editTodoListFormShowing: false });
     case CREATE_TODO_LIST_REQUEST:
       return merge({}, { todoListFormSubmitting: true });
+    case UPDATE_TODO_LIST_REQUEST:
+      return merge({}, { todoListFormSubmitting: true });
     case TODO_LIST_SUCCESS:
-      return merge({}, state, { createTodoListFormShowing: false, todoListFormSubmitting: false });
+      return merge({}, state, { createTodoListFormShowing: false, editTodoListFormShowing: false, todoListFormSubmitting: false});
     default:
       return state;
   }
