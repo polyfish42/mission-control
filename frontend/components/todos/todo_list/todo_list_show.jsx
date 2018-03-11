@@ -3,6 +3,7 @@ import ToolHeaderEdit from '../../app/tool_header_edit';
 import TodoContainer from '../todo/todo_container';
 import TodoListTodos from './todo_list_todos';
 import { isEmpty } from 'lodash';
+import EditTodoListFormContainer from './edit_todo_list_form_container';
 
 class TodoListShow extends React.Component {
   componentWillMount() {
@@ -16,6 +17,13 @@ class TodoListShow extends React.Component {
     }
   }
 
+  description(todoList) {
+    todoList.description &&
+    <div className="todoListItem__description todoListItem__description--show">
+      { todoList.description }
+    </div>
+  }
+
   render () {
     const { todoList } = this.props;
 
@@ -23,23 +31,31 @@ class TodoListShow extends React.Component {
       <div className="main-content">
         <div className="tool_header">
           <div className="tool_header__edit_wrapper">
-            <ToolHeaderEdit editable={ true }/>
+            <ToolHeaderEdit
+              editable={ true }
+              editAction={this.props.showEditTodoListForm}/>
           </div>
         </div>
         <div className="main-content__inner">
-            <h1 className="todoListItem__name">
-              { todoList.name }
-            </h1>
-            {
-              todoList.description &&
-              <div className="todoListItem__description todoListItem__description--show">
-                { todoList.description }
+          {
+            this.props.formShowing !== true &&
+            <div>
+              <h1 className="todoListItem__name">
+                { todoList.name }
+              </h1>
+              <div>
+                {
+                  this.description(todoList)
+                }
               </div>
-            }
-            {
-              !isEmpty(todoList) &&
-              <TodoListTodos todoList={todoList} />
-            }
+            </div>
+          }
+
+          <EditTodoListFormContainer todoList={ todoList }/>
+          {
+            !isEmpty(todoList) &&
+            <TodoListTodos todoList={todoList} />
+          }
         </div>
       </div>
     );

@@ -3,6 +3,7 @@ import React from "react";
 class TodoListForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: props.todoList.name,
       description: props.todoList.description,
@@ -50,6 +51,12 @@ componentWillUpdate(nextProps) {
   }
 }
 
+componentWillReceiveProps(nextProps) {
+  if (this.props.formType === "edit") {
+    this.setState({ name: nextProps.todoList.name, description: nextProps.todoList.description })
+  }
+}
+
 componentWillUnmount() {
   this.closeForm();
 }
@@ -82,6 +89,8 @@ closeForm() {
 }
 
 submitButton () {
+  const buttonText = this.props.formType === "create" ? "Add this list" : "Save Changes";
+
   switch (this.props.submitting) {
     case true:
       return (
@@ -99,7 +108,7 @@ submitButton () {
                 onClick={this.handleSubmit}
                 type="submit"
                 >
-                Add this list
+                { buttonText }
               </button>);
 
   }
@@ -144,7 +153,7 @@ errors() {
             className="button button--clearGreen todosForm__button"
             type="button"
           >
-            Cancel
+              { this.props.formType === "create" ? "Cancel" : "Discard Changes" }
           </button>
         </div>
       </form>

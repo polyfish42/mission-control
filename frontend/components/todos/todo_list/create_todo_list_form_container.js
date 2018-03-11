@@ -7,7 +7,8 @@ const mapStateToProps = state => {
   return {
     todoList: { name: "", description: "" },
     showing: state.ui.todoList.createTodoListFormShowing,
-    submitting: state.ui.todoList.createTodoListFormSubmitting
+    submitting: state.ui.todoList.todoListFormSubmitting,
+    formType: 'create'
   };
 };
 
