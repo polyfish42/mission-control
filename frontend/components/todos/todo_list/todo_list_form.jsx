@@ -34,7 +34,12 @@ handleEsc (e) {
 
 componentDidUpdate(prevProps, prevState) {
   if (this.nameInput && this.state.formShowing === false) {
-    this.nameInput.focus();
+    if (prevProps.formType === "edit") {
+      this.nameInput.select();
+    } else {
+      this.nameInput.focus();
+    }
+
     this.setState({
       formShowing: true
     });
