@@ -94,10 +94,12 @@ class TodoAssigneeInput extends React.Component {
               return <TodoAssignee
                 key={key}
                 assignee={assignee}
+                readOnly={this.props.readOnly()}
                 cancelAssignee={this.props.cancelAssignee}/>
             })
           }
           <input
+            readOnly={ this.props.readOnly() }
             className="todosForm__input todosForm__input--assignee"
             placeholder="Type names to assign..."
             onChange={this.handleInput("assigneeInput")}

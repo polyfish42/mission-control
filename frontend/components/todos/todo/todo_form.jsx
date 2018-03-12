@@ -21,6 +21,8 @@ class TodoForm extends React.Component {
     this.assignTodo = this.assignTodo.bind(this);
     this.backspaceAssignee = this.backspaceAssignee.bind(this);
     this.cancelAssignee = this.cancelAssignee.bind(this);
+    this.readOnly = this.readOnly.bind(this);
+    this.classSuffix = this.classSuffix.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitButton = this.submitButton.bind(this);
   }
@@ -54,6 +56,10 @@ class TodoForm extends React.Component {
       }) : (
         this.props.todo
       )
+
+      if (this.props.formType === "edit") {
+        this.setState({formShowing: false})
+      }
 
       this.setState({
         todo: todo,
@@ -167,10 +173,24 @@ class TodoForm extends React.Component {
     });
   }
 
+  readOnly() {
+    return this.state.formShowing === true ? false : true
+  }
+
+  classSuffix(className) {
+    switch (this.props.formType) {
+      case "create":
+        return " " + className + "--createTodo";
+        break
+      default:
+        return className + "--editTodo"
+    }
+  }
+
   render() {
     const { formShowing } = this.state;
 
-    if (formShowing === false) {
+    if (formShowing === false && this.props.formType === "create") {
       return (
         <button
           onClick={this.toggleForm}
@@ -182,11 +202,12 @@ class TodoForm extends React.Component {
     }
 
     return (
-      <form className="todosForm todosForm--createTodo">
+      <form className={"todosForm" + this.classSuffix("todosForm")} onClick={ () => this.setState({formShowing: true})}>
         <div className="todosForm__checkbox_wrapper">
           <span className={"todosForm__checkbox todo__checkbox"} />
         </div>
         <input
+          readOnly={ this.readOnly() }
           className="todosForm__input todosForm__input--name"
           placeholder="Describe this to-do..."
           onChange={this.handleInput("name")}
@@ -200,6 +221,7 @@ class TodoForm extends React.Component {
             Assigned to
           </label>
           <CreateTodoAssigneeInput
+            readOnly={ this.readOnly }
             formShowed={this.state.formShowed}
             formShowing={this.state.formShowing}
             assignTodo={this.assignTodo}
@@ -212,6 +234,7 @@ class TodoForm extends React.Component {
         <div className="todosForm__input-with-label">
           <label className="todosForm__label">Notes</label>
           <input
+            readOnly={ this.readOnly }
             className="todosForm__input todosForm__input--description"
             placeholder="Add extra details..."
             onChange={this.handleInput("description")}

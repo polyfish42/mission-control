@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
     assignees: selectAssignees(state, todo),
     showing: state.ui.todo.createTodoFormShowing,
     submitting: state.ui.todo.createTodoFormSubmitting,
-    assigneeInput: ""
+    assigneeInput: "",
+    formType: "edit"
   };
 };
 

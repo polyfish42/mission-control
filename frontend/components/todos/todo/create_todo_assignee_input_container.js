@@ -15,7 +15,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     searchUsers: () => dispatch(searchUsers()),
     assignTodo: ownProps.assignTodo,
-    backspaceAssignee: ownProps.backspaceAssignee
+    backspaceAssignee: ownProps.backspaceAssignee,
+    readOnly: ownProps.readOnly
   };
 };
 
