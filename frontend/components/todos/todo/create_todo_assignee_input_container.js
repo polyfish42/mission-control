@@ -7,6 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     assignees: ownProps.assignees,
     assigneeInput: ownProps.assigneeInput,
     cancelAssignee: ownProps.cancelAssignee,
+    formType: ownProps.formType,
+    formSubmitting: ownProps.formSubmitting,
     users: Object.values(state.entities.users)
   };
 };
@@ -16,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     searchUsers: () => dispatch(searchUsers()),
     assignTodo: ownProps.assignTodo,
     backspaceAssignee: ownProps.backspaceAssignee,
-    readOnly: ownProps.readOnly
+    showForm: ownProps.showForm
   };
 };
 

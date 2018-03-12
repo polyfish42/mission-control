@@ -1,7 +1,7 @@
 import TodoForm from "./todo_form";
 import { updateTodo } from "../../../actions/todo_actions";
 import { selectAssignees } from "../../../reducers/selectors/todo_selectors";
-import { openCreateTodoForm, closeCreateTodoForm } from "../../../actions/ui/todo_ui_actions";
+import { openCreateTodoForm, closeEditTodoForm } from "../../../actions/ui/todo_ui_actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     todo: todo,
     assignees: selectAssignees(state, todo),
-    showing: state.ui.todo.createTodoFormShowing,
+    showing: state.ui.todo.editTodoFormShowing,
     submitting: state.ui.todo.createTodoFormSubmitting,
     assigneeInput: "",
     formType: "edit"
@@ -25,8 +25,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     handleSubmit: todo => dispatch(updateTodo(todo)),
-    open: () => dispatch(openCreateTodoForm()),
-    close: () => dispatch(closeCreateTodoForm())
+    open: () => dispatch(openEditTodoForm()),
+    close: () => dispatch(closeEditTodoForm())
   };
 };
 

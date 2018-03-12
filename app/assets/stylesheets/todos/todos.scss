@@ -1,6 +1,12 @@
 .todoListItem {
-  margin-bottom: 25px;
+  width: 645px;
+  margin: 0 auto 25px auto;
   list-style: none;
+}
+
+.todoListItem__container {
+  width: 645px;
+  margin: 0 auto;
 }
 
 .todoListItem__name {
@@ -48,14 +54,24 @@
   padding-left: 30px;
   padding-right: 30px;
   margin-bottom: 20px;
-}
-
-.todosForm--createTodo {
   padding-left: 58px;
 }
 
+.todosForm--createTodo {
+}
+
+.todosForm--showTodo {
+  width: 745px;
+  border: 1px solid white;
+}
+
 .todosForm--editTodo {
-  border: none;
+  width: 745px;
+  cursor: pointer;
+}
+
+.todosForm--editTodo input {
+  cursor: pointer;
 }
 
 .todosForm__input {
@@ -68,6 +84,10 @@
   font-weight: bold;
   color: rgb(40, 60, 70);
   border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.todosForm__input--name--showTodo, .todosForm__input--name--editTodo {
+  padding-left: 150px;
 }
 
 .todosForm__input--description {
@@ -101,9 +121,15 @@
 
 .todosForm__label {
   width: 130px;
+  font-size: 16px;
   text-align: right;
   padding-right: 10px;
   color: rgb(40,60,70);
+}
+
+.todosForm__label--showTodo, .todosForm__label--editTodo {
+  font-weight: bold;
+  margin-left: 30px;
 }
 
 .todosForm__label--with-margin {

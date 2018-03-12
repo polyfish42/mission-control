@@ -28,6 +28,10 @@ class TodoAssigneeInput extends React.Component {
     if (this.props.assignees != nextProps.assignees) {
       this.setState({assignees: nextProps.assignees})
     }
+
+    if (nextProps.formSubmitting === true) {
+      this.setState({ assigneeInput: "", results: []})
+    }
   }
 
   initializeFuse(users) {
@@ -88,18 +92,18 @@ class TodoAssigneeInput extends React.Component {
   render () {
     return (
       <div className="todo-assignment">
-        <div className="todo-assignment__flex-wrapper">
+        <div className={"todo-assignment__flex-wrapper" + (this.props.formType === "edit" ? " todo-assignment__flex-wrapper--editTodo" : "")}>
           {
             this.props.assignees.map((assignee, key) => {
               return <TodoAssignee
                 key={key}
                 assignee={assignee}
-                readOnly={this.props.readOnly()}
+                formShowing={this.props.formShowing}
                 cancelAssignee={this.props.cancelAssignee}/>
             })
           }
           <input
-            readOnly={ this.props.readOnly() }
+            onClick={this.props.showForm}
             className="todosForm__input todosForm__input--assignee"
             placeholder="Type names to assign..."
             onChange={this.handleInput("assigneeInput")}

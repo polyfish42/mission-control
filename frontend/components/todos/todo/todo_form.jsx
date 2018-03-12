@@ -21,7 +21,6 @@ class TodoForm extends React.Component {
     this.assignTodo = this.assignTodo.bind(this);
     this.backspaceAssignee = this.backspaceAssignee.bind(this);
     this.cancelAssignee = this.cancelAssignee.bind(this);
-    this.readOnly = this.readOnly.bind(this);
     this.classSuffix = this.classSuffix.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitButton = this.submitButton.bind(this);
@@ -33,6 +32,7 @@ class TodoForm extends React.Component {
 
   componentWillUnmount(nextProps, nextState) {
     document.removeEventListener("keydown", this.handleEsc, false);
+    this.props.close();
   }
 
   handleEsc (e) {
@@ -45,6 +45,10 @@ class TodoForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({todo: nextProps.todo, assignees: nextProps.assignees})
+
+    if (nextProps.showing === true) {
+      this.setState({formShowing: true})
+    }
   }
 
   componentWillUpdate(nextProps) {
@@ -71,7 +75,9 @@ class TodoForm extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.nameInput && this.state.formShowed === false) {
-      this.nameInput.focus();
+      if (this.props.formType === "create") {
+        this.nameInput.focus();
+      }
       this.setState({ formShowed: true });
     }
   }
@@ -129,6 +135,7 @@ class TodoForm extends React.Component {
 
   toggleForm() {
     const oppositeShowing = this.state.formShowing ? false : true;
+
     this.setState({
       formShowing: oppositeShowing,
       formShowed: this.state.formShowing,
@@ -156,7 +163,7 @@ class TodoForm extends React.Component {
           onClick={this.handleSubmit}
           type="submit"
           >
-          Add this to-do
+          {this.props.formType === "create" ? "Add this to-do" : "Save changes"}
         </button>
       );
 
@@ -173,17 +180,17 @@ class TodoForm extends React.Component {
     });
   }
 
-  readOnly() {
-    return this.state.formShowing === true ? false : true
-  }
-
   classSuffix(className) {
     switch (this.props.formType) {
       case "create":
-        return " " + className + "--createTodo";
+        return " " + className + " " + className + "--createTodo";
         break
       default:
-        return className + "--editTodo"
+        if (this.state.formShowing === true) {
+          return " " + className + " " + className + "--editTodo"
+        } else {
+          return " " + className + " " + className + "--showTodo";
+        }
     }
   }
 
@@ -202,13 +209,13 @@ class TodoForm extends React.Component {
     }
 
     return (
-      <form className={"todosForm" + this.classSuffix("todosForm")} onClick={ () => this.setState({formShowing: true})}>
+      <form className={"todosForm" + this.classSuffix("todosForm")}>
         <div className="todosForm__checkbox_wrapper">
           <span className={"todosForm__checkbox todo__checkbox"} />
         </div>
         <input
-          readOnly={ this.readOnly() }
-          className="todosForm__input todosForm__input--name"
+          onClick={ () => this.setState({formShowing: true})}
+          className={"todosForm__input" + this.classSuffix("todosForm__input--name")}
           placeholder="Describe this to-do..."
           onChange={this.handleInput("name")}
           value={this.state.todo.name}
@@ -217,13 +224,15 @@ class TodoForm extends React.Component {
           }}
           />
         <div className="todosForm__input-with-label--no-padding todosForm__input-with-label">
-          <label className="todosForm__label todosForm__label--with-margin">
+          <label className={"todosForm__label--with-margin" + this.classSuffix("todosForm__label")}>
             Assigned to
           </label>
           <CreateTodoAssigneeInput
-            readOnly={ this.readOnly }
+            showForm={ () => this.setState({formShowing: true})}
+            formType={this.props.formType}
             formShowed={this.state.formShowed}
             formShowing={this.state.formShowing}
+            formSubmitting={this.state.formSubmitting}
             assignTodo={this.assignTodo}
             backspaceAssignee={this.backspaceAssignee}
             cancelAssignee={this.cancelAssignee}
@@ -232,9 +241,9 @@ class TodoForm extends React.Component {
             />
         </div>
         <div className="todosForm__input-with-label">
-          <label className="todosForm__label">Notes</label>
+          <label className={this.classSuffix("todosForm__label")}>Notes</label>
           <input
-            readOnly={ this.readOnly }
+            onClick={ () => this.setState({formShowing: true})}
             className="todosForm__input todosForm__input--description"
             placeholder="Add extra details..."
             onChange={this.handleInput("description")}
@@ -242,15 +251,20 @@ class TodoForm extends React.Component {
             />
         </div>
         {this.state.errors && this.errors()}
-        <div className="todosForm__buttons">
-          { this.submitButton() }
-          <button
-            className="button button--clearGreen todosForm__button"
-            type="button"
-            onClick={this.toggleForm}
-            >
-            Cancel
-          </button>
+        <div>
+          {
+            this.state.formShowing &&
+            <div className="todosForm__buttons">
+              { this.submitButton() }
+              <button
+                className="button button--clearGreen todosForm__button"
+                type="button"
+                onClick={this.toggleForm}
+                >
+                {this.props.formType === "create" ? "Cancel" : "Discard changes"}
+              </button>
+            </div>
+          }
         </div>
       </form>
     );

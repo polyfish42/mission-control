@@ -38,25 +38,27 @@ class TodoListShow extends React.Component {
           </div>
         </div>
         <div className="main-content__inner">
-          {
-            this.props.formShowing === false &&
-            <div>
-              <h1 className="todoListItem__name">
-                { todoList.name }
-              </h1>
+          <div className="todoListItem__container">
+            {
+              this.props.formShowing === false &&
               <div>
-                {
-                  this.description(todoList)
-                }
+                <h1 className="todoListItem__name">
+                  { todoList.name }
+                </h1>
+                <div>
+                  {
+                    this.description(todoList)
+                  }
+                </div>
               </div>
-            </div>
-          }
+            }
 
-          <EditTodoListFormContainer todoList={ todoList }/>
-          {
-            !isEmpty(todoList) &&
-            <TodoListTodos todoList={todoList} />
-          }
+            <EditTodoListFormContainer todoList={ todoList }/>
+            {
+              !isEmpty(todoList) &&
+              <TodoListTodos todoList={todoList} />
+            }
+          </div>
         </div>
       </div>
     );

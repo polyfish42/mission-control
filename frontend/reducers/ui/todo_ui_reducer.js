@@ -1,6 +1,8 @@
 import {
   OPEN_CREATE_TODO_FORM,
-  CLOSE_CREATE_TODO_FORM
+  OPEN_EDIT_TODO_FORM,
+  CLOSE_CREATE_TODO_FORM,
+  CLOSE_EDIT_TODO_FORM
 } from "../../actions/ui/todo_ui_actions";
 import { CREATE_TODO_REQUEST, UPDATE_TODO_REQUEST, TODO_SUCCESS } from  "../../actions/todo_actions";
 import { TODO_LIST_SUCCESS } from "../../actions/todo_list_actions";
@@ -8,6 +10,7 @@ import { merge } from "lodash";
 
 const defaultState = {
   createTodoFormShowing: false,
+  editTodoFormShowing: false,
   createTodoFormSubmitting: false
 };
 
@@ -16,6 +19,10 @@ export default (state = defaultState, action) => {
   switch (action.type) {
     case OPEN_CREATE_TODO_FORM:
       return merge({}, state, { createTodoFormShowing: true });
+    case OPEN_EDIT_TODO_FORM:
+      return merge({}, state, { editTodoFormShowing: true });
+    case CLOSE_EDIT_TODO_FORM:
+      return merge({}, state, { editTodoFormShowing: false});
     case CLOSE_CREATE_TODO_FORM:
       return merge({}, state, { createTodoFormShowing: false });
     case CREATE_TODO_REQUEST:
@@ -25,7 +32,7 @@ export default (state = defaultState, action) => {
     case TODO_LIST_SUCCESS:
       return merge({}, state, { createTodoFormShowing: false, createTodoFormSubmitting: false });
     case TODO_SUCCESS:
-      return merge({}, state, { createTodoFormShowing: false, createTodoFormSubmitting: false });
+      return merge({}, state, { createTodoFormShowing: false, createTodoFormSubmitting: false, editTodoFormShowing: false });
     default:
       return state;
   }

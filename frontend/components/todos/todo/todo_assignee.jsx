@@ -8,7 +8,7 @@ class TodoAssignee extends React.Component {
       <div>
         {
           assignee && (<div className="todo-assignee"
-          onClick={() => this.props.readOnly ? null : cancelAssignee(assignee)}>
+          onClick={() => cancelAssignee(assignee)}>
           { assignee.name }
           <span className="todo-assignee__x"> x</span>
         </div>)
