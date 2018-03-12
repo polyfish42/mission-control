@@ -45,7 +45,9 @@ class TodoForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({todo: nextProps.todo, assignees: nextProps.assignees})
+    if (!this.props.submitting && !nextProps.submitting) {
+      this.setState({todo: nextProps.todo, assignees: nextProps.assignees})
+    }
 
     if (nextProps.showing === true) {
       this.setState({formShowing: true})
@@ -59,7 +61,7 @@ class TodoForm extends React.Component {
         assignees: [],
         description: ""
       }) : (
-        this.props.todo
+        nextProps.todo
       )
 
       if (this.props.formType === "edit") {
@@ -142,6 +144,10 @@ class TodoForm extends React.Component {
       formShowed: this.state.formShowing,
       errors: []
     });
+
+    if (this.props.formType === "edit") {
+      this.setState({ todo: this.props.todo, assignees: this.props.assignees })
+    }
   }
 
   submitButton () {
@@ -210,6 +216,10 @@ class TodoForm extends React.Component {
   }
 
   render() {
+    if (this.props.todo.name === "" && this.props.formType === "edit") {
+      return null
+    }
+
     const { formShowing } = this.state;
 
     if (formShowing === false && this.props.formType === "create") {
