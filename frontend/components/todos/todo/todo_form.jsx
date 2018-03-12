@@ -48,12 +48,17 @@ class TodoForm extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (this.props.submitting === true && nextProps.submitting === false) {
+      let todo = this.props.formType === "create" ? ({
+        name: "",
+        assignees: [],
+        description: ""
+      }) : (
+        this.props.todo
+      )
+
+      debugger
       this.setState({
-        todo: {
-          name: "",
-          assignees: [],
-          description: ""
-        },
+        todo: todo,
         formShowed: false,
         formSubmitting: false
       });

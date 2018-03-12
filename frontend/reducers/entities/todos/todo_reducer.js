@@ -13,7 +13,6 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case TODO_SUCCESS:
-      debugger
       const newTodo = { [action.todo.id]: action.todo };
       return merge({}, state, newTodo);
     case TODOS_SUCCESS:
