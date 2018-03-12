@@ -65,16 +65,16 @@ class TodoAssigneeInput extends React.Component {
   handleKeyDown(e) {
     switch (e.keyCode) {
       case 13:
-        if (this.unassigned().length > 0) {
-          this.assignTodo(e, this.unassigned()[0])
-        }
-        break;
-      case 8:
-        this.props.backspaceAssignee();
-        break;
-      default:
-        undefined
+      if (this.unassigned().length > 0) {
+        this.assignTodo(e, this.unassigned()[0])
       }
+      break;
+      case 8:
+      this.props.backspaceAssignee();
+      break;
+      default:
+      undefined
+    }
   }
 
   assignTodoOnClick(e, result) {
@@ -82,7 +82,7 @@ class TodoAssigneeInput extends React.Component {
   }
 
   unassigned() {
-    return this.state.results.filter(r => !this.props.assignees.includes(r))
+    return this.state.results.filter(r => !this.props.assignees.map(i => i.id).includes(r.id))
   }
 
   render () {
