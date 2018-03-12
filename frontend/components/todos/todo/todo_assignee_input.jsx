@@ -24,6 +24,10 @@ class TodoAssigneeInput extends React.Component {
     if (this.state.fuse == null && nextProps.users.length > 0) {
       this.initializeFuse(nextProps.users);
     }
+
+    if (this.props.assignees != nextProps.assignees) {
+      this.setState({assignees: nextProps.assignees})
+    }
   }
 
   initializeFuse(users) {

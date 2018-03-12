@@ -33,7 +33,7 @@ class Todo extends React.Component {
             className={this.checkedClass("todo__checkbox")}
             onClick={this.check}
           />
-          <Link to="#" className={this.checkedClass("todo__text_link")}>
+        <Link to={`/todolists/${this.props.todo.todoListId}/todos/${this.props.todo.id}`} className={this.checkedClass("todo__text_link")}>
             {this.props.todo.name}
           </Link>
         </li>

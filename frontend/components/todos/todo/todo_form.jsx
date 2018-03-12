@@ -6,6 +6,7 @@ import { merge } from "lodash";
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       formShowing: false,
       todo: this.props.todo,
@@ -36,6 +37,12 @@ class TodoForm extends React.Component {
       this.setState({
         formShowing: false
       });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.todo.id != nextProps.todo.id) {
+      this.setState({todo: nextProps.todo})
     }
   }
 
