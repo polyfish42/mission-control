@@ -1,22 +1,24 @@
 import TodoForm from "./todo_form";
 import { updateTodo } from "../../../actions/todo_actions";
-import { selectTodo } from "../../../reducers/selectors/todo_selectors";
+import { selectAssignees } from "../../../reducers/selectors/todo_selectors";
 import { openCreateTodoForm, closeCreateTodoForm } from "../../../actions/ui/todo_ui_actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {
   const defaultTodo =  {
       name: "",
-      assignees: [],
+      assigneeIds: [],
       description: ""
     }
 
+  const todo = state.entities.todos[ownProps.id] || defaultTodo
+
   return {
-    todo: selectTodo(state, state.entities.users, ownProps.id) || defaultTodo,
+    todo: todo,
+    assignees: selectAssignees(state, todo),
     showing: state.ui.todo.createTodoFormShowing,
     submitting: state.ui.todo.createTodoFormSubmitting,
-    assigneeInput: "",
-    deleteMe: state.entities.users
+    assigneeInput: ""
   };
 };
 

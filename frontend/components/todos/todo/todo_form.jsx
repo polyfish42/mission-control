@@ -10,6 +10,7 @@ class TodoForm extends React.Component {
     this.state = {
       formShowing: false,
       todo: this.props.todo,
+      assignees: props.assignees,
       formShowed: false,
       formSubmitting: false
     };
@@ -41,13 +42,11 @@ class TodoForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
-    if (this.state.todo.id != nextProps.todo.id) {
-      this.setState({todo: nextProps.todo})
-    }
+    this.setState({todo: nextProps.todo, assignees: nextProps.assignees})
   }
 
   componentWillUpdate(nextProps) {
+    debugger
     if (this.props.submitting === true && nextProps.submitting === false) {
       let todo = this.props.formType === "create" ? ({
         name: "",
@@ -89,7 +88,7 @@ class TodoForm extends React.Component {
     } else {
       const newState = update(this.state.todo, {
         todo_list_id: { $set: this.props.todoListId },
-        assignments: { $set: this.state.todo.assignees.map(a => parseInt(a.id))}
+        assignments: { $set: this.state.assignees.map(a => parseInt(a.id))}
       });
       this.props.handleSubmit(newState);
       this.setState({
@@ -101,7 +100,7 @@ class TodoForm extends React.Component {
 
   assignTodo(assignee) {
     let newState = update(this.state, {
-      todo: { assignees: { $push: [assignee] } }
+      assignees: { $push: [assignee] }
     });
     this.setState(newState);
   }
@@ -114,7 +113,7 @@ class TodoForm extends React.Component {
   }
 
   cancelAssignee(assignee) {
-    let assignees = merge([], this.state.todo.assignees)
+    let assignees = merge([], this.state.assignees)
     let remainingAssignees = assignees.filter(a => a.id !== assignee.id)
 
     let newState = update(this.state, {
@@ -207,7 +206,7 @@ class TodoForm extends React.Component {
             assignTodo={this.assignTodo}
             backspaceAssignee={this.backspaceAssignee}
             cancelAssignee={this.cancelAssignee}
-            assignees={this.state.todo.assignees}
+            assignees={this.state.assignees}
             assigneeInput={this.props.assigneeInput}
             />
         </div>
