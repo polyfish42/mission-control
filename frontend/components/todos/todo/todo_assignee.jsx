@@ -7,11 +7,11 @@ class TodoAssignee extends React.Component {
     return (
       <div>
         {
-          assignee && (<span className="todo-assignee"
+          assignee && (<div className="todo-assignee"
           onClick={() => cancelAssignee(assignee)}>
           { assignee.name }
           <span className="todo-assignee__x"> x</span>
-        </span>)
+        </div>)
         }
       </div>
     );

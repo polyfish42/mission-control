@@ -41,6 +41,7 @@ class TodoForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    debugger
     if (this.state.todo.id != nextProps.todo.id) {
       this.setState({todo: nextProps.todo})
     }
@@ -56,7 +57,6 @@ class TodoForm extends React.Component {
         this.props.todo
       )
 
-      debugger
       this.setState({
         todo: todo,
         formShowed: false,

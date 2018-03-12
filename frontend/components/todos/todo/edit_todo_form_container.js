@@ -12,10 +12,11 @@ const mapStateToProps = (state, ownProps) => {
     }
 
   return {
-    todo: selectTodo(state, ownProps.id) || defaultTodo,
+    todo: selectTodo(state, state.entities.users, ownProps.id) || defaultTodo,
     showing: state.ui.todo.createTodoFormShowing,
     submitting: state.ui.todo.createTodoFormSubmitting,
-    assigneeInput: ""
+    assigneeInput: "",
+    deleteMe: state.entities.users
   };
 };
 

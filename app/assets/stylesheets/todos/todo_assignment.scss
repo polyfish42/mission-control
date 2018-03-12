@@ -4,6 +4,7 @@
 
 .todo-assignment__flex-wrapper {
   display: flex;
+  flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   width: 485px;
@@ -37,6 +38,7 @@
 }
 
 .todo-assignee {
+  flex: 1;
   margin: 4.4px 10px 4.4px 0px;
   padding: 4px 17px 4px 12px;
   font-size: 14px;
