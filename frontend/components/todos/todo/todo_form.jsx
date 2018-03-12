@@ -211,7 +211,8 @@ class TodoForm extends React.Component {
                           handleSubmit={this.props.handleSubmit}
                           sizeClass={" todo__checkbox--large"}
                           formShowing={this.state.formShowing}
-                          assignees={this.state.assignees}/>);
+                          assignees={this.state.assignees}
+                          close={this.props.close}/>);
     }
   }
 

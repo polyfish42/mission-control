@@ -9,6 +9,7 @@ const TodoCheck = (props) => {
         done: { $set: isDone },
         assignments: { $set: props.assignees.map(a => parseInt(a.id))}
       });
+      props.close();
       props.handleSubmit(newTodo);
     }
   }
