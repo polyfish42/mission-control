@@ -1,6 +1,7 @@
 import React from "react";
 import update from "immutability-helper";
 import CreateTodoAssigneeInput from "./create_todo_assignee_input_container";
+import TodoCheck from "./todo_check";
 import { merge } from "lodash";
 
 class TodoForm extends React.Component {
@@ -194,6 +195,20 @@ class TodoForm extends React.Component {
     }
   }
 
+  todoCheck() {
+    switch (this.props.formType) {
+      case "create":
+      return <span className={"todosForm__checkbox todo__checkbox"} />
+        break;
+      default:
+        return (<TodoCheck todo={this.state.todo}
+                          handleSubmit={this.props.handleSubmit}
+                          sizeClass={" todo__checkbox--large"}
+                          formShowing={this.state.formShowing}
+                          assignees={this.state.assignees}/>);
+    }
+  }
+
   render() {
     const { formShowing } = this.state;
 
@@ -211,7 +226,7 @@ class TodoForm extends React.Component {
     return (
       <form className={"todosForm" + this.classSuffix("todosForm")}>
         <div className="todosForm__checkbox_wrapper">
-          <span className={"todosForm__checkbox todo__checkbox"} />
+          { this.todoCheck() }
         </div>
         <input
           onClick={ () => this.setState({formShowing: true})}
