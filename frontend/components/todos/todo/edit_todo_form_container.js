@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
     }
 
   const todo = state.entities.todos[ownProps.id] || defaultTodo
-
   return {
     todo: todo,
     assignees: selectAssignees(state, todo),

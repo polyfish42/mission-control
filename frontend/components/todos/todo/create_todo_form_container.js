@@ -7,9 +7,10 @@ const mapStateToProps = (state, ownProps) => {
   return {
     todo: {
       name: "",
-      assignees: [],
+      assigneeIds: [],
       description: ""
     },
+    assignees: [],
     showing: state.ui.todo.createTodoFormShowing,
     submitting: state.ui.todo.createTodoFormSubmitting,
     assigneeInput: ""

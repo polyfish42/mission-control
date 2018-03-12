@@ -46,7 +46,6 @@ class TodoForm extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    debugger
     if (this.props.submitting === true && nextProps.submitting === false) {
       let todo = this.props.formType === "create" ? ({
         name: "",
@@ -107,7 +106,7 @@ class TodoForm extends React.Component {
 
   backspaceAssignee() {
     let newState = update(this.state, {
-      todo: { assignees: { $apply: as => as.slice(0, as.length - 1) } }
+      assignees: { $apply: as => as.slice(0, as.length - 1) }
     });
     this.setState(newState);
   }
@@ -117,7 +116,7 @@ class TodoForm extends React.Component {
     let remainingAssignees = assignees.filter(a => a.id !== assignee.id)
 
     let newState = update(this.state, {
-      todo: { assignees: {$set: remainingAssignees}}
+      assignees: { $set: remainingAssignees }
     })
     this.setState(newState)
   }
