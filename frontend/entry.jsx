@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 //test
-import { fetchUsers } from './actions/user_actions';
+import { createMessage, fetchMessages, fetchMessage, updateMessage, deleteMessage } from './actions/message_actions';
 
 document.addEventListener("DOMContentLoaded", () =>{
   let store;
@@ -15,7 +15,11 @@ document.addEventListener("DOMContentLoaded", () =>{
     store = configureStore();
   }
 
-  window.fetchUsers = fetchUsers;
+  window.createMessage = createMessage;
+  window.fetchMessages = fetchMessages;
+  window.fetchMessage = fetchMessage;
+  window.updateMessage = updateMessage;
+  window.deleteMessage = deleteMessage;
   window.dispatch = store.dispatch;
   window.state = store.getState;
 

@@ -10,6 +10,7 @@ class User < ApplicationRecord
     source: :todo
   has_many :todo_lists
   has_many :todos
+  has_many :messages
 
   attr_reader :password
 

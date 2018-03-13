@@ -15,7 +15,7 @@ const ToolHeader = ({ title, buttonText, buttonAction, editable }) => {
           {buttonText}
         </button>
         <h1 className="tool_header__h1">{title}</h1>
-        <span className="tool_header__filter" />
+        <span className={"tool_header__placeholder_" + title} />
       </div>
       <div className="tool_header__line" />
     </div>

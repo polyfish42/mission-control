@@ -34,7 +34,8 @@ class TodoListShow extends React.Component {
           <div className="tool_header__edit_wrapper">
             <ToolHeaderEdit
               editable={ true }
-              editAction={this.props.showEditTodoListForm}/>
+              editAction={this.props.showEditTodoListForm}
+              deleteAction={() => this.props.deleteTodoList(this.props.todoList.id)}/>
           </div>
         </div>
         <div className="main-content__inner">

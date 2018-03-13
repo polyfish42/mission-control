@@ -1,5 +1,6 @@
 import React from 'react';
 import onClickOutside from "react-onclickoutside";
+import { withRouter } from "react-router-dom";
 
 class ToolHeaderEdit extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class ToolHeaderEdit extends React.Component {
     this.state = { open: false }
     this.toggle = this.toggle.bind(this);
     this.menuClassOpen = this.menuClassOpen.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClickOutside(e) {
@@ -22,10 +23,21 @@ class ToolHeaderEdit extends React.Component {
     this.setState({open: newOpen})
   }
 
-  handleEditClick() {
-    this.toggle()
-    this.props.editAction()
+  handleClick(action) {
+    switch (action) {
+      case "edit":
+        this.toggle();
+        this.props.editAction()
+        break;
+      case "delete":
+        this.toggle();
+        this.props.deleteAction().then(() => this.props.history.push("/todolists"))
+        break
+      default:
+        undefined
+    }
   }
+
   menuClassOpen() {
     return this.state.open ? " tool_header__edit-menu--opened" : ""
   }
@@ -42,10 +54,16 @@ class ToolHeaderEdit extends React.Component {
           <div className="tool_header__edit-animation-wrapper" ref={i => this.menu = i}>
             <div className={ "tool_header__edit-menu" + this.menuClassOpen()}>
               <div className="tool_header__edit-menu-button" onClick={this.toggle}></div>
-              <div className="tool_header__edit-menu-edit" onClick={this.handleEditClick}>
+              <div className="tool_header__edit-menu-edit" onClick={() => this.handleClick("edit")}>
                 <img className="tool_header__edit-wrench" src={window.editWrench}/>
                 <div className="tool_header_edit-menu-edit-text">
                   Edit
+                </div>
+              </div>
+              <div className="tool_header__edit-menu-edit" onClick={() => this.handleClick("delete")}>
+                <img className="tool_header__edit-wrench" src={window.trashCan}/>
+                <div className="tool_header_edit-menu-edit-text">
+                  Delete
                 </div>
               </div>
             </div>
@@ -57,4 +75,4 @@ class ToolHeaderEdit extends React.Component {
   }
 }
 
-export default onClickOutside(ToolHeaderEdit);
+export default withRouter(onClickOutside(ToolHeaderEdit));

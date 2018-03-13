@@ -65,7 +65,7 @@
 
 .tool_header__edit-animation-wrapper {
   width: 265px;
-  height: 110px;
+  height: 410px;
   position: relative;
   top: -50px;
   left: -215px;
@@ -76,7 +76,7 @@
 
 .tool_header__edit-menu {
   width: 265px;
-  height: 110px;
+  height: 140px;
   position: absolute;
   left: 265px;
   background-color: #1b6ac9;
@@ -98,6 +98,7 @@
 .tool_header__edit-menu-button {
   margin-top: 20px;
   margin-right: 20px;
+  margin-bottom: 20px;
   width: 30px;
   height: 30px;
   align-self: flex-end;
@@ -111,7 +112,6 @@
 }
 
 .tool_header__edit-menu-edit {
-  margin-top: 20px;
   padding-left: 20px;
   height: 38px;
   font-size: 14px;
@@ -127,7 +127,7 @@
   width: 265px;
 }
 
-.tool_header_edit-menu-edit-text {
+.tool_header_edit-menu-text {
   color: white;
 }
 
@@ -149,6 +149,7 @@
   text-align: center;
   font-size: 32px;
   font-weight: bold;
+  align-self: center;
 }
 
 .tool_header__plus_white {
@@ -159,7 +160,6 @@
   align-self: center;
   padding: 8px 13px 8px 29px;
   font-size: 13px;
-  width: 93px;
   box-sizing: border-box;
   background-image: url(asset_path("layout/plus_white.svg"));
   background-repeat: no-repeat;
@@ -177,9 +177,12 @@
   margin-bottom: 20px;
 }
 
-// TODO create filter
-.tool_header__filter {
-  width: 95px;
+.tool_header__placeholder_To-dos {
+  width: 93px;
+}
+
+.tool_header__placeholder_Messages {
+  width: 130px;
 }
 
 .button--saving {

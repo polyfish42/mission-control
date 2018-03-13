@@ -1,0 +1,46 @@
+.messages__container {
+  width: 695px;
+  margin: 0 auto;
+}
+
+.message {
+  color: rgb(40, 60, 70);
+  line-height: 21px;
+  padding: 11px 0px 11px 0px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.message:last-of-type {
+  border: none;
+}
+
+.message__body-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.message__body-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* styles for '...' */
+.message__body {
+  width: 650px;
+  font-size: 16px;
+  overflow: hidden;
+  max-height: 42px;
+}
+
+.CommentCount {
+  background-color: rgb(27, 106, 201);
+  border: none;
+  border-radius: 100%;
+  color: white;
+}
+
+.CommentCount--small {
+  width: 27px;
+  height: 27px;
+}

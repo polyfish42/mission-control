@@ -77,7 +77,7 @@ const receiveTodoLists = ({ todoLists, todos }) => ({
   todos
 });
 
-const removeTodoList = todoList => ({
+const removeTodoList = ({ todoList }) => ({
   type: REMOVE_TODO_LIST_SUCCESS,
   todoList
 });

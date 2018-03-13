@@ -1,6 +1,6 @@
 import TodoListShow from "./todo_list_show";
 import { selectTodoList } from "../../../reducers/selectors/todo_list_selectors";
-import { fetchTodoList } from "../../../actions/todo_list_actions";
+import { fetchTodoList, deleteTodoList } from "../../../actions/todo_list_actions";
 import { showEditTodoListForm } from "../../../actions/ui/todo_list_ui_actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -16,7 +16,8 @@ const mapStateToProps = (state, { match: { params } }) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodoList: id => dispatch(fetchTodoList(id)),
-    showEditTodoListForm: () => dispatch(showEditTodoListForm())
+    showEditTodoListForm: () => dispatch(showEditTodoListForm()),
+    deleteTodoList: id => dispatch(deleteTodoList(id))
   };
 };
 

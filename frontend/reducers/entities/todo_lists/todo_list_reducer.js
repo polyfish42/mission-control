@@ -12,7 +12,7 @@ export default (state = {}, action) => {
       const newTodoList = { [action.todoList.id]: action.todoList };
       return merge({}, state, newTodoList);
     case TODO_LISTS_SUCCESS:
-      return action.todoLists;
+      return action.todoLists ? action.todoLists : {};
     case REMOVE_TODO_LIST_SUCCESS:
       const newTodoLists = merge({}, state);
       delete newTodoLists[action.todoList.id];
