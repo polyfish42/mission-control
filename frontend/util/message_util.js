@@ -1,6 +1,6 @@
-export const creaetMessage = (message) => (
+export const createMessage = (message) => (
   $.ajax({
-    url: 'api/todo_lists',
+    url: 'api/messages',
     method: 'POST',
     data: { message }
   })

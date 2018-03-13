@@ -1,14 +1,17 @@
 import React from 'react';
 import CommentCount from './comment_count';
+import { Link } from 'react-router-dom';
 
 const MessageIndexItem = ({ message }) => {
   return (
     <li className="message">
-      <div className="message__body-title">{message.title}</div>
-      <div className="message__body-container">
-        <div className="message__body">{message.body}</div>
-        <div><CommentCount count={message.commentIds.length} size="small" /></div>
-      </div>
+      <Link to={`/messages/${message.id}`} className="message__link">
+        <div className="message__body-title">{message.title}</div>
+        <div className="message__body-container">
+          <div className="message__body">{message.body}</div>
+          <div><CommentCount count={message.commentIds.length} size="small" /></div>
+        </div>
+      </Link>
     </li>
   )
 }

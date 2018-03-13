@@ -1,6 +1,7 @@
 import React from 'react';
 import ToolHeader from '../app/tool_header';
 import MessagesIndexContainer from './message_index_container';
+import { withRouter } from 'react-router-dom';
 
 class MessageBoard extends React.Component {
   render () {
@@ -8,7 +9,7 @@ class MessageBoard extends React.Component {
       <div className="main-content">
         <ToolHeader title="Messages"
           buttonText="New message"
-          buttonAction={() => console.log("fix me")}
+          buttonAction={() => this.props.history.push("new")}
           editable={false} />
         <MessagesIndexContainer />
       </div>
@@ -16,4 +17,4 @@ class MessageBoard extends React.Component {
   }
 }
 
-export default MessageBoard;
+export default withRouter(MessageBoard);

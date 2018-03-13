@@ -4,10 +4,14 @@
 }
 
 .message {
-  color: rgb(40, 60, 70);
   line-height: 21px;
   padding: 11px 0px 11px 0px;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.message__link {
+  color: rgb(40, 60, 70);
+  text-decoration: none;
 }
 
 .message:last-of-type {
@@ -43,4 +47,26 @@
 .CommentCount--small {
   width: 27px;
   height: 27px;
+}
+
+.editor__form {
+  padding-top: 60px;
+}
+
+.editor__title {
+  display: block;
+  border: none;
+  font-size: 42px;
+  font-weight: bold;
+  color: rgb(40, 60, 70);
+  width: 660px;
+  margin: 0 auto;
+}
+
+.editor__button {
+  padding: 8px 16px 8px 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  font-size: 13px;
+  margin-left: 135px;
 }
