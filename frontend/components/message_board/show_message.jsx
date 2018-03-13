@@ -9,7 +9,7 @@ class ShowMessage extends React.Component {
   }
 
   render () {
-    const { title, body } = this.props.message;
+    const { title, body, id } = this.props.message;
     const { editMessage, deleteMessage, comments } = this.props;
 
     return (
@@ -22,7 +22,7 @@ class ShowMessage extends React.Component {
               readOnly={true}
               modules={{toolbar: null}}/>
             {
-              comments && <CommentsContainer comments={comments} />
+              comments && <CommentsContainer comments={comments} messageId={id}/>
             }
           </div>
         </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import CommentCount from './comment_count';
 import CommentContainer from './comment_container';
+import CreateCommentFormContainer from './create_comment_form_container';
 
 class Comments extends React.Component {
   render () {
-    const { comments } = this.props
+    const { comments, messageId } = this.props
     return (
       <div className="comments">
         <div className="comments__header-flex">
@@ -21,7 +22,9 @@ class Comments extends React.Component {
             })
           }
         </ul>
-        <h1>New Comment</h1>
+        {
+          <CreateCommentFormContainer messageId={messageId} />
+        }
       </div>
     )
   }

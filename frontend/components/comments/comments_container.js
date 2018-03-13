@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    comments: ownProps.comments
+    comments: ownProps.comments,
+    messageId: ownProps.messageId
   };
 };
 
