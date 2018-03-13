@@ -31,7 +31,7 @@ class ToolHeaderEdit extends React.Component {
         break;
       case "delete":
         this.toggle();
-        this.props.deleteAction().then(() => this.props.history.push("/todolists"))
+        this.props.deleteAction()
         break
       default:
         undefined

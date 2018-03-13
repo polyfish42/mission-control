@@ -13,6 +13,14 @@ export const selectTodoLists = ({todoLists, todos}) => {
 };
 
 const mapTodosToList = (todoList, todos) => {
-  todoList.todos = todoList.todoIds.map(id => todos[id]);
+  todoList.todos = todoList.todoIds.reduce((acc, id) => {
+    if (todos[id]) {
+      acc.push(todos[id]);
+      return acc;
+    } else {
+      return acc;
+    }
+  },[]);
+  debugger
   return todoList;
 };

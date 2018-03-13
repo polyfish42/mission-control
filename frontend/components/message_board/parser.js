@@ -1,21 +1,24 @@
 const parseHTML = html => {
-  const html_chars = html.split("");
+  let html_chars = html.split("");
+  let content = "";
 
-  const _parseHTML = ([x, ...xs], content, inTags) => {
-    if (typeof x === 'undefined') {
-      return content
-    } else if (x === ">") {
-      return _parseHTML(xs, content, false)
-    } else if (inTags === true){
-      return _parseHTML(xs, content, true)
+  while (content.length < 200 && html_chars.length > 0) {
+
+    let [x, ...xs] = html_chars
+    let inTags = false
+
+    if (x === ">") {
+      inTags = false
+    } else if (inTags === false){
+      content += x
     } else if (x === "<") {
-      return _parseHTML(xs, content, true)
-    } else {
-      return _parseHTML(xs, content + x, inTags)
+      inTags = true
     }
+
+    html_chars = xs
   }
 
-  return _parseHTML(html_chars, "", false)
+  return content
 }
 
 export default parseHTML;

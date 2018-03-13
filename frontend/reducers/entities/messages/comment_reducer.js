@@ -12,14 +12,10 @@ export default (state = {}, action) => {
     case REMOVE_MESSAGE_SUCCESS:
       const newComments = merge({}, state);
 
-      return newComments.reduce(comment, newComs => {
-        if (action.message.comment_ids.includes(comment.id)) {
-          newComs[comment.id] = comment
-          return newComs
-        } else {
-          return newComs
-        }
-      }, {})
+      action.message.commentIds.forEach(id => {
+        delete newComments[id]
+      })
+      return newComments;
     default:
       return state;
   }

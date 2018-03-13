@@ -15,7 +15,8 @@ class TodoShow extends React.Component {
           <div className="tool_header__edit_wrapper">
             <ToolHeaderEdit
               editable={ true }
-              editAction={this.props.editAction}/>
+              editAction={this.props.editAction}
+              deleteAction={this.props.deleteAction}/>
           </div>
         </div>
         <div className="main-content__inner">

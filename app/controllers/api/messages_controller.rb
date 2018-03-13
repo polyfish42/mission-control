@@ -2,6 +2,7 @@ class Api::MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.user = current_user
+    @message.preview = Nokogiri::HTML(@message.body[0,200]).text
 
     if @message.save
       render "api/messages/show"
@@ -24,6 +25,7 @@ class Api::MessagesController < ApplicationController
     @message = Message.find(params[:id])
 
     if @message.update_attributes(message_params)
+      @message.update_attributes(preview: Nokogiri::HTML(@message.body[0,200]).text)
       render "api/messages/show"
     else
       render json: {errors: @message.errors.full_messages}, status: 422

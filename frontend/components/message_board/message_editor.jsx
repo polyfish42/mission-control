@@ -8,6 +8,7 @@ class Editor extends React.Component {
    this.state = this.props.message
    this.handleInput = this.handleInput.bind(this);
    this.handleChange = this.handleChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
  }
 
  componentWillMount() {
@@ -24,6 +25,10 @@ class Editor extends React.Component {
 
  handleChange(value) {
    this.setState({ body: value })
+ }
+
+ handleSubmit() {
+   this.props.handleSubmit(this.state).then(({message}) => this.props.history.push(`/messages/${message.id}`))
  }
 
  modules() {
@@ -56,17 +61,20 @@ formats() {
 render() {
    return (
      <div className="main-content">
-      <form onSubmit={() => this.props.handleSubmit(this.state)}
+      <form onSubmit={this.handleSubmit}
           className="editor__form">
        <input value={this.state.title}
           onChange={this.handleInput}
           className="editor__title"
+          tabIndex={1}
           placeholder="Title..."/>
        <div className="editor">
          <ReactQuill value={this.state.body}
            modules={this.modules()}
            formats={this.formats()}
            onChange={this.handleChange}
+           onFocus={() => console.log("hello")}
+           tabIndex={2}
            placeholder={'Write away...'} />
        </div>
        <button type="submit" className="button button--green editor__button">Post this message</button>

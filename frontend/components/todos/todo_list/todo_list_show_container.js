@@ -13,11 +13,11 @@ const mapStateToProps = (state, { match: { params } }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchTodoList: id => dispatch(fetchTodoList(id)),
     showEditTodoListForm: () => dispatch(showEditTodoListForm()),
-    deleteTodoList: id => dispatch(deleteTodoList(id))
+    deleteTodoList: id => dispatch(deleteTodoList(id)).then(ownProps.history.push("/todolists"))
   };
 };
 

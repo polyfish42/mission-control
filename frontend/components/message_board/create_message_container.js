@@ -1,5 +1,6 @@
 import Editor from './message_editor';
 import { createMessage } from '../../actions/message_actions';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -9,10 +10,10 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSubmit: (message) => dispatch(createMessage(message))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Editor));

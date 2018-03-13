@@ -58,7 +58,7 @@ export const deleteMessage = id => {
   return dispatch => {
     dispatch({ type: REMOVE_MESSAGE_REQUEST });
 
-    return MessageUtil.deleteTodoList(id).then(
+    return MessageUtil.deleteMessage(id).then(
       message => dispatch(removeMessage(message)),
       errors => dispatch(removeMessage(errors))
     );
