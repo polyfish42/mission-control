@@ -9,6 +9,17 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
+.message__title {
+  display: block;
+  border: none;
+  font-size: 42px;
+  font-weight: bold;
+  color: rgb(40, 60, 70);
+  width: 660px;
+  padding-top: 60px;
+  margin: 0 auto;
+}
+
 .message__link {
   color: rgb(40, 60, 70);
   text-decoration: none;

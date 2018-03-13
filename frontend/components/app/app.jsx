@@ -5,6 +5,7 @@ import SignupSessionFormContainer from "../session/signup_session_form_container
 import LoginSessionFormContainer from "../session/login_session_form_container";
 import Project from "../project/project";
 import MessageBoardContainer from "../message_board/message_board_container";
+import ShowMessageContainer from "../message_board/show_message_container";
 import EditMessageContainer from "../message_board/edit_message_container";
 import CreateMessageContainer from "../message_board/create_message_container";
 import TodoListIndexContainer from "../todos/todo_list/todo_list_index_container";
@@ -41,7 +42,7 @@ const App = () => {
       <ProtectedRoute
         path="/messages/:messageId(\d+)"
         exact
-        component={SplashContainer} />
+        component={ShowMessageContainer} />
       <ProtectedRoute
         path="/messages/:messageId(\d+)/edit"
         exact
