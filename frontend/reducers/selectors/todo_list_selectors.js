@@ -21,6 +21,5 @@ const mapTodosToList = (todoList, todos) => {
       return acc;
     }
   },[]);
-  debugger
   return todoList;
 };

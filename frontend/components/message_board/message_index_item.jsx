@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentCount from './comment_count';
+import CommentCount from '../comments/comment_count';
 import { Link } from 'react-router-dom';
 
 const MessageIndexItem = ({ message }) => {

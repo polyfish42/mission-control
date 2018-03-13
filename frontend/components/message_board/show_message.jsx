@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import ToolHeaderEdit from '../app/tool_header_edit';
+import CommentsContainer from '../comments/comments_container';
 
 class ShowMessage extends React.Component {
   componentDidMount() {
@@ -9,7 +10,7 @@ class ShowMessage extends React.Component {
 
   render () {
     const { title, body } = this.props.message;
-    const { editMessage, deleteMessage } = this.props;
+    const { editMessage, deleteMessage, comments } = this.props;
 
     return (
       <div className="main-content">
@@ -20,6 +21,9 @@ class ShowMessage extends React.Component {
             <ReactQuill value={body}
               readOnly={true}
               modules={{toolbar: null}}/>
+            {
+              comments && <CommentsContainer comments={comments} />
+            }
           </div>
         </div>
       </div>

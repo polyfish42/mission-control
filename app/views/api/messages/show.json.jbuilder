@@ -9,3 +9,11 @@ json.comments do
     end
   end
 end
+
+json.users do
+  @message.comments.each do |comment|
+    json.set! comment.author.id do
+      json.extract! comment.author, :id, :name
+    end
+  end
+end

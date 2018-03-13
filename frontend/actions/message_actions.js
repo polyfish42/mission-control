@@ -65,10 +65,11 @@ export const deleteMessage = id => {
   };
 };
 
-export const receiveMessage = ({ message, comments }) => ({
+export const receiveMessage = ({ message, comments, users }) => ({
   type: MESSAGE_SUCCESS,
   message,
-  comments
+  comments,
+  users
 });
 
 const receiveMessages = ({ messages }) => {
