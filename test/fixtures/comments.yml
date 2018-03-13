@@ -3,7 +3,11 @@
 one:
   body: MyText
   user_id: 1
+  commentable_id: 1
+  commentable_type: MyString
 
 two:
   body: MyText
   user_id: 1
+  commentable_id: 1
+  commentable_type: MyString

@@ -61,27 +61,7 @@ messages = Message.create!([
     user: User.order("RANDOM()").first }
 ])
 
+Comment.destroy_all
 messages.each do |message|
-  message.comments.create({body: "this is a comment", user: User.order("RANDOM()").first})
+  message.comments.create({body: "this is a comment", user_id: User.order("RANDOM()").first.id})
 end
-
-
-
-# TodoList.destroy_all
-# todolist = 3.times do
-#   TodoList.create!(name: Faker::SiliconValley.invention,
-#             description: Faker::HarryPotter.quote,
-#             user: User.order("RANDOM()").first)
-# end
-#
-# Todo.destroy_all
-# todos = 10.times do
-#   User.order("RANDOM()").first.assigned_todos.create!(
-#             name: Faker::Dune.saying,
-#             due_date: Faker::Date.forward(23),
-#             description: Faker::Dune.quote,
-#             done: false,
-#             todo_list: TodoList.order("RANDOM()").first,
-#             user: User.order("RANDOM()").first
-#           )
-# end

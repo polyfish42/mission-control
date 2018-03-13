@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :todo_lists, except: [:new, :edit]
     resources :todos, except: [:index, :new, :edit]
     resources :messages, except: [:new, :edit]
+    resources :comments, only: [:create]
   end
 
   root 'static_pages#root'

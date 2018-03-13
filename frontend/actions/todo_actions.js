@@ -58,7 +58,7 @@ export const updateTodo = todo => {
 export const deleteTodo = id => {
   return dispatch => {
     dispatch({type: REMOVE_TODO_REQUEST});
-    
+
     return TodoUtil.deleteTodo(id).then(
       todo => dispatch(removeTodo(todo)),
       errors => dispatch(receiveTodoErrors(errors))
