@@ -12,6 +12,7 @@ import TodoListIndexContainer from "../todos/todo_list/todo_list_index_container
 import TodoListShowContainer from "../todos/todo_list/todo_list_show_container";
 import TodoShowContainer from "../todos/todo/todo_show_container";
 import ScheduleContainer from "../schedule/schedule_container";
+import ShowEventContainer from "../schedule/show_event_container";
 import { AuthRoute, ProtectedRoute, Switch } from "../../util/route_util";
 
 const App = () => {
@@ -62,8 +63,12 @@ const App = () => {
         component={TodoShowContainer}
         />
       <ProtectedRoute
-        path="/schedule"
+        path="/events"
+        exact
         component={ScheduleContainer} />
+      <ProtectedRoute
+        path="/events/:eventId(\d+)"
+        component={ShowEventContainer} />
     </div>
   );
 };

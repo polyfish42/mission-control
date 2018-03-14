@@ -1,5 +1,5 @@
-export const selectComments = (comments, message) => {
-  return message.commentIds.reduce((acc, id) => {
+export const selectComments = (comments, entity) => {
+  return entity.commentIds.reduce((acc, id) => {
     if (comments[id]) {
       acc.push(comments[id])
     }

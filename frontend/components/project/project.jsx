@@ -17,7 +17,7 @@ class Project extends React.Component {
               <Link to="/todolists" className="project__link">
                 <TodosToolContainer />
               </Link>
-              <Link to="/schedule" className="project__link">
+              <Link to="/events" className="project__link">
                 <ScheduleToolContainer />
               </Link>
           </div>
