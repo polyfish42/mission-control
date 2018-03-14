@@ -12,6 +12,11 @@ class User < ApplicationRecord
   has_many :todos
   has_many :messages
   has_many :comments
+  has_many :events
+  has_many :attendings
+  has_many :attending_events,
+    through: :attendings,
+    source: :event
 
   attr_reader :password
 
