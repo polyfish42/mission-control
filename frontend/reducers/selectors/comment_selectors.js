@@ -1,11 +1,15 @@
 export const selectComments = (comments, entity) => {
-  return entity.commentIds.reduce((acc, id) => {
-    if (comments[id]) {
-      acc.push(comments[id])
-    }
+  if (entity.commentIds) {
+    return entity.commentIds.reduce((acc, id) => {
+      if (comments[id]) {
+        acc.push(comments[id])
+      }
 
-    return acc
-  }, [])
+      return acc
+    }, [])
+  } else {
+    return [];
+  }
 }
 
 export const selectCommentAuthors = (users, comments) => {

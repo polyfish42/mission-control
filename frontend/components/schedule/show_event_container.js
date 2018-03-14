@@ -1,4 +1,5 @@
 import ShowEvent from './show_event';
+import { selectComments } from '../../reducers/selectors/comment_selectors';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -17,8 +18,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const id = ownProps.match.params.eventId;
 
   return {
-    fetchEvent: () => dispatch(fetchEvent(id))
+    fetchEvent: () => dispatch(fetchEvent(id)),
+    editEventRedirect: () => ownProps.history.push(`/events/${id}/edit`),
+    deleteEvent: () => dispatch(deleteEvent(id))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowEvent);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ShowEvent));
