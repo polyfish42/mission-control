@@ -36,3 +36,11 @@ export const formatTime = date => {
 
   return `${hours}:${minutes}${amOrPm}`
 }
+
+export const now = () => {
+  return new Date;
+}
+
+export const minutesFromNow = minutes => {
+  return (new Date).setTime((new Date).getTime() + minutes * 1000)
+}
