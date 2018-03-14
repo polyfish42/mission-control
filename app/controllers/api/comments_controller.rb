@@ -23,6 +23,8 @@ class Api::CommentsController < ApplicationController
       Todo.find(cp[:todo_id])
     elsif !!cp[:todo_list_id]
       TodoList.find(cp[:todo_list_id])
+    elsif !!cp[:event_id]
+      Event.find(cp[:event_id])
     end
   end
 end

@@ -9,8 +9,8 @@ json.users do
     end
   end
 
-  json.set! @event.user.id do |user|
-    json.partial! "api/users/user", user: user
+  json.set! @event.user.id do
+    json.partial! "api/users/user", user: @event.user
   end
 end
 

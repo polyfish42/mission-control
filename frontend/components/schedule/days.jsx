@@ -1,12 +1,13 @@
 import React from 'react';
-import { dayOfTheWeek, month } from './date.js';
+import { isSameDay, dayOfTheWeek, month } from './date.js';
 
 const Days = ({ startDate, endDate }) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
+  
   function day(date) {
     return (
-      <div className="day">
+      <div className={"day " + `day__color--${month(date)}`}>
         <div className="day__month">{month(date)}</div>
         <div className="day__date">{date.getDate()}</div>
         <div className="day__day-of-the-week">{dayOfTheWeek(date)}</div>
@@ -22,7 +23,7 @@ const Days = ({ startDate, endDate }) => {
   }
 
   function days(start, end) {
-    return start.toDateString() === end.toDateString() ? (
+    return isSameDay(start, end) ? (
       <div className="days__item">
         {day(start)}
       </div>

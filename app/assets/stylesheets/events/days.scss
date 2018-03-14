@@ -12,9 +12,56 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4caf50;
   border-radius: 4px;
   padding: 0px 3px 3px 3px;
+}
+
+.day__color--January {
+  background-color: #03a9f4;
+}
+
+.day__color--February {
+  background-color: #00bcd4;
+}
+
+.day__color--March {
+  background-color: #009688;
+}
+
+.day__color--April {
+  background-color: #4caf50;
+}
+
+.day__color--May {
+  background-color: #8bc34a;
+}
+
+.day__color--June {
+  background-color: #afb42b;
+}
+
+.day__color--July {
+  background-color: #ffc107;
+}
+
+.day__color--August {
+  background-color: #ff9800;
+}
+
+.day__color--September {
+  background-color: #ff7043;
+}
+
+.day__color--October {
+  background-color: #d16f50;
+}
+
+.day__color--November {
+  background-color: #8d6e63;
+}
+
+.day__color--Decemeber {
+  background-color: #2196f3;
 }
 
 .day__month {

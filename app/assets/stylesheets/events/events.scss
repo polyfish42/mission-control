@@ -1,6 +1,37 @@
+.event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .event__title {
-  text-align: center;
   font-size: 28px;
   font-weight: 700;
   margin-top: 18px;
+}
+
+.event__from-date-to-date {
+  font-size: 16px;
+  color: rgb(40, 60, 70);
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+.event__postedOn {
+  font-size: 12.8px;
+  margin-top: 10px;
+}
+
+.event__notes {
+  width: 688px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(217, 217, 217);
+}
+
+.event__notes-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
