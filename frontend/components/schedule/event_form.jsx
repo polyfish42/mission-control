@@ -1,4 +1,5 @@
 import React from 'react';
+import PersonPickerContainer from '../form_helpers/person_picker_container';
 import { now, minutesFromNow } from './date.js';
 
 class EventForm extends React.Component {
@@ -11,19 +12,29 @@ class EventForm extends React.Component {
       attendees: [],
       notes: ""
     })
+
+    this.childUpdate = this.childUpdate.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchEvent();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.event);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState(nextProps.event);
+  // }
 
   update(field) {
-    return (e) => {
+    return e => {
       this.setState({[field]: e.currentTarget.value})
+    }
+  }
+
+  childUpdate(field) {
+    const that = this;
+
+    return value => {
+      that.setState({"attendees": value})
     }
   }
 
@@ -32,11 +43,11 @@ class EventForm extends React.Component {
 
     return (
       <div className="main-content">
-        <form>
+        <form onSubmit={() => console.log("freak out")}>
           <label>Title:</label><input onChange={this.update("title")} value={title}/>
           <label>Start:</label><input onChange={this.update("startDate")} value={startDate} />
           <label>End:</label><input onChange={this.update("startDate")} value={endDate} />
-          
+          <PersonPickerContainer people={attendees} update={this.childUpdate("attendees")} />
         </form>
       </div>
     )
