@@ -73,7 +73,6 @@ render() {
            modules={this.modules()}
            formats={this.formats()}
            onChange={this.handleChange}
-           onFocus={() => console.log("hello")}
            tabIndex={2}
            placeholder={'Write away...'} />
        </div>

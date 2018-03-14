@@ -16,7 +16,7 @@ import { AuthRoute, ProtectedRoute, Switch } from "../../util/route_util";
 
 const App = () => {
   return (
-    <div>
+    <div className="outerDiv">
       <ProjectHeaderContainer/>
       <AuthRoute
         path="/"
