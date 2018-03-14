@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
-100.times do
+10.times do
   User.create!(email: Faker::Internet.unique.email,
                name: Faker::Name.name,
                title: Faker::Job.title,
@@ -65,3 +65,12 @@ Comment.destroy_all
 messages.each do |message|
   message.comments.create({body: "this is a comment", user_id: User.order("RANDOM()").first.id})
 end
+
+Event.destroy_all
+User.order("RANDOM()").first.attending_events.create!(
+  title: "Launch Plan Meeting",
+  start_date: Faker::Time.between(DateTime.now, DateTime.now + 4),
+  end_date: Faker::Time.between(DateTime.now + 5, DateTime.now + 10),
+  notes: "These are my event notes",
+  user_id: User.order("RANDOM()").first.id
+)

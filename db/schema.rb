@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20180314130935) do
 
   create_table "events", force: :cascade do |t|
     t.string "title", default: "Untitled"
-    t.date "start_date", null: false
-    t.date "end_date", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
     t.text "notes"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
