@@ -20,7 +20,8 @@ class ShowMessage extends React.Component {
             <h1 className="message__title">{title}</h1>
             <ReactQuill value={body}
               readOnly={true}
-              modules={{toolbar: null}}/>
+              modules={{toolbar: null}}
+              className="message-show__editor"/>
             {
               comments && <CommentsContainer messageId={id}/>
             }

@@ -11,6 +11,10 @@ class Editor extends React.Component {
    this.handleSubmit = this.handleSubmit.bind(this);
  }
 
+ componentDidMount() {
+  this.nameInput.focus();
+ }
+
  handleInput(e) {
    this.setState({ title: e.currentTarget.value})
  }
@@ -60,7 +64,8 @@ render() {
             formats={this.formats()}
             onChange={this.handleChange}
             tabIndex={2}
-            placeholder={'Write away...'} />
+            placeholder={'Write away...'}
+            ref={input => {this.nameInput = input;}}/>
         </div>
         {
           this.props.readOnly === false &&
