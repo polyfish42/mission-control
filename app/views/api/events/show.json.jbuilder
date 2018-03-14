@@ -1,4 +1,4 @@
-json.message do
+json.event do
   json.partial! 'api/events/event', event: @event
 end
 
@@ -11,5 +11,13 @@ json.users do
 
   json.set! @event.user.id do |user|
     json.partial! "api/users/user", user: user
+  end
+end
+
+json.comments do
+  @event.comments.each do |comment|
+    json.set! comment.id do
+      json.extract! comment, :id, :body, :user_id
+    end
   end
 end

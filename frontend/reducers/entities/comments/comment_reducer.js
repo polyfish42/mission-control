@@ -13,6 +13,9 @@ import {
 import {
   TODO_SUCCESS
 } from '../../../actions/todo_actions';
+import {
+  EVENT_SUCCESS
+} from '../../../actions/event_actions';
 import { merge } from 'lodash';
 
 export default (state = {}, action) => {
@@ -26,6 +29,8 @@ export default (state = {}, action) => {
     case TODO_LIST_SUCCESS:
       return action.comments ? action.comments : {};
     case TODO_SUCCESS:
+      return action.comments ? action.comments : {};
+    case EVENT_SUCCESS:
       return action.comments ? action.comments : {};
     case REMOVE_MESSAGE_SUCCESS:
       const newComments = merge({}, state);

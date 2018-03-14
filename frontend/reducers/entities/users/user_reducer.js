@@ -5,6 +5,9 @@ import {
 import {
   MESSAGE_SUCCESS
 } from "../../../actions/message_actions";
+import {
+  EVENT_SUCCESS
+} from "../../../actions/event_actions";
 import { merge } from "lodash";
 
 export default (state = {}, action) => {
@@ -13,6 +16,8 @@ export default (state = {}, action) => {
     case USERS_SUCCESS:
       return merge({}, state, action.users);
     case MESSAGE_SUCCESS:
+      return merge({}, state, action.users);
+    case EVENT_SUCCESS:
       return merge({}, state, action.users);
     default:
       return state;

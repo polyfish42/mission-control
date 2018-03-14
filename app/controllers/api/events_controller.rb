@@ -48,10 +48,10 @@ class Api::EventsController < ApplicationController
   end
 
   def attendee_ids
-    assignee_ids = (params[:todo][:attendees])
+    ids = (params[:event][:attendees])
 
-    if attendee_ids
-      attendee_ids.map(&:to_i)
+    if ids
+      ids.map(&:to_i)
     else
       []
     end

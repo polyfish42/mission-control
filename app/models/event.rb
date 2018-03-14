@@ -8,6 +8,7 @@ class Event < ApplicationRecord
     through: :attendings,
     source: :user,
     dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   private
 
