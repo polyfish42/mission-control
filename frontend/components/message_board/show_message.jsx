@@ -22,7 +22,7 @@ class ShowMessage extends React.Component {
               readOnly={true}
               modules={{toolbar: null}}/>
             {
-              comments && <CommentsContainer comments={comments} messageId={id}/>
+              comments && <CommentsContainer messageId={id}/>
             }
           </div>
         </div>

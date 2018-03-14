@@ -13,7 +13,7 @@ export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case COMMENT_SUCCESS:
-      const newComment = ({[action.comment.id]: action.comment})
+      const newComment = {[action.comment.id]: action.comment}
       return merge({}, state, newComment);
     case MESSAGE_SUCCESS:
       return action.comments ? action.comments : {};

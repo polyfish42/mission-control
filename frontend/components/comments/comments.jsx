@@ -6,6 +6,7 @@ import CreateCommentFormContainer from './create_comment_form_container';
 class Comments extends React.Component {
   render () {
     const { comments, messageId } = this.props
+
     return (
       <div className="comments">
         <div className="comments__header-flex">

@@ -5,6 +5,7 @@ import { openEditTodoForm } from '../../../actions/ui/todo_ui_actions';
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
+  debugger
   return {
   };
 };

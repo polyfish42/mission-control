@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.messageId
   const message = state.entities.messages[id]
   const comments = state.entities.comments
-
+  
   return {
     message: message || {title: '', body: ''},
     comments:  message ? selectComments(comments, message) : []
