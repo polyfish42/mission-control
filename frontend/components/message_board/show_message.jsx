@@ -23,7 +23,7 @@ class ShowMessage extends React.Component {
               modules={{toolbar: null}}
               className="message-show__editor"/>
             {
-              comments && <CommentsContainer messageId={id}/>
+              comments && <CommentsContainer idName="message_id" id={id}/>
             }
           </div>
         </div>

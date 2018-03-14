@@ -24,7 +24,7 @@ class Editor extends React.Component {
  }
 
  handleSubmit() {
-  this.props.handleSubmit({body: this.state.body, message_id: this.props.messageId})
+  this.props.handleSubmit({body: this.state.body, [this.props.idName]: this.props.id})
  }
 
  modules() {

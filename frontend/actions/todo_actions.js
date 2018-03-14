@@ -66,17 +66,18 @@ export const deleteTodo = id => {
   };
 };
 
-const receiveTodo = todo => ({
+const receiveTodo = ({todo, comments}) => ({
   type: TODO_SUCCESS,
-  todo
+  todo,
+  comments
 });
 
-const receiveTodos = todos => ({
+const receiveTodos = ({todos}) => ({
   type: TODOS_SUCCESS,
   todos
 });
 
-const removeTodo = todo => ({
+const removeTodo = ({todo}) => ({
   type: REMOVE_TODO_SUCCESS,
   todo
 });

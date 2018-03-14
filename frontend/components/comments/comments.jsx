@@ -24,7 +24,7 @@ class Comments extends React.Component {
           }
         </ul>
         {
-          <CreateCommentFormContainer messageId={messageId} />
+          <CreateCommentFormContainer idName={this.props.idName} id={this.props.id} />
         }
       </div>
     )

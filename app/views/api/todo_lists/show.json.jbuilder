@@ -9,3 +9,11 @@ json.todos do
     end
   end
 end
+
+json.comments do
+  @todo_list.comments.each do |comment|
+    json.set! comment.id do
+      json.extract! comment, :id, :body, :user_id
+    end
+  end
+end

@@ -7,5 +7,5 @@ class Todo < ApplicationRecord
   has_many :assignees,
     through: :assignments,
     source: :user
+  has_many :comments, as: :commentable, dependent: :destroy
 end
-  

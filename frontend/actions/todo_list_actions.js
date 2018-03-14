@@ -65,8 +65,9 @@ export const deleteTodoList = todoList => {
   };
 };
 
-export const receiveTodoList = ({ todoList, todos }) => ({
+export const receiveTodoList = ({ todoList, todos, comments }) => ({
   type: TODO_LIST_SUCCESS,
+  comments,
   todoList,
   todos
 });

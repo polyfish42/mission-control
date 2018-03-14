@@ -1,6 +1,7 @@
 import React from 'react';
 import EditTodoFormContainer from './edit_todo_form_container';
 import ToolHeaderEdit from '../../app/tool_header_edit';
+import CommentsContainer from '../../comments/comments_container';
 
 class TodoShow extends React.Component {
   componentWillMount() {
@@ -22,6 +23,7 @@ class TodoShow extends React.Component {
         <div className="main-content__inner">
           <EditTodoFormContainer id={this.props.match.params.todoId}/>
         </div>
+        <CommentsContainer idName="todo_id" id={this.props.match.params.todoId}/>
       </div>
     )
   }

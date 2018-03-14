@@ -29,7 +29,11 @@ class CommentForm extends React.Component {
         {
           this.state.open ? (
             <div>
-              <CommentEditor comment={{body: ""}} readOnly={false} messageId={this.props.messageId} handleSubmit={ (comment) => dispatch(createComment(comment)).then(() => this.closeForm()) }/>
+              <CommentEditor comment={{body: ""}}
+                             readOnly={false}
+                             idName={this.props.idName}
+                             id={this.props.id}
+                             handleSubmit={ (comment) => dispatch(createComment(comment)).then(() => this.closeForm()) }/>
             </div>
           ) : (
             <button className="comment-form__fake-input" onClick={() => this.setState({open: true})}>Add a comment or upload an image...</button>

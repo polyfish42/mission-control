@@ -2,6 +2,7 @@ import React from 'react';
 import ToolHeaderEdit from '../../app/tool_header_edit';
 import TodoContainer from '../todo/todo_container';
 import TodoListTodos from './todo_list_todos';
+import CommentsContainer from '../../comments/comments_container';
 import { isEmpty } from 'lodash';
 import EditTodoListFormContainer from './edit_todo_list_form_container';
 
@@ -60,6 +61,9 @@ class TodoListShow extends React.Component {
               <TodoListTodos todoList={todoList} />
             }
           </div>
+          {
+            <CommentsContainer idName="todo_list_id" id={todoList.id}/>
+          }
         </div>
       </div>
     );
