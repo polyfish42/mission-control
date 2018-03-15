@@ -9,9 +9,9 @@ const mapStateToProps = state => {
     event: {
       title: "",
       startDate: now(),
-      time1: approxTime(now()),
-      endDate: minutesFromNow(30),
-      time2: approxTime(minutesFromNow(30)),
+      time1: approxTime(minutesFromNow(30)),
+      endDate: minutesFromNow(60),
+      time2: approxTime(minutesFromNow(60)),
       attendees: [],
       notes: ""
     }

@@ -71,6 +71,10 @@ export const minutesFromNow = minutes => {
   return new Date((new Date).getTime() + minutes * 60000)
 }
 
+export const minutesFromDate = (minutes, date) => {
+  return new Date(date.getTime() + minutes * 60000)
+}
+
 export const isValidTime = time => {
   const r = /^([0-9]|1[0-9]|2[0-3]):[0-5][0-9](am|pm)$/
 

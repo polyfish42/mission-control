@@ -11,7 +11,8 @@ import { now,
   abbrvMonth,
   abbrvDayOfTheWeek,
   setTime,
-  isDateAfter
+  isDateAfter,
+  minutesFromDate
 } from './date.js';
 
 class EventForm extends React.Component {
@@ -116,23 +117,26 @@ class EventForm extends React.Component {
     this.closeAllDatePickers()
   }
 
-  time1Update(t) {
-    this.setState({time1: t})
+  time1Update(t, menuOpen) {
+    const start = setTime(this.state.startDate, t);
+    const end = setTime(this.state.endDate, this.state.time2);
+
+    if (!isDateAfter(start, end) && menuOpen === false) {
+      this.setState({time1: t, time2: approxTime(minutesFromDate(30, start))})
+    } else {
+      this.setState({time1: t})
+    }
   }
 
   time2Update(t, menuOpen) {
     const start = setTime(this.state.startDate, this.state.time1);
     const end = setTime(this.state.endDate, t);
-    
+
     if (!isDateAfter(start, end) && menuOpen === false) {
       console.log("hello");
     } else {
       this.setState({time2: t})
     }
-  }
-
-  resetEndDateAndTime() {
-
   }
 
   formatDate(date) {
