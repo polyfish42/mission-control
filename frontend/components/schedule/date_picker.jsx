@@ -25,8 +25,8 @@ class DatePicker extends React.Component {
   previousMonth() {
     const { month, year } = this.state
 
-    if (month === 1) {
-      this.setState({month: 12, year: year - 1})
+    if (month === 0) {
+      this.setState({month: 11, year: year - 1})
     } else {
       this.setState({month: this.state.month - 1})
     }
@@ -35,8 +35,8 @@ class DatePicker extends React.Component {
   nextMonth() {
     const { month, year } = this.state
 
-    if (month === 12) {
-      this.setState({month: 1, year: year + 1})
+    if (month === 11) {
+      this.setState({month: 0, year: year + 1})
     } else {
       this.setState({month: this.state.month + 1})
     }
