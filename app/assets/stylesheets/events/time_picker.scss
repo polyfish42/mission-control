@@ -6,12 +6,44 @@
 .time-picker__input {
   width: 96px;
   text-align: center;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 4px 10px 4px 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  -webkit-appearance: none
+}
+
+.time-picker__input:focus {
+  border: 1px solid #a4d2ff;
+  box-shadow: 0 0 6px rgba(27, 106, 201, 0.5);
+}
+
+.time-picker__ul-parent {
+   height:166px;
+   width:94px;
+   overflow:hidden;
+   position: absolute;
+   z-index: 3;
+   background-color: white;
+   border-radius: 4px;
+   border: 1px solid rgb(217,217,217);
+   font-size: 16px;
+   box-shadow: inset 0px 0px 0px 0px red;
+   cursor: pointer;
 }
 
 .time-picker__ul {
-  position: absolute;
-  background-color: white;
-  overflow-y: scroll;
-  z-index: 3;
-  height: 200px;
+    height:200px;
+    width:326px;
+    overflow:auto;
+}
+
+.time-picker__li {
+  padding: 10px 5px 10px 5px;
+  border-bottom: 1px solid rgb(217,217,217);
+}
+
+.time-picker__li:last-of-type {
+  border: none;
 }

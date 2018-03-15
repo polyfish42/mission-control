@@ -48,7 +48,7 @@ class TimePicker extends React.Component {
   }
 
   validate(time) {
-    if (isValidTime(time)) {
+    if (time && isValidTime(time)) {
       return time
     } else {
       return this.state.lastValid
@@ -65,13 +65,15 @@ class TimePicker extends React.Component {
                onFocus={() => this.setState({menuOpen: true})}/>
         {
           menuOpen &&
-          <ul className="time-picker__ul">
-            {
-              TIMES.map((time, key) => {
-              return <li key={key} onClick={() => this.handleChange(time)}>{time}</li>
-             })
-            }
-          </ul>
+          <div className="time-picker__ul-parent">
+            <ul className="time-picker__ul">
+              {
+                TIMES.map((time, key) => {
+                  return <li key={key} onClick={() => this.handleChange(time)} className="time-picker__li">{time}</li>
+                })
+              }
+            </ul>
+          </div>
         }
       </div>
     )
