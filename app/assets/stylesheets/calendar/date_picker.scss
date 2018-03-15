@@ -61,3 +61,30 @@
   color: rgb(212, 68, 46);
   font-weight: bold;
 }
+
+.shaking {
+  background-color: #FBF694;
+  animation: shake 0.42s infinite ease;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+    opacity: 0%;
+  }
+
+  20%, 80% {
+    transform: translate3d(1px, 0, 0);
+    opacity: 20%;
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-2px, 0, 0);
+    opacity: 70%;
+  }
+
+  40%, 60% {
+    transform: translate3d(2px, 0, 0);
+    opacity: 40%;
+  }
+}

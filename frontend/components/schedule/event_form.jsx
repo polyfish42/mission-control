@@ -112,7 +112,7 @@ class EventForm extends React.Component {
     if (isDateAfter(this.state.startDate, date)) {
       this.setState({endDate: date})
     } else {
-      console.log("nope");
+      this.shakeError(".event-form__input--date");
     }
     this.closeAllDatePickers()
   }
@@ -133,7 +133,7 @@ class EventForm extends React.Component {
     const end = setTime(this.state.endDate, t);
 
     if (!isDateAfter(start, end) && menuOpen === false) {
-      console.log("hello");
+      this.shakeError(".time-picker__input");
     } else {
       this.setState({time2: t})
     }
@@ -141,6 +141,15 @@ class EventForm extends React.Component {
 
   formatDate(date) {
     return `${abbrvDayOfTheWeek(date)}, ${abbrvMonth(date)} ${date.getDate()}, ${date.getFullYear()}`
+  }
+
+  shakeError(c) {
+    $($(c)[1]).addClass("shaking")
+
+    window.setTimeout(
+      () => $($(c)[1]).removeClass("shaking"),
+      420
+    )
   }
 
   datePickerShowingClass(c, n) {
