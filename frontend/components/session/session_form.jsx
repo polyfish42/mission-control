@@ -1,4 +1,5 @@
 import React from "react";
+import { dayOfTheWeek, now } from '../schedule/date.js';
 import { Link } from "react-router-dom";
 
 class SessionForm extends React.Component {
@@ -46,7 +47,7 @@ class SessionForm extends React.Component {
         <Link to="/" ><img className="session__small-logo" src={window.smallLogo} /></Link>
         <div className="session__container">
           <div className="session__text">
-            <h2 className="session__h2">Happy Friday!</h2>
+            <h2 className="session__h2">{`Happy ${dayOfTheWeek(now())}!`}</h2>
             <p className="session__p">
               Just enter your email address and password and we’ll get you right
               into Basecamp.

@@ -58,14 +58,20 @@ class TimePicker extends React.Component {
   render () {
     const { inputText, menuOpen } = this.state;
     return (
-      <div ref={i => this.input = i}>
-        <input value={inputText}
+      <div ref={i => this.input = i} className="time-picker">
+        <input className="time-picker__input"
+               value={inputText}
                onChange={(e) => this.handleChange(e.currentTarget.value)}
                onFocus={() => this.setState({menuOpen: true})}/>
         {
-          menuOpen && TIMES.map((time, key) => {
-            return <li key={key} onClick={() => this.handleChange(time)}>{time}</li>
-          })
+          menuOpen &&
+          <ul className="time-picker__ul">
+            {
+              TIMES.map((time, key) => {
+              return <li key={key} onClick={() => this.handleChange(time)}>{time}</li>
+             })
+            }
+          </ul>
         }
       </div>
     )
