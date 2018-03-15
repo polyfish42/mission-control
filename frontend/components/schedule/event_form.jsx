@@ -27,15 +27,28 @@ class EventForm extends React.Component {
     })
 
     this.childUpdate = this.childUpdate.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
     // this.startDateUpdate = this.startDateUpdate.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchEvent();
+    document.addEventListener("mousedown", this.handleClickOutside);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps.event);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside)
+  }
+
+  handleClickOutside(e) {
+    debugger
+    if (!this.input1.contains(e.target) && !this.input2.contains(e.target)) {
+      this.setState({datePicker1Showing: false, datePicker2Showing: false})
+    }
   }
 
   update(field) {
@@ -124,7 +137,7 @@ class EventForm extends React.Component {
                 onClick={() => this.setState({datePicker1Showing: true, datePicker2Showing: false})}>
                 {this.formatDate(startDate)}
               </button>
-              <DatePicker className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
+              <DatePicker inputRef={el => this.input1 = el} className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
             </div>
             <TimePicker
               updateParent={t => this.setState({time1: t})}
@@ -140,7 +153,7 @@ class EventForm extends React.Component {
                 onClick={() => this.setState({datePicker1Showing: false, datePicker2Showing: true})}>
                 {this.formatDate(endDate)}
               </button>
-              <DatePicker className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
+              <DatePicker inputRef={el => this.input2 = el}  className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
             </div>
             <TimePicker
               updateParent={t => this.setState({time2: t})}
