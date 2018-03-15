@@ -104,7 +104,11 @@ class EventForm extends React.Component {
   }
 
   startDateUpdate(date) {
-    this.setState({startDate: date})
+    if (isDateAfter(date, this.state.endDate)) {
+      this.setState({startDate: date})
+    } else {
+      this.setState({startDate: date, endDate: minutesFromDate(30, date)})
+    }
     this.closeAllDatePickers()
   }
 
