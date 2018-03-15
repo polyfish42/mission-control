@@ -20,6 +20,7 @@ class TimePicker extends React.Component {
     }
 
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.handleClickInside = this.handleClickInside.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -41,6 +42,11 @@ class TimePicker extends React.Component {
       this.setState({menuOpen: false})
       this.props.updateParent(this.state.lastValid)
     }
+  }
+
+  handleClickInside(value) {
+    this.setState({menuOpen: false})
+    this.handleChange(value);
   }
 
   handleChange(value) {
@@ -69,7 +75,7 @@ class TimePicker extends React.Component {
             <ul className="time-picker__ul">
               {
                 TIMES.map((time, key) => {
-                  return <li key={key} onClick={() => this.handleChange(time)} className="time-picker__li">{time}</li>
+                  return <li key={key} onClick={() => this.handleClickInside(time)} className="time-picker__li">{time}</li>
                 })
               }
             </ul>

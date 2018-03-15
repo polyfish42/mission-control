@@ -14,6 +14,7 @@ import TodoShowContainer from "../todos/todo/todo_show_container";
 import ScheduleContainer from "../schedule/schedule_container";
 import ShowEventContainer from "../schedule/show_event_container";
 import EditEventFormContainer from "../schedule/edit_event_form_container";
+import CreateEventFormContainer from "../schedule/create_event_form_container";
 import { AuthRoute, ProtectedRoute, Switch } from "../../util/route_util";
 
 const App = () => {
@@ -71,6 +72,10 @@ const App = () => {
         path="/events/:eventId(\d+)"
         exact
         component={ShowEventContainer} />
+      <ProtectedRoute
+        path="/events/new"
+        exact
+        component={CreateEventFormContainer} />
       <ProtectedRoute
         path="/events/:eventId(\d+)/edit"
         exact

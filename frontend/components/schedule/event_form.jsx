@@ -79,18 +79,23 @@ class EventForm extends React.Component {
 
     return (
       <div className="main-content">
-        <form onSubmit={() => console.log("freak out")}>
-          <label>Title:</label><input onChange={this.update("title")} value={title}/>
-          <label>Start:</label><input onChange={this.update("startDate")} value={startDate} />
-          <TimePicker updateParent={t => this.setState({time1: t})} time={this.state.time1}/>
-          <TimePicker updateParent={t => this.setState({time2: t})} time={this.state.time2}/>
-          <label>End:</label><input onChange={this.update("startDate")} value={endDate} />
-          <label>With:</label><PersonPickerContainer people={attendees} update={this.childUpdate("attendees")} />
-          <label>Notes:</label><ReactQuill value={notes}
+        <form className="event-form" onSubmit={() => console.log("freak out")}>
+          <div className="event-form__row"><label className="event-form__label">Title:</label><input onChange={this.update("title")} value={title} className="event-form__input" placeholder="Type the name of the event..."/></div>
+          <div className="event-form__row event-form__row--date"><label className="event-form__label">Start:</label><input onChange={this.update("startDate")} value={startDate} className="event-form__input event-form__input--date"/>
+            <TimePicker updateParent={t => this.setState({time1: t})} time={this.state.time1}/>
+          </div>
+          <div className="event-form__row event-form__row--date"><label className="event-form__label">End:</label><input onChange={this.update("startDate")} value={endDate} className="event-form__input event-form__input--date"/>
+            <TimePicker updateParent={t => this.setState({time2: t})} time={this.state.time2}/>
+          </div>
+          <div className="event-form__row">
+                <label className="event-form__label">With:</label>
+                <PersonPickerContainer people={attendees} update={this.childUpdate("attendees")} className="event-form__person-picker" />
+          </div>
+          <div className="event-form__row"><label className="event-form__label event-form__label--notes">Notes:</label><ReactQuill value={notes}
             readOnly={false}
             modules={this.modules()}
-            className="event-show__editor"/>
-          <button type="submit" className="button button--green">Post this event</button>
+            className="event-show__editor"/></div>
+          <button type="submit" className="button button--green button--edit-form">Post this event</button>
         </form>
       </div>
     )

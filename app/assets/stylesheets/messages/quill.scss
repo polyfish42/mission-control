@@ -19,9 +19,17 @@
   margin-bottom: 50px;
 }
 
-.event-show__editor .ql-container {
-  min-height: 0px;
+.event-show__editor .ql-container{
+  width: 605px;
+  min-height: 200px;
   margin-bottom: 50px;
+  padding: 8px;
+}
+
+.event-show__editor .ql-toolbar.ql-snow  {
+  width: 605px;
+  padding-left: 8px;
+  border-top: none;
 }
 
 .comment-editor .ql-container {

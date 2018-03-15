@@ -10,6 +10,7 @@ class PersonPicker extends React.Component {
       textInput: "",
       results: [],
       fuse: null,
+      focusing: false,
       fetching: false
     };
 
@@ -100,11 +101,15 @@ class PersonPicker extends React.Component {
     (this.state.results.length > 1 ? " todo-assignment__search-results--open" : "");
   }
 
+  focusBorderClass() {
+    return this.state.focusing === true ? `${this.props.className} ${this.props.className}--focus` : `${this.props.className}`
+  }
+
   render () {
     const { people } = this.props
 
     return (
-      <div className="todo-assignment">
+      <div className={`todo-assignment ${this.focusBorderClass()}`}>
         <div className={"todo-assignment__flex-wrapper" + (true ? " todo-assignment__flex-wrapper--editTodo" : "")}>
           {
             people && people.map((person, key) => {
@@ -120,6 +125,8 @@ class PersonPicker extends React.Component {
             placeholder="Type names here..."
             onChange={this.handleInput("textInput")}
             onKeyDown={this.handleKeyDown}
+            onFocus={() => this.setState({focusing: true})}
+            onBlur={() => this.setState({focusing: false})}
             value={this.state.textInput}
             />
         </div>
