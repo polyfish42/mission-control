@@ -27,11 +27,11 @@ class TimePicker extends React.Component {
   }
 
   componentWillMount() {
-    document.addEventListener("click", this.handleClickOutside)
+    document.addEventListener("mousedown", this.handleClickOutside)
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    document.removeEventListener("click", this.handleClickOutside)
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside)
   }
 
   handleClickOutside(e) {
@@ -41,7 +41,6 @@ class TimePicker extends React.Component {
   }
 
   handleChange(value) {
-    // this.setState({inputText: value})
     this.props.updateParent(value)
   }
 

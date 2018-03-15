@@ -1,8 +1,8 @@
 import React from 'react';
 import PersonPickerContainer from '../form_helpers/person_picker_container';
 import ReactQuill from 'react-quill';
-import DateTime from './date_time_picker';
-import { now, minutesFromNow } from './date.js';
+import TimePicker from './time_picker';
+import { now, minutesFromNow, approxTime, timeTo30MinutesFormatted } from './date.js';
 
 class EventForm extends React.Component {
   constructor(props) {
@@ -10,12 +10,15 @@ class EventForm extends React.Component {
     this.state = this.props.event ? this.props.event : ({
       title: "",
       startDate: now(),
+      time1: approxTime(now()),
       endDate: minutesFromNow(30),
+      time2: approxTime(minutesFromNow(30)),
       attendees: [],
       notes: ""
     })
 
     this.childUpdate = this.childUpdate.bind(this);
+    this.startDateUpdate = this.startDateUpdate.bind(this);
   }
 
   componentWillMount() {
@@ -67,6 +70,10 @@ class EventForm extends React.Component {
    ]
  }
 
+ startDateUpdate(date) {
+   date => this.setState({startDate: date})
+ }
+
   render () {
     const {title, startDate, endDate, attendees, notes} = this.state
 
@@ -75,7 +82,8 @@ class EventForm extends React.Component {
         <form onSubmit={() => console.log("freak out")}>
           <label>Title:</label><input onChange={this.update("title")} value={title}/>
           <label>Start:</label><input onChange={this.update("startDate")} value={startDate} />
-          <DateTime />
+          <TimePicker updateParent={t => this.setState({time1: t, time2: timeTo30MinutesFormatted(t)})} time={this.state.time1}/>
+          <TimePicker updateParent={t => this.setState({time2: t})} time={this.state.time2}/>
           <label>End:</label><input onChange={this.update("startDate")} value={endDate} />
           <label>With:</label><PersonPickerContainer people={attendees} update={this.childUpdate("attendees")} />
           <label>Notes:</label><ReactQuill value={notes}

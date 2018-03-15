@@ -49,12 +49,16 @@ export const approxTime = date => {
   return `${hours}:${minutes}${amOrPm}`
 }
 
+export const timeTo30MinutesFormatted = time => {
+  formatTime(new Date(time + 30 * 60000))
+}
+
 export const now = () => {
   return new Date;
 }
 
 export const minutesFromNow = minutes => {
-  return (new Date).setTime((new Date).getTime() + minutes * 1000)
+  return new Date((new Date).getTime() + minutes * 60000)
 }
 
 export const parseTime = time => {
@@ -65,5 +69,5 @@ export const parseTime = time => {
   const minutes = t[2]
   const seconds = "00"
 
-  return `${hours}:${minutes}:${seconds}`
+  return Date.parse(`01 Jan 1970 ${hours}:${minutes}:${seconds} EST`)
 }
