@@ -1,0 +1,43 @@
+.date-picker {
+  width: 210px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.date-picker__header {
+  display: flex;
+  justify-content: space-between;
+  width: 210px;
+  text-align: center;
+  color: white;
+  background-color: #283c46;
+  font-weight: bold;
+  padding: 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.date-box {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.date-box--day-of-week {
+  font-weight: bold;
+  text-align: center;
+  padding-top: 8.5px;
+}
+
+.date-box--button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.date-box--selected {
+  background-color: #283c46;
+  color: white;
+  border-radius: 100%;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import PersonPickerContainer from '../form_helpers/person_picker_container';
 import ReactQuill from 'react-quill';
 import TimePicker from './time_picker';
+import DatePicker from './date_picker';
 import { now, minutesFromNow, approxTime, timeTo30MinutesFormatted } from './date.js';
 
 class EventForm extends React.Component {
@@ -94,9 +95,11 @@ class EventForm extends React.Component {
           <div className="event-form__row"><label className="event-form__label event-form__label--notes">Notes:</label><ReactQuill value={notes}
             readOnly={false}
             modules={this.modules()}
+            onChange={(i) => this.setState({notes: i})}
             className="event-show__editor"/></div>
           <button type="submit" className="button button--green button--edit-form">Post this event</button>
         </form>
+        <DatePicker />
       </div>
     )
   }

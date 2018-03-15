@@ -13,6 +13,11 @@ export const month = (date) => {
   return months[date.getMonth()];
 }
 
+export const monthFromNum = n => {
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  return months[n];
+}
+
 export const abbrvMonth = date => {
   return month(date).slice(0, 3)
 }
@@ -80,4 +85,14 @@ export const parseTime = time => {
   const seconds = "00"
 
   return Date.parse(`01 Jan 1970 ${hours}:${minutes}:${seconds} EST`)
+}
+
+export const daysInAMonth = (month, year) => {
+     const date = new Date(year, month, 1);
+     const days = [];
+     while (date.getMonth() === month) {
+        days.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+     }
+     return days;
 }
