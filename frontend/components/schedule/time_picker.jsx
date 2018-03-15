@@ -21,6 +21,7 @@ class TimePicker extends React.Component {
 
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.handleClickInside = this.handleClickInside.bind(this);
+    this.openMenu = this.openMenu.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -35,6 +36,12 @@ class TimePicker extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.menuOpen === false && this.state.menuOpen === true) {
+      this.scrollDiv()
+    }
   }
 
   handleClickOutside(e) {
@@ -61,14 +68,26 @@ class TimePicker extends React.Component {
     }
   }
 
+  openMenu() {
+    this.setState({menuOpen: true})
+    this.scrollDiv()
+  }
+
+  scrollDiv(){
+    const position = TIMES.indexOf(this.state.inputText) * 37
+
+    $(".time-picker__ul").animate({scrollTop:position}, 1);
+  }
+
   render () {
     const { inputText, menuOpen } = this.state;
+
     return (
       <div ref={i => this.input = i} className="time-picker">
         <input className="time-picker__input"
                value={inputText}
                onChange={(e) => this.handleChange(e.currentTarget.value)}
-               onFocus={() => this.setState({menuOpen: true})}/>
+               onFocus={this.openMenu}/>
         {
           menuOpen &&
           <div className="time-picker__ul-parent">
