@@ -40,17 +40,17 @@ class TimePicker extends React.Component {
   handleClickOutside(e) {
     if (!this.input.contains(e.target)) {
       this.setState({menuOpen: false})
-      this.props.updateParent(this.state.lastValid)
+      this.props.updateParent(this.state.lastValid, false)
     }
   }
 
   handleClickInside(value) {
     this.setState({menuOpen: false})
-    this.handleChange(value);
+    this.handleChange(value, false);
   }
 
-  handleChange(value) {
-    this.props.updateParent(value)
+  handleChange(value, menuOpen) {
+    this.props.updateParent(value, menuOpen)
   }
 
   validate(time) {

@@ -10,7 +10,8 @@ import { now,
   timeTo30MinutesFormatted,
   abbrvMonth,
   abbrvDayOfTheWeek,
-  setTime
+  setTime,
+  isDateAfter
 } from './date.js';
 
 class EventForm extends React.Component {
@@ -32,6 +33,8 @@ class EventForm extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.startDateUpdate = this.startDateUpdate.bind(this);
     this.endDateUpdate = this.endDateUpdate.bind(this);
+    this.time1Update = this.time1Update.bind(this);
+    this.time2Update = this.time2Update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -105,8 +108,31 @@ class EventForm extends React.Component {
   }
 
   endDateUpdate(date) {
-    this.setState({endDate: date})
+    if (isDateAfter(this.state.startDate, date)) {
+      this.setState({endDate: date})
+    } else {
+      console.log("nope");
+    }
     this.closeAllDatePickers()
+  }
+
+  time1Update(t) {
+    this.setState({time1: t})
+  }
+
+  time2Update(t, menuOpen) {
+    const start = setTime(this.state.startDate, this.state.time1);
+    const end = setTime(this.state.endDate, t);
+    
+    if (!isDateAfter(start, end) && menuOpen === false) {
+      console.log("hello");
+    } else {
+      this.setState({time2: t})
+    }
+  }
+
+  resetEndDateAndTime() {
+
   }
 
   formatDate(date) {
@@ -169,7 +195,7 @@ class EventForm extends React.Component {
                 className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
             </div>
             <TimePicker
-              updateParent={t => this.setState({time1: t})}
+              updateParent={this.time1Update}
               time={this.state.time1}/>
           </div>
 
@@ -189,7 +215,7 @@ class EventForm extends React.Component {
                 className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
             </div>
             <TimePicker
-              updateParent={t => this.setState({time2: t})}
+              updateParent={this.time2Update}
               time={this.state.time2}/>
           </div>
 
