@@ -47,12 +47,14 @@ class DatePicker extends React.Component {
   }
 
   dateBox(day) {
-    const selected = isSameDay(this.state.selectedDay, day) ? true : false
+    const selected = isSameDay(this.state.selectedDay, day)
+    const currentDay = isSameDay(now(), day)
 
     return <DateBox
               day={day}
               updateParent={this.selectDay}
-              selected={selected}/>
+              selected={selected}
+              currentDay={currentDay}/>
   }
 
   nextDay() {
@@ -67,9 +69,9 @@ class DatePicker extends React.Component {
   header() {
     return (
       <div className="date-picker__header">
-        <div onClick={this.previousMonth}>Last</div>
+        <div onClick={this.previousMonth} className="date-picker__arrow">←</div>
         { `${monthFromNum(this.state.month)} ${this.state.year}` }
-        <div onClick={this.nextMonth}>Next</div>
+        <div onClick={this.nextMonth} className="date-picker__arrow">→</div>
       </div>
     )
   }
@@ -88,7 +90,7 @@ class DatePicker extends React.Component {
     while (true) {
       let dayOfWeek = nextDay();
       let [currentDay, ...restOfDays] = days
-      if (typeof currentDay === 'undefined' && dayOfWeek === 6) {
+      if (typeof currentDay === 'undefined' && dayOfWeek === 0) {
         break
       }
 

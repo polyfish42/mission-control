@@ -1,14 +1,16 @@
 .date-picker {
-  width: 210px;
+  width: 214px;
   display: flex;
   flex-wrap: wrap;
   font-size: 13px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 0px rgb(191, 191, 191)
 }
 
 .date-picker__header {
   display: flex;
   justify-content: space-between;
-  width: 210px;
+  width: 214px;
   text-align: center;
   color: white;
   background-color: #283c46;
@@ -16,6 +18,14 @@
   padding: 8px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+
+.date-picker__arrow {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .date-box {
@@ -31,7 +41,7 @@
 }
 
 .date-box--button {
-  background-color: white;
+  // background-color: white;
   border: none;
   cursor: pointer;
 }
@@ -40,4 +50,14 @@
   background-color: #283c46;
   color: white;
   border-radius: 100%;
+}
+
+.date-box--selected.date-box--current-day {
+  color: white;
+  font-weight: bold;
+}
+
+.date-box--current-day {
+  color: rgb(212, 68, 46);
+  font-weight: bold;
 }

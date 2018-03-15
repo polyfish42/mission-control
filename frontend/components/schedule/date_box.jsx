@@ -6,7 +6,11 @@ class DateBox extends React.Component {
   }
 
   addSelectedClass(c) {
-    return c + (this.props.selected ? " date-box--selected" : "")
+    return c + (this.props.selected ? this.addCurrentDayClass(" date-box--selected" ): this.addCurrentDayClass(""))
+  }
+
+  addCurrentDayClass(c) {
+    return c + (this.props.currentDay ? " date-box--current-day" : "")
   }
 
   render () {
