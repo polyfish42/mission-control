@@ -1,4 +1,6 @@
 import * as EventUtil from "../util/event_util";
+import update from 'immutability-helper';
+
 export const EVENT_SUCCESS = "EVENT_SUCCESS";
 export const EVENT_REQUEST = "EVENT_REQUEST";
 export const EVENTS_REQUEST = "EVENTS_REQUEST";
@@ -65,12 +67,21 @@ export const deleteEvent = id => {
   };
 };
 
-export const receiveEvent = ({ event, comments, users }) => ({
-  type: EVENT_SUCCESS,
-  event,
-  comments,
-  users
-});
+export const receiveEvent = ({ event, comments, users }) => {
+  const formattedEvent = formatEventDates(event)
+  return {type: EVENT_SUCCESS,
+          event: formattedEvent,
+          comments,
+          users
+        }
+};
+
+const formatEventDates = event => {
+  return update(event, {
+    startDate: {$apply: d => new Date(d)},
+    endDate: {$apply: d => new Date(d)}
+  })
+}
 
 const receiveEvents = ({ events }) => {
   return ({

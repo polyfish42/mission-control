@@ -13,13 +13,18 @@ export const month = (date) => {
   return months[date.getMonth()];
 }
 
+export const abbrvMonth = date => {
+  return month(date).slice(0, 3)
+}
+
 export const monthFromNum = n => {
   const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   return months[n];
 }
 
-export const abbrvMonth = date => {
-  return month(date).slice(0, 3)
+
+export const abbrvMonthFromNum = n => {
+  return monthFromNum(n).slice(0, 3)
 }
 
 export const isSameDay = (date1, date2) => {
