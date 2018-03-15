@@ -1,5 +1,7 @@
 import EventForm from './event_form';
 import { approxTime, now, minutesFromNow } from './date.js';
+import { createEvent } from '../../actions/event_actions';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -16,10 +18,11 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchEvent: () => null
+    fetchEvent: () => null,
+    handleSubmit: (event) => dispatch(createEvent(event)).then(({event}) => ownProps.history.push(`/events/${event.id}`))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventForm));

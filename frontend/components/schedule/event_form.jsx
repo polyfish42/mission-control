@@ -3,12 +3,14 @@ import PersonPickerContainer from '../form_helpers/person_picker_container';
 import ReactQuill from 'react-quill';
 import TimePicker from './time_picker';
 import DatePicker from './date_picker';
+import update from 'immutability-helper';
 import { now,
   minutesFromNow,
   approxTime,
   timeTo30MinutesFormatted,
   abbrvMonth,
-  abbrvDayOfTheWeek
+  abbrvDayOfTheWeek,
+  setTime
 } from './date.js';
 
 class EventForm extends React.Component {
@@ -30,6 +32,7 @@ class EventForm extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.startDateUpdate = this.startDateUpdate.bind(this);
     this.endDateUpdate = this.endDateUpdate.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -120,6 +123,18 @@ class EventForm extends React.Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const event = update(this.state, {
+      start_date: { $set: setTime(this.state.startDate, this.state.time1)},
+      end_date: { $set: setTime(this.state.endDate, this.state.time2)},
+      attendees: { $set: this.state.attendees.map(a => parseInt(a.id))},
+      $unset: ['datePicker1Showing', 'datePicker2Showing', 'time1', 'time2', 'attendees', 'startDate', 'endDate']
+    })
+
+    this.props.handleSubmit(event)
+  }
+
   render () {
     const {title, startDate, endDate, attendees, notes} = this.state
 
@@ -127,7 +142,7 @@ class EventForm extends React.Component {
       <div className="main-content">
         <form
           className="event-form"
-          onSubmit={() => console.log("freak out")}>
+          onSubmit={this.handleSubmit}>
 
           <div className="event-form__row">
             <label className="event-form__label">Title:</label>
@@ -147,7 +162,11 @@ class EventForm extends React.Component {
                 onClick={() => this.setState({datePicker1Showing: true, datePicker2Showing: false})}>
                 {this.formatDate(startDate)}
               </button>
-              <DatePicker inputRef={el => this.input1 = el} updateParent={this.startDateUpdate} className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
+              <DatePicker
+                selectedDay={startDate}
+                inputRef={el => this.input1 = el}
+                updateParent={this.startDateUpdate}
+                className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
             </div>
             <TimePicker
               updateParent={t => this.setState({time1: t})}
@@ -163,7 +182,11 @@ class EventForm extends React.Component {
                 onClick={() => this.setState({datePicker1Showing: false, datePicker2Showing: true})}>
                 {this.formatDate(endDate)}
               </button>
-              <DatePicker inputRef={el => this.input2 = el} updateParent={this.endDateUpdate}  className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
+              <DatePicker
+                selectedDay={endDate}
+                inputRef={el => this.input2 = el}
+                updateParent={this.endDateUpdate}
+                className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
             </div>
             <TimePicker
               updateParent={t => this.setState({time2: t})}

@@ -7,8 +7,7 @@ class DatePicker extends React.Component {
     super(props);
     this.state = {
       month: now().getMonth(),
-      year: now().getFullYear(),
-      selectedDay: now()
+      year: now().getFullYear()
     }
 
     this.populateDatePicker = this.populateDatePicker.bind(this);
@@ -47,7 +46,7 @@ class DatePicker extends React.Component {
   }
 
   dateBox(day) {
-    const selected = isSameDay(this.state.selectedDay, day)
+    const selected = isSameDay(this.props.selectedDay, day)
     const currentDay = isSameDay(now(), day)
 
     return <DateBox
@@ -103,10 +102,6 @@ class DatePicker extends React.Component {
     }
     return [...this.dayHeader(), ...outputHTML]
   }
-
-  // selectDay(day) {
-  //   this.setState({selectedDay: day})
-  // }
 
   addPropClasses(c) {
     return c + (this.props.className ? " " + this.props.className : "")

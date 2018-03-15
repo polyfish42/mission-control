@@ -101,3 +101,16 @@ export const daysInAMonth = (month, year) => {
      }
      return days;
 }
+
+export const setTime = (date, time) => {
+  const r = new RegExp(/(\d+):(\d+)(\w+)/);
+  const t = time.match(r)
+
+  const hours = t[3] === "pm" && t[1] != 12 ? parseInt(t[1]) + 12 : t[1] === "12" ? "00" : t[1]
+  const minutes = t[2]
+
+  date.setHours(hours)
+  date.setMinutes(minutes)
+
+  return date
+}
