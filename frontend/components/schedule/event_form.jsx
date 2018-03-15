@@ -17,8 +17,10 @@ class EventForm extends React.Component {
     this.state = this.props.event ? this.props.event : ({
       title: "",
       startDate: now(),
+      datePicker1Showing: false,
       time1: approxTime(now()),
       endDate: minutesFromNow(30),
+      datePicker2Showing: false,
       time2: approxTime(minutesFromNow(30)),
       attendees: [],
       notes: ""
@@ -85,6 +87,16 @@ class EventForm extends React.Component {
     return `${abbrvDayOfTheWeek(date)}, ${abbrvMonth(date)} ${date.getDate()}, ${date.getFullYear()}`
   }
 
+  datePickerShowingClass(c, n) {
+    if (n === 1) {
+      return c + (this.state.datePicker1Showing ? " " + "event-form__date-picker--showing" : "")
+    }
+
+    if (n === 2) {
+      return c + (this.state.datePicker2Showing ? " " + "event-form__date-picker--showing" : "")
+    }
+  }
+
   render () {
     const {title, startDate, endDate, attendees, notes} = this.state
 
@@ -93,6 +105,7 @@ class EventForm extends React.Component {
         <form
           className="event-form"
           onSubmit={() => console.log("freak out")}>
+
           <div className="event-form__row">
             <label className="event-form__label">Title:</label>
             <input
@@ -101,20 +114,39 @@ class EventForm extends React.Component {
               className="event-form__input"
               placeholder="Type the name of the event..."/>
           </div>
+
           <div className="event-form__row event-form__row--date">
             <label className="event-form__label">Start:</label>
-            <button className="event-form__input event-form__input--date">{this.formatDate(startDate)}</button>
+            <div className="event-form__input--date-wrapper">
+              <button
+                type="button"
+                className="event-form__input event-form__input--date"
+                onClick={() => this.setState({datePicker1Showing: true, datePicker2Showing: false})}>
+                {this.formatDate(startDate)}
+              </button>
+              <DatePicker className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
+            </div>
             <TimePicker
               updateParent={t => this.setState({time1: t})}
               time={this.state.time1}/>
           </div>
+
           <div className="event-form__row event-form__row--date">
             <label className="event-form__label">End:</label>
-            <button className="event-form__input event-form__input--date">{this.formatDate(endDate)}</button>
+            <div className="event-form__input--date-wrapper">
+              <button
+                type="button"
+                className="event-form__input event-form__input--date"
+                onClick={() => this.setState({datePicker1Showing: false, datePicker2Showing: true})}>
+                {this.formatDate(endDate)}
+              </button>
+              <DatePicker className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
+            </div>
             <TimePicker
               updateParent={t => this.setState({time2: t})}
               time={this.state.time2}/>
           </div>
+
           <div className="event-form__row">
             <label className="event-form__label">With:</label>
             <PersonPickerContainer
@@ -122,6 +154,7 @@ class EventForm extends React.Component {
               update={this.childUpdate("attendees")}
               className="event-form__person-picker" />
           </div>
+
           <div className="event-form__row">
             <label className="event-form__label event-form__label--notes">Notes:</label>
             <ReactQuill
@@ -131,13 +164,13 @@ class EventForm extends React.Component {
               onChange={(i) => this.setState({notes: i})}
               className="event-show__editor"/>
           </div>
+
           <button
             type="submit"
             className="button button--green button--edit-form">
             Post this event
           </button>
         </form>
-        <DatePicker />
       </div>
     )
   }

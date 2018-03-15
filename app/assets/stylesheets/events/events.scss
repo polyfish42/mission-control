@@ -55,6 +55,7 @@
 .event-form__input--date {
   width: 175px;
   margin-right: 10px;
+  text-align: left;
 }
 
 
@@ -69,6 +70,20 @@
   font-weight: 700;
   padding-right: 10px;
   align-self: center;
+}
+
+.event-form__input--date-wrapper {
+  position: relative;
+}
+
+.event-form__date-picker {
+  position: absolute;
+  z-index: 4;
+  visibility: hidden;
+}
+
+.event-form__date-picker--showing {
+  visibility: visible;
 }
 
 .event-form__person-picker {

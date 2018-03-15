@@ -4,7 +4,8 @@
   flex-wrap: wrap;
   font-size: 13px;
   border-radius: 4px;
-  box-shadow: 0px 0px 10px 0px rgb(191, 191, 191)
+  box-shadow: 0px 0px 10px 0px rgb(191, 191, 191);
+  background-color: white;
 }
 
 .date-picker__header {
@@ -41,7 +42,6 @@
 }
 
 .date-box--button {
-  // background-color: white;
   border: none;
   cursor: pointer;
 }

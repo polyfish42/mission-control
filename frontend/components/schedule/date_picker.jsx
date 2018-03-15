@@ -108,9 +108,13 @@ class DatePicker extends React.Component {
     this.setState({selectedDay: day})
   }
 
+  addPropClasses(c) {
+    return c + (this.props.className ? " " + this.props.className : "")
+  }
+
   render () {
     return (
-      <div className="date-picker">
+      <div className={this.addPropClasses("date-picker")}>
         { this.header() }
         {
           this.populateDatePicker().map((html, key) => {
