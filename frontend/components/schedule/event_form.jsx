@@ -82,7 +82,7 @@ class EventForm extends React.Component {
         <form onSubmit={() => console.log("freak out")}>
           <label>Title:</label><input onChange={this.update("title")} value={title}/>
           <label>Start:</label><input onChange={this.update("startDate")} value={startDate} />
-          <TimePicker updateParent={t => this.setState({time1: t, time2: timeTo30MinutesFormatted(t)})} time={this.state.time1}/>
+          <TimePicker updateParent={t => this.setState({time1: t})} time={this.state.time1}/>
           <TimePicker updateParent={t => this.setState({time2: t})} time={this.state.time2}/>
           <label>End:</label><input onChange={this.update("startDate")} value={endDate} />
           <label>With:</label><PersonPickerContainer people={attendees} update={this.childUpdate("attendees")} />

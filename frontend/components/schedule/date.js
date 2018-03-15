@@ -61,6 +61,16 @@ export const minutesFromNow = minutes => {
   return new Date((new Date).getTime() + minutes * 60000)
 }
 
+export const isValidTime = time => {
+  const r = /^([0-9]|1[0-9]|2[0-3]):[0-5][0-9](am|pm)$/
+
+  if (time.match(r)) {
+    return true
+  } else {
+    return false
+  }
+}
+
 export const parseTime = time => {
   const r = new RegExp(/(\d+):(\d+)(\w+)/);
   const t = time.match(r)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { now, approxTime, parseTime } from './date.js';
+import { now, approxTime, isValidTime } from './date.js';
 
 const TIMES = [
   "12:00am","12:30am","1:00am","1:30am","2:00am","2:30am","3:00am","3:30am",
@@ -15,6 +15,7 @@ class TimePicker extends React.Component {
     super(props);
     this.state = {
       inputText: this.props.time,
+      lastValid: this.props.time,
       menuOpen: false
     }
 
@@ -23,7 +24,8 @@ class TimePicker extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({inputText: nextProps.time})
+    const t = nextProps.time;
+    this.setState({inputText: t, lastValid: this.validate(t)})
   }
 
   componentWillMount() {
@@ -37,11 +39,20 @@ class TimePicker extends React.Component {
   handleClickOutside(e) {
     if (!this.input.contains(e.target)) {
       this.setState({menuOpen: false})
+      this.props.updateParent(this.state.lastValid)
     }
   }
 
   handleChange(value) {
     this.props.updateParent(value)
+  }
+
+  validate(time) {
+    if (isValidTime(time)) {
+      return time
+    } else {
+      return this.state.lastValid
+    }
   }
 
   render () {

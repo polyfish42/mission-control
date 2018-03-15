@@ -1,5 +1,5 @@
 import Editor from './message_editor';
-import { updateMessage } from '../../actions/message_actions';
+import { fetchMessage, updateMessage } from '../../actions/message_actions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
