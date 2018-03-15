@@ -5,7 +5,7 @@ export const dayOfTheWeek = date => {
 
 export const abbrvDayOfTheWeek = date => {
   const day = dayOfTheWeek(date);
-  return day[0] == "T" ? day.slice(0,4) : day.slice(0,3);
+  return day.slice(0,3);
 }
 
 export const month = (date) => {
@@ -37,10 +37,33 @@ export const formatTime = date => {
   return `${hours}:${minutes}${amOrPm}`
 }
 
+export const approxTime = date => {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  const amOrPm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours === 0 ? 12 : hours
+  minutes = minutes < 30 ? '00' : "30";
+
+  return `${hours}:${minutes}${amOrPm}`
+}
+
 export const now = () => {
   return new Date;
 }
 
 export const minutesFromNow = minutes => {
   return (new Date).setTime((new Date).getTime() + minutes * 1000)
+}
+
+export const parseTime = time => {
+  const r = new RegExp(/(\d+):(\d+)(\w+)/);
+  const t = time.match(r)
+
+  const hours = t[3] === "pm" && t[1] != 12 ? parseInt(t[1]) + 12 : t[1] === "12" ? "00" : t[1]
+  const minutes = t[2]
+  const seconds = "00"
+
+  return `${hours}:${minutes}:${seconds}`
 }

@@ -101,11 +101,13 @@ class PersonPicker extends React.Component {
   }
 
   render () {
+    const { people } = this.props
+
     return (
       <div className="todo-assignment">
         <div className={"todo-assignment__flex-wrapper" + (true ? " todo-assignment__flex-wrapper--editTodo" : "")}>
           {
-            this.props.people.map((person, key) => {
+            people && people.map((person, key) => {
               return <Person
                 key={key}
                 person={person}
