@@ -8,7 +8,8 @@ import { abbrvMonth } from './date.js';
 
 class ShowEvent extends React.Component {
   componentWillMount() {
-    this.props.fetchEvent()
+    window.scrollTo(0,0)
+    this.props.fetchEvent(this.props.match.params.eventId)
   }
 
   postedBy(author) {

@@ -3,6 +3,7 @@ import PersonPickerContainer from '../form_helpers/person_picker_container';
 import ReactQuill from 'react-quill';
 import TimePicker from './time_picker';
 import DatePicker from './date_picker';
+import {merge} from 'lodash';
 import update from 'immutability-helper';
 import { now,
   minutesFromNow,
@@ -18,7 +19,20 @@ import { now,
 class EventForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.event ? this.props.event : ({
+
+    this.state = (this.props.event ? merge(this.defaultForm(), this.props.event) : this.defaultForm());
+    debugger
+    this.childUpdate = this.childUpdate.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.startDateUpdate = this.startDateUpdate.bind(this);
+    this.endDateUpdate = this.endDateUpdate.bind(this);
+    this.time1Update = this.time1Update.bind(this);
+    this.time2Update = this.time2Update.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  defaultForm() {
+    return ({
       title: "",
       startDate: now(),
       datePicker1Showing: false,
@@ -29,14 +43,6 @@ class EventForm extends React.Component {
       attendees: [],
       notes: ""
     })
-
-    this.childUpdate = this.childUpdate.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.startDateUpdate = this.startDateUpdate.bind(this);
-    this.endDateUpdate = this.endDateUpdate.bind(this);
-    this.time1Update = this.time1Update.bind(this);
-    this.time2Update = this.time2Update.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -172,7 +178,7 @@ class EventForm extends React.Component {
       start_date: { $set: setTime(this.state.startDate, this.state.time1)},
       end_date: { $set: setTime(this.state.endDate, this.state.time2)},
       attendees: { $set: this.state.attendees.map(a => parseInt(a.id))},
-      $unset: ['datePicker1Showing', 'datePicker2Showing', 'time1', 'time2', 'attendees', 'startDate', 'endDate']
+      $unset: ['datePicker1Showing', 'datePicker2Showing', 'time1', 'time2', 'startDate', 'endDate']
     })
 
     this.props.handleSubmit(event)

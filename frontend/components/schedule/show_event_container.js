@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const id = ownProps.match.params.eventId;
 
   return {
-    fetchEvent: () => dispatch(fetchEvent(id)),
+    fetchEvent: (id) => dispatch(fetchEvent(id)),
     editEventRedirect: () => ownProps.history.push(`/events/${id}/edit`),
     deleteEvent: () => dispatch(deleteEvent(id)).then(ownProps.history.push('/events'))
   };
