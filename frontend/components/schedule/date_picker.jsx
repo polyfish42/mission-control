@@ -13,7 +13,7 @@ class DatePicker extends React.Component {
 
     this.populateDatePicker = this.populateDatePicker.bind(this);
     this.dateBox = this.dateBox.bind(this);
-    this.selectDay = this.selectDay.bind(this);
+    // this.selectDay = this.selectDay.bind(this);
     this.previousMonth = this.previousMonth.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
   }
@@ -52,7 +52,7 @@ class DatePicker extends React.Component {
 
     return <DateBox
               day={day}
-              updateParent={this.selectDay}
+              updateParent={this.props.updateParent}
               selected={selected}
               currentDay={currentDay}/>
   }
@@ -104,9 +104,9 @@ class DatePicker extends React.Component {
     return [...this.dayHeader(), ...outputHTML]
   }
 
-  selectDay(day) {
-    this.setState({selectedDay: day})
-  }
+  // selectDay(day) {
+  //   this.setState({selectedDay: day})
+  // }
 
   addPropClasses(c) {
     return c + (this.props.className ? " " + this.props.className : "")
