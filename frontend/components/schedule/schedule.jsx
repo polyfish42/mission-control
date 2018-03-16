@@ -19,7 +19,7 @@ class Schedule extends React.Component {
       dates.push(date)
     }
 
-    return [...dates, endDate]
+    return [...dates]
   }
 
   events() {
