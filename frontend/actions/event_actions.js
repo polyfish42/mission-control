@@ -83,10 +83,25 @@ const formatEventDates = event => {
   })
 }
 
+const mapFormattedDatesToEvent = events => {
+  const arr = Object.values(events)
+  const newEvents = arr.map(event => {
+    return formatEventDates(event)
+  })
+
+  const result = {}
+
+  newEvents.forEach(event => {
+    result[event.id] = event
+  })
+
+  return result
+}
+
 const receiveEvents = ({ events }) => {
   return ({
   type: EVENTS_SUCCESS,
-  events
+  events: mapFormattedDatesToEvent(events)
 })};
 
 const removeEvent = ({ event }) => ({

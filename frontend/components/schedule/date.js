@@ -47,6 +47,10 @@ export const formatTime = date => {
   return `${hours}:${minutes}${amOrPm}`
 }
 
+export const formatDate = date => {
+  return `${abbrvDayOfTheWeek(date)}, ${abbrvMonth(date)} ${date.getDate()}`
+}
+
 export const approxTime = date => {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -121,4 +125,9 @@ export const setTime = (date, time) => {
 
 export const isDateAfter = (date1, date2) => {
   return date1.getTime() <= date2.getTime()
+}
+
+export const setTimeToMidnight = date => {
+  const d = new Date(date.getTime())
+  return new Date(d.setHours(0,0,0,0))
 }
