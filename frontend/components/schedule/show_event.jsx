@@ -12,13 +12,19 @@ class ShowEvent extends React.Component {
     this.props.fetchEvent(this.props.match.params.eventId)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.eventId !== this.props.match.params.eventId) {
+      this.props.fetchEvent(nextProps.match.params.eventId)
+    }
+  }
+
   postedBy(author) {
     const names = author.name.split(" ")
     return `Posted by ${names[0]} ${names[1].slice(0,1)}.`
   }
 
   isFullName(author) {
-    return (author.name !== null && typeof author !== 'undefined' && author.name.split(" ").length >= 2)
+    return (typeof author !== 'undefined' && author.name !== null && author.name.split(" ").length >= 2)
   }
 
   postDate(createdAt) {

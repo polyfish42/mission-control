@@ -10,7 +10,7 @@ class Schedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedDay: now()
+      selectedDay: setTimeToMidnight(now())
     }
 
     this.childUpdate = this.childUpdate.bind(this);
@@ -42,28 +42,30 @@ class Schedule extends React.Component {
   eventsByDate() {
     const days = this.groupByDays()
 
-    const html = []
+    const datesWithHtml = []
 
     for (var date in days) {
       if (days.hasOwnProperty(date)) {
         if (isDateAfter(this.state.selectedDay, new Date (parseInt(date)))) {
-          html.push(
-            <div className="event-index-item">
+          datesWithHtml.push({
+            date: parseInt(date),
+            html: <div className="event-index-item">
               <div className="event-index-item__date">{formatDate(new Date (parseInt(date)))}</div>
-               <div className="event-index-item__events">
-                 {
-                     days[date].map((event, key) => {
-                     return <EventItem key={key} event={event} date={date}/>
-                   })
-                 }
-               </div>
+              <div className="event-index-item__events">
+                {
+                  days[date].map((event, key) => {
+                    return <EventItem key={key} event={event} date={date}/>
+                  })
+                }
+              </div>
             </div>
+          }
           )
         }
       }
     }
 
-    return html
+    return this.sortByDate(datesWithHtml)
   }
 
   groupByDays(events) {
@@ -84,6 +86,13 @@ class Schedule extends React.Component {
     return grouped
   }
 
+  sortByDate(dates) {
+    return dates.sort((a,b) => {
+
+      return new Date(a.date) - new Date(b.date)
+    })
+  }
+
   childUpdate(selectedDay) {
     this.setState({selectedDay})
   }
@@ -102,8 +111,8 @@ class Schedule extends React.Component {
           className={"date-picker--large"}/>
         <div className="events-index">
           {
-            this.eventsByDate().map((e, key) => {
-              return <div key={key}>{e}</div>
+            this.eventsByDate().map((eventWithHtml, key) => {
+              return <div key={key}>{eventWithHtml.html}</div>
             })
           }
         </div>
