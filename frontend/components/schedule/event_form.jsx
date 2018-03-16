@@ -257,7 +257,7 @@ class EventForm extends React.Component {
               readOnly={false}
               modules={this.modules()}
               onChange={(i) => this.setState({notes: i})}
-              className="event-show__editor"/>
+              className="event-edit__editor"/>
           </div>
 
           <button

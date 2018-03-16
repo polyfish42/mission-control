@@ -20,13 +20,24 @@
 }
 
 .event-show__editor .ql-container{
+  width: 690px;
+  // width: 605px;
+  // min-height: 200px;
+  margin: 0px 0px 50px 0px;
+}
+
+.event-edit__editor .ql-container{
   width: 605px;
   min-height: 200px;
-  margin-bottom: 50px;
-  padding: 8px;
 }
 
 .event-show__editor .ql-toolbar.ql-snow  {
+  width: 690px;
+  padding-left: 8px;
+  border-top: none;
+}
+
+.event-edit__editor .ql-toolbar.ql-snow {
   width: 605px;
   padding-left: 8px;
   border-top: none;
@@ -75,6 +86,10 @@
 }
 
 .event-show__editor .ql-editor {
+  padding: 0px;
+}
+
+.event-edit__editor .ql-editor {
   padding: 0px;
 }
 
