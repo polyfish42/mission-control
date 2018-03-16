@@ -21,7 +21,7 @@ class EventForm extends React.Component {
     super(props);
 
     this.state = (this.props.event ? merge(this.defaultForm(), this.props.event) : this.defaultForm());
-    debugger
+
     this.childUpdate = this.childUpdate.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.startDateUpdate = this.startDateUpdate.bind(this);

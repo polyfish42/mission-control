@@ -31,6 +31,10 @@ export const isSameDay = (date1, date2) => {
   return date1.toDateString() === date2.toDateString()
 }
 
+export const isOnSameDay = (date1, date2) => {
+  return formatDate(date1) === formatDate(date2)
+}
+
 export const isSameTime = (date1, date2) => {
   return date1.getTime() === date2.getTime()
 }
@@ -45,6 +49,10 @@ export const formatTime = date => {
   minutes = minutes < 10 ? '0' + minutes : minutes;
 
   return `${hours}:${minutes}${amOrPm}`
+}
+
+export const fromTimeToTime = (t1, t2) => {
+  return `${formatTime(t1)} - ${formatTime(t2)}`
 }
 
 export const formatDate = date => {

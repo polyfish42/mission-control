@@ -1,5 +1,6 @@
 import React from 'react';
 import ToolHeader from '../app/tool_header';
+import EventItem from './event_item';
 import { formatDate, setTimeToMidnight } from './date.js';
 import { merge } from 'lodash';
 
@@ -22,25 +23,24 @@ class Schedule extends React.Component {
     return [...dates]
   }
 
-  events() {
+  eventsByDate() {
     const days = this.groupByDays()
 
     const html = []
 
     for (var date in days) {
       if (days.hasOwnProperty(date)) {
-        debugger
         html.push(
-          <li>
-            <p>{ formatDate(new Date (parseInt(date))) }</p>
-            <ul>
-              {
-                days[date].map(event => {
-                  return <li>{event.title}</li>
-                })
-              }
-            </ul>
-          </li>
+          <div className="event-index-item">
+            <div className="event-index-item__date">{formatDate(new Date (parseInt(date)))}</div>
+             <div className="event-index-item__events">
+               {
+                 days[date].map((event, key) => {
+                   return <EventItem key={key} event={event} date={date}/>
+                 })
+               }
+             </div>
+          </div>
         )
       }
     }
@@ -74,9 +74,13 @@ class Schedule extends React.Component {
           buttonText="New Event"
           buttonAction={() => this.props.history.push("/events/new")}
           editable={false} />
-        {
-          this.events()
-        }
+        <div className="events-index">
+          {
+            this.eventsByDate().map((e, key) => {
+              return <div key={key}>{e}</div>
+            })
+          }
+        </div>
       </div>
     );
   }
