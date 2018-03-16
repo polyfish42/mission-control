@@ -11,9 +11,9 @@ const mapStateToProps = (state, ownProps) => {
   const users = state.entities.users
 
   return {
-    event: event,
+    event: event || undefined,
     comments: event ? selectComments(comments, event) : [],
-    author: event ? users[event.userId] : {}
+    author: event ? users[event.userId] : { name: "" }
   };
 };
 

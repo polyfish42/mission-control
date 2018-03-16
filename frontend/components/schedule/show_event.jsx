@@ -17,6 +17,10 @@ class ShowEvent extends React.Component {
     return `Posted by ${names[0]} ${names[1].slice(0,1)}.`
   }
 
+  isFullName(author) {
+    return (author.name !== null && typeof author !== 'undefined' && author.name.split(" ").length >= 2)
+  }
+
   postDate(createdAt) {
     const date = new Date(createdAt)
     return `${abbrvMonth(date)} ${date.getDay()}`
@@ -24,6 +28,10 @@ class ShowEvent extends React.Component {
 
   render () {
     const { event, author, comments, editEventRedirect, deleteEvent} = this.props;
+
+    if (typeof event === 'undefined') {
+      return null
+    }
 
     return (
       <div className="main-content">
@@ -34,7 +42,7 @@ class ShowEvent extends React.Component {
               { event && <Days startDate={event.startDate} endDate={event.endDate} /> }
               <h1 className="event__title">{event && event.title}</h1>
               { event && <FromDateToDate startDate={event.startDate} endDate={event.endDate} />}
-              <p className="event__postedOn">{ event && `${this.postedBy(author)} on ${this.postDate(event.createdAt)}`}</p>
+              <p className="event__postedOn">{ this.isFullName(author) && `${this.postedBy(author)} on ${this.postDate(event.createdAt)}`}</p>
                 {
                   event && event.notes &&
                   <div className="event__notes">
