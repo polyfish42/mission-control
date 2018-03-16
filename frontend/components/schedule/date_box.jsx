@@ -6,6 +6,10 @@ class DateBox extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  addParentClass(c) {
+    return c + (this.props.className ? this.addSelectedClass(` ${this.props.className}` ): this.addSelectedClass(""))
+  }
+
   addSelectedClass(c) {
     return c + (this.props.selected ? this.addCurrentDayClass(" date-box--selected" ): this.addCurrentDayClass(""))
   }
@@ -21,7 +25,7 @@ class DateBox extends React.Component {
 
   render () {
     return <button
-            className={this.addSelectedClass("date-box date-box--button")}
+            className={this.addParentClass("date-box date-box--button")}
             onClick={this.handleClick}>
             {this.props.day.getDate()}
           </button>

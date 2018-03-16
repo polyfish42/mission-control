@@ -2,7 +2,7 @@ import React from 'react';
 import DateBox from './date_box';
 import { now, daysInAMonth, isSameDay, monthFromNum } from './date.js';
 
-class DatePicker extends React.Component {
+class LargeDatePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class DatePicker extends React.Component {
   }
 
   daysOfWeek() {
-    return ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    return ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
   }
 
   previousMonth() {
@@ -41,7 +41,7 @@ class DatePicker extends React.Component {
   }
 
   emptyBox() {
-    return <div className="date-box date-box--empty"></div>
+    return <div className="date-box date-box--large date-box--empty"></div>
   }
 
   dateBox(day) {
@@ -52,7 +52,8 @@ class DatePicker extends React.Component {
               day={day}
               updateParent={this.props.updateParent}
               selected={selected}
-              currentDay={currentDay}/>
+              currentDay={currentDay}
+              className={"date-box--large date-box--button--large date-box--selected--large"}/>
   }
 
   nextDay() {
@@ -64,24 +65,41 @@ class DatePicker extends React.Component {
     }
   }
 
-  header() {
+  leftHeader() {
     return (
-      <div className="date-picker__header">
-        <div onClick={this.previousMonth} className="date-picker__arrow">←</div>
+      <div className="date-picker__header date-picker__header--large--left">
+        <div onClick={this.previousMonth} className="date-picker__arrow--large--left">←</div>
         { `${monthFromNum(this.state.month)} ${this.state.year}` }
-        <div onClick={this.nextMonth} className="date-picker__arrow">→</div>
       </div>
     )
   }
 
+  rightHeader() {
+    return (
+      <div className="date-picker__header date-picker__header--large--right">
+        { `${monthFromNum(this.rightMonth())} ${this.rightYear()}` }
+        <div onClick={this.nextMonth} className="date-picker__arrow--large--right">→</div>
+      </div>
+    )
+  }
+
+  rightMonth(){
+    return this.state.month === 11 ? 0 : this.state.month + 1
+  }
+
+  rightYear(){
+    return this.state.month === 11 ? this.state.year + 1 : this.state.year
+  }
+
   dayHeader() {
     return this.daysOfWeek().map((day, index) => {
-      return <div className="date-box date-box--empty date-box--day-of-week">{day}</div>
+      return <div className="date-box date-box--large date-box--empty date-box--empty--large date-box--day-of-week date-box--day-of-week--large">{day}</div>
     })
   }
 
-  populateDatePicker() {
-    let days = daysInAMonth(this.state.month, this.state.year)
+  populateDatePicker(month, year) {
+    let days = daysInAMonth(month, year)
+    debugger
     const nextDay = this.nextDay()
     const outputHTML = []
 
@@ -108,16 +126,26 @@ class DatePicker extends React.Component {
 
   render () {
     return (
-      <div ref={this.props.inputRef} className={this.addPropClasses("date-picker")}>
-        { this.header() }
-        {
-          this.populateDatePicker().map((html, key) => {
-            return <div key={key}>{html}</div>
-          })
-        }
+      <div className="calendar">
+        <div className={this.addPropClasses("date-picker")}>
+          {this.leftHeader()}
+          {
+            this.populateDatePicker(this.state.month, this.state.year).map((html, key) => {
+              return <div key={key}>{html}</div>
+            })
+          }
+        </div>
+        <div className={this.addPropClasses("date-picker")}>
+          {this.rightHeader()}
+          {
+            this.populateDatePicker(this.rightMonth(), this.rightYear()).map((html, key) => {
+              return <div key={key}>{html}</div>
+            })
+          }
+        </div>
       </div>
     )
   }
 }
 
-export default DatePicker;
+export default LargeDatePicker;

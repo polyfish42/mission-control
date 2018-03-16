@@ -8,6 +8,16 @@
   background-color: white;
 }
 
+.date-picker--large {
+  width: 351px;
+  height: 100%;
+  box-shadow: none;
+}
+
+.date-picker--large:last-of-type {
+  border-right: 1px solid #f2f2f2;
+}
+
 .date-picker__header {
   display: flex;
   justify-content: space-between;
@@ -21,7 +31,39 @@
   border-top-right-radius: 4px;
 }
 
+.date-picker__header--large--left {
+  width: 351px;
+  height: 29px;
+  border-top-right-radius: 0px;
+  display: inline-block;
+}
+
+.date-picker__header--large--right {
+  width: 351px;
+  height: 29px;
+  border-top-left-radius: 0px;
+  display: inline-block;
+}
+
 .date-picker__arrow {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.date-picker__arrow--large--left {
+  float: left;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.date-picker__arrow--large--right {
+  float: right;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -35,10 +77,27 @@
   text-align: center;
 }
 
+.date-box--large {
+  width: 50px;
+  height: 50px;
+  border-left: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+
 .date-box--day-of-week {
   font-weight: bold;
   text-align: center;
   padding-top: 8.5px;
+}
+
+.date-box--day-of-week--large {
+  background-color: #283c46;
+  color: rgba(255,255,255,0.8);
+  border: none;
+  font-weight: 400;
+  height: 20px;
+  padding-top: 1px;
+  font-size: 12px;
 }
 
 .date-box--button {
@@ -46,10 +105,20 @@
   cursor: pointer;
 }
 
+.date-box--button--large {
+  border-left: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+
 .date-box--selected {
   background-color: #283c46;
   color: white;
   border-radius: 100%;
+}
+
+.date-box--selected.date-box--selected--large {
+  border-radius: 0%;
 }
 
 .date-box--selected.date-box--current-day {

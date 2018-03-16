@@ -1,7 +1,9 @@
 import React from 'react';
 import ToolHeader from '../app/tool_header';
 import EventItem from './event_item';
-import { formatDate, setTimeToMidnight } from './date.js';
+import LargeDatePicker from './large_date_picker';
+
+import { formatDate, setTimeToMidnight, now } from './date.js';
 import { merge } from 'lodash';
 
 class Schedule extends React.Component {
@@ -74,6 +76,10 @@ class Schedule extends React.Component {
           buttonText="New Event"
           buttonAction={() => this.props.history.push("/events/new")}
           editable={false} />
+        <LargeDatePicker
+          selectedDay={now()}
+          updateParent={() => console.log("fix me")}
+          className={"date-picker--large"}/>
         <div className="events-index">
           {
             this.eventsByDate().map((e, key) => {
