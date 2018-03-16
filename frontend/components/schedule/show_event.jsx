@@ -60,7 +60,7 @@ class ShowEvent extends React.Component {
                   </div>
                 }
                 {
-                  event && comments && <CommentsContainer idName="event_id" id={event.id}/>
+                  event && comments && <CommentsContainer idName="event_id" id={event.id} type="event"/>
                 }
             </div>
           </div>

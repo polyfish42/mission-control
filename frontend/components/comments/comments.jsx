@@ -2,8 +2,10 @@ import React from 'react';
 import CommentCount from './comment_count';
 import CommentContainer from './comment_container';
 import CreateCommentFormContainer from './create_comment_form_container';
+import { selectComments, selectCommentAuthors } from '../../reducers/selectors/comment_selectors';
 
 class Comments extends React.Component {
+
   render () {
     const { comments, messageId } = this.props
 
@@ -19,7 +21,7 @@ class Comments extends React.Component {
         <ul>
           {
             comments.map((comment, key) => {
-              return <CommentContainer comment={comment} key={key} />
+              return <CommentContainer comment={comment} key={comment.id} />
             })
           }
         </ul>

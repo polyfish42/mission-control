@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.entities.users[ownProps.comment.userId],
-    comment: ownProps.comment
+    user: state.entities.users[ownProps.comment.userId]
   };
 };
 

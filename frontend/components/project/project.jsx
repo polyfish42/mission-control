@@ -5,6 +5,10 @@ import ScheduleToolContainer from './tools/schedule_todo_container';
 import { Link } from 'react-router-dom';
 
 class Project extends React.Component {
+  componentWillMount() {
+    window.scrollTo(0,0)
+  }
+  
   render () {
     return (
       <div className="main-content">
