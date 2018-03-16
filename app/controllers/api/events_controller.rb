@@ -18,8 +18,15 @@ class Api::EventsController < ApplicationController
   end
 
   def index
-    #TODO filter this by what months are showing
     @events = Event.all
+
+    render 'api/events/index'
+  end
+
+  def filter_index
+    search_start_date = params[:search_start_date].to_date
+
+    @events = Event.where(end_date: search_start_date..search_start_date + 60)
 
     render 'api/events/index'
   end

@@ -99,7 +99,7 @@ class LargeDatePicker extends React.Component {
 
   populateDatePicker(month, year) {
     let days = daysInAMonth(month, year)
-    debugger
+
     const nextDay = this.nextDay()
     const outputHTML = []
 

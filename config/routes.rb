@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :messages, except: [:new, :edit]
     resources :comments, only: [:create]
     resources :events, except: [:new, :edit]
+    post '/events/filter', to: 'events#filter_index'
   end
 
   root 'static_pages#root'

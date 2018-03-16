@@ -3,12 +3,26 @@ import ToolHeader from '../app/tool_header';
 import EventItem from './event_item';
 import LargeDatePicker from './large_date_picker';
 
-import { formatDate, setTimeToMidnight, now } from './date.js';
+import { formatDate, setTimeToMidnight, now, isDateAfter } from './date.js';
 import { merge } from 'lodash';
 
 class Schedule extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedDay: now()
+    }
+
+    this.childUpdate = this.childUpdate.bind(this);
+  }
   componentWillMount() {
-    this.props.fetchEvents();
+    this.props.fetchEvents(this.state.selectedDay);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedDay !== this.state.selectedDay) {
+      this.props.fetchEvents(this.state.selectedDay);
+    }
   }
 
   eventDays(event) {
@@ -32,18 +46,20 @@ class Schedule extends React.Component {
 
     for (var date in days) {
       if (days.hasOwnProperty(date)) {
-        html.push(
-          <div className="event-index-item">
-            <div className="event-index-item__date">{formatDate(new Date (parseInt(date)))}</div>
-             <div className="event-index-item__events">
-               {
-                 days[date].map((event, key) => {
-                   return <EventItem key={key} event={event} date={date}/>
-                 })
-               }
-             </div>
-          </div>
-        )
+        if (isDateAfter(this.state.selectedDay, new Date (parseInt(date)))) {
+          html.push(
+            <div className="event-index-item">
+              <div className="event-index-item__date">{formatDate(new Date (parseInt(date)))}</div>
+               <div className="event-index-item__events">
+                 {
+                     days[date].map((event, key) => {
+                     return <EventItem key={key} event={event} date={date}/>
+                   })
+                 }
+               </div>
+            </div>
+          )
+        }
       }
     }
 
@@ -68,6 +84,10 @@ class Schedule extends React.Component {
     return grouped
   }
 
+  childUpdate(selectedDay) {
+    this.setState({selectedDay})
+  }
+
   render () {
     return (
       <div className="main-content">
@@ -77,8 +97,8 @@ class Schedule extends React.Component {
           buttonAction={() => this.props.history.push("/events/new")}
           editable={false} />
         <LargeDatePicker
-          selectedDay={now()}
-          updateParent={() => console.log("fix me")}
+          selectedDay={this.state.selectedDay}
+          updateParent={this.childUpdate}
           className={"date-picker--large"}/>
         <div className="events-index">
           {

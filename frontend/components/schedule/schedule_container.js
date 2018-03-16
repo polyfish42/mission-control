@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchEvents: () => dispatch(fetchEvents())
+    fetchEvents: (search_start_date) => dispatch(fetchEvents(search_start_date))
   };
 };
 

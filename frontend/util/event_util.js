@@ -13,10 +13,11 @@ export const fetchEvent = (id) => (
   })
 );
 
-export const fetchEvents = () => (
+export const fetchEvents = (search_start_date) => (
   $.ajax({
-    url: 'api/events/',
-    method: 'GET'
+    url: 'api/events/filter',
+    method: 'POST',
+    data: {search_start_date}
   })
 );
 

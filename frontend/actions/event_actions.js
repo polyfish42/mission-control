@@ -34,11 +34,11 @@ export const fetchEvent = id => {
   };
 };
 
-export const fetchEvents = () => {
+export const fetchEvents = (search_start_date) => {
   return dispatch => {
     dispatch({ type: EVENTS_REQUEST });
 
-    return EventUtil.fetchEvents().then(
+    return EventUtil.fetchEvents(search_start_date).then(
       events => dispatch(receiveEvents(events)),
       errors => dispatch(receiveEventErrors(errors))
     );
@@ -83,7 +83,7 @@ const formatEventDates = event => {
   })
 }
 
-const mapFormattedDatesToEvent = events => {
+const mapFormattedDatesToEvent = (events = {}) => {
   const arr = Object.values(events)
   const newEvents = arr.map(event => {
     return formatEventDates(event)
