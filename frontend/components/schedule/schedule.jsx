@@ -10,20 +10,42 @@ class Schedule extends React.Component {
 
   eventDays(event) {
     let f = setTimeToMidnight
-    let dates = [f(event.startDate)]
-    let endDate = f(event.endDate)
+    let dates = [f(event.startDate).getTime()]
+    let endDate = f(event.endDate).getTime()
 
     while (dates[dates.length - 1].toString() !== endDate.toString()) {
-      let date = new Date( dates[dates.length - 1].getTime() )
+      let date = new Date( dates[dates.length - 1] )
       date.setDate(date.getDate() + 1)
-      dates.push(date)
+      dates.push(date.getTime())
     }
 
     return [...dates]
   }
 
   events() {
-    this.groupByDays()
+    const days = this.groupByDays()
+
+    const html = []
+
+    for (var date in days) {
+      if (days.hasOwnProperty(date)) {
+        debugger
+        html.push(
+          <li>
+            <p>{ formatDate(new Date (parseInt(date))) }</p>
+            <ul>
+              {
+                days[date].map(event => {
+                  return <li>{event.title}</li>
+                })
+              }
+            </ul>
+          </li>
+        )
+      }
+    }
+
+    return html
   }
 
   groupByDays(events) {
@@ -41,7 +63,7 @@ class Schedule extends React.Component {
       });
     });
 
-    console.log(grouped);
+    return grouped
   }
 
   render () {
