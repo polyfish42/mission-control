@@ -13,7 +13,8 @@ import { now,
   abbrvDayOfTheWeek,
   setTime,
   isDateAfter,
-  minutesFromDate
+  minutesFromDate,
+  formatTime
 } from './date.js';
 
 class EventForm extends React.Component {
@@ -51,7 +52,18 @@ class EventForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.event);
+    const event = nextProps.event
+
+    if (nextProps.formType === "create") {
+      this.setState({event})
+    } else {
+      const newEvent = update(event, {
+        time1: { $set: formatTime(event.startDate)},
+        time2: { $set: formatTime(event.endDate)}
+      })
+
+      this.setState(newEvent);
+    }
   }
 
   componentWillUnmount() {

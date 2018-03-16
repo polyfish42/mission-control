@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => {
   const events = state.entities.events
 
   return {
-    event: events[id] ? events[id] : null
+    event: events[id] ? events[id] : null,
+    formType: "edit"
   };
 };
 

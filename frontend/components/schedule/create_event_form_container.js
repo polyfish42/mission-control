@@ -8,13 +8,14 @@ const mapStateToProps = state => {
   return {
     event: {
       title: "",
-      startDate: now(),
+      startDate: minutesFromNow(30),
       time1: approxTime(minutesFromNow(30)),
       endDate: minutesFromNow(60),
       time2: approxTime(minutesFromNow(60)),
       attendees: [],
       notes: ""
-    }
+    },
+    formType: "create"
   };
 };
 

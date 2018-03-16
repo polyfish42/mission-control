@@ -6,7 +6,7 @@ const FromDateToDate = ({startDate, endDate}) => {
   const end = new Date(endDate);
 
   function timeAndDate(date) {
-    return `${abbrvDayOfTheWeek(date)}, ${month(date)} ${date.getDay()} at ${formatTime(date)}`
+    return `${abbrvDayOfTheWeek(date)}, ${month(date)} ${date.getDate()} at ${formatTime(date)}`
   }
 
   function sameDayEvent(start, end) {
