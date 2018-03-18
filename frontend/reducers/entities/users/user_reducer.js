@@ -8,6 +8,9 @@ import {
 import {
   EVENT_SUCCESS
 } from "../../../actions/event_actions";
+import {
+  COMMENT_SUCCESS
+} from "../../../actions/comment_actions";
 import { merge } from "lodash";
 
 export default (state = {}, action) => {
@@ -19,6 +22,9 @@ export default (state = {}, action) => {
       return merge({}, state, action.users);
     case EVENT_SUCCESS:
       return merge({}, state, action.users);
+    case COMMENT_SUCCESS:
+      const newComment = ({[action.user.id]: action.user})
+      return merge({}, state, newComment)
     default:
       return state;
   }

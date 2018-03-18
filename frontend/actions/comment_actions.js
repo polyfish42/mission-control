@@ -15,9 +15,10 @@ export const createComment = comment => {
 }
 
 
-const receiveComment = comment => ({
+const receiveComment = ({comment, user}) => ({
   type: COMMENT_SUCCESS,
-  comment
+  comment,
+  user
 })
 
 const receiveCommentErrors = errors => ({
