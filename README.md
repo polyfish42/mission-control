@@ -15,7 +15,3 @@ Live Site: [https://demo-mission-control.herokuapp.com/](https://demo-mission-co
 ## Messaging
 
 ## Scheduling
-
-
-Delve deep into ~2 features that show off your technical abilities. Discuss both the challenges faced and your brilliant solutions.
-Code snippets to highlight your best code (markdown code snippets, NOT screenshots)
