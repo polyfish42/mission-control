@@ -121,7 +121,7 @@ export const daysInAMonth = (month, year) => {
 export const setTime = (date, time) => {
   const r = new RegExp(/(\d+):(\d+)(\w+)/);
   const t = time.match(r)
-  // debugger
+
   const hours = t[3] === "pm" && t[1] !== "12" ? parseInt(t[1]) + 12 : t[3] === "am" ? "00" : "12"
   const minutes = t[2]
 
