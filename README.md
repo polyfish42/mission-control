@@ -1,24 +1,21 @@
-# README
+# Mission Control
+Mission Control is a clone of [basecamp](https://basecamp.com) and is used to manage projects on teams. It features todo lists, messages, and scheduling.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Live Site: [https://demo-mission-control.herokuapp.com/](https://demo-mission-control.herokuapp.com/).
 
-Things you may want to cover:
+## Technologies Used
+* Rails
+* React
+* Redux
 
-* Ruby version
+## Todos
 
-* System dependencies
+![user creates todo](https://raw.githubusercontent.com/polyfish42/mission-control-wiki-assets/master/Todos.gif)
 
-* Configuration
+## Messaging
 
-* Database creation
+## Scheduling
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Delve deep into ~2 features that show off your technical abilities. Discuss both the challenges faced and your brilliant solutions.
+Code snippets to highlight your best code (markdown code snippets, NOT screenshots)
