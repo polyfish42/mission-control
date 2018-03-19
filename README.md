@@ -30,7 +30,8 @@ Users can schedule events with other users. The schedule view is filterable by d
 
 All date and time functions for validating, formatting, and manipulating dates were done in pure javascript with no external libraries.
 
-```export const formatDate = date => {
+``` JavaScript
+export const formatDate = date => {
   return `${abbrvDayOfTheWeek(date)}, ${abbrvMonth(date)} ${date.getDate()}`
 }
 
