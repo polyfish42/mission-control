@@ -88,7 +88,7 @@ export const minutesFromDate = (minutes, date) => {
 }
 
 export const isValidTime = time => {
-  const r = /^([0-9]|1[0-9]|2[0-3]):[0-5][0-9](am|pm)$/
+  const r = /^([0-9]|1[0-9]|2[0-3]):([0-5][0-9])(am|pm)$/
 
   if (time.match(r)) {
     return true

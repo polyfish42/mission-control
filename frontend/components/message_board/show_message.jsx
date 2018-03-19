@@ -16,17 +16,24 @@ class ShowMessage extends React.Component {
       <div className="main-content">
         <div className="tool_header">
           <div className="tool_header__edit_wrapper">
-            <ToolHeaderEdit editable={true} editAction={editMessage} deleteAction={deleteMessage} />
-            <h1 className="message__title">{title}</h1>
-            <ReactQuill value={body}
-              readOnly={true}
-              modules={{toolbar: null}}
-              className="message-show__editor"/>
-            {
-              comments && <CommentsContainer idName="message_id" id={id}/>
-            }
+            <ToolHeaderEdit
+              editable={true}
+              editAction={editMessage}
+              deleteAction={deleteMessage} />
           </div>
         </div>
+        <h1 className="message__title">
+          {title}
+        </h1>
+        <ReactQuill
+          value={body}
+          readOnly={true}
+          modules={{toolbar: null}}
+          className="message-show__editor"/>
+        {
+          comments &&
+          <CommentsContainer idName="message_id" id={id}/>
+        }
       </div>
     )
   }
