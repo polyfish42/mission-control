@@ -6,6 +6,18 @@
   background-color: rgba(246, 242, 239, .8);
   z-index: 100;
 }
+
+.project-header__scroll {
+  width: 980px;
+  margin: 0 auto;
+  top: 100;
+  background-color: red;
+}
+
+.project-header__scroll--scrolling {
+  border-bottom: 1px solid rgb(217, 217, 217);
+}
+
 .project-header__nav {
   padding: 10px;
   display: flex;
