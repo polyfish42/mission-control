@@ -14,4 +14,6 @@ Live Site: [https://demo-mission-control.herokuapp.com/](https://demo-mission-co
 
 ## Messaging
 
+![user creates a message](https://raw.githubusercontent.com/polyfish42/mission-control-wiki-assets/master/MessageGif.gif)
+
 ## Scheduling
