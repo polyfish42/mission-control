@@ -99,7 +99,7 @@ class TodoAssigneeInput extends React.Component {
                 key={key}
                 assignee={assignee}
                 formShowing={this.props.formShowing}
-                clickable={this.props.formType === "edit" && this.props.formShowing === true}
+                clickable={this.props.formShowing === true}
                 cancelAssignee={this.props.cancelAssignee}/>
             })
           }
