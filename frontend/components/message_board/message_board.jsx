@@ -9,7 +9,7 @@ class MessageBoard extends React.Component {
       <div className="main-content">
         <ToolHeader title="Messages"
           buttonText="New message"
-          buttonAction={() => this.props.history.push("new")}
+          buttonAction={() => this.props.history.push("/messages/new")}
           editable={false} />
         <MessagesIndexContainer />
       </div>
