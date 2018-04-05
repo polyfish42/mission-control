@@ -20,7 +20,6 @@ import { now,
 class EventForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = (this.props.event ? merge(this.defaultForm(), this.props.event) : this.defaultForm());
 
     this.childUpdate = this.childUpdate.bind(this);
@@ -49,6 +48,11 @@ class EventForm extends React.Component {
   componentWillMount() {
     this.props.fetchEvent();
     document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log("nextProps event= ",nextProps.event);
+    console.log("nextState=",nextState);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -122,16 +126,22 @@ class EventForm extends React.Component {
   }
 
   startDateUpdate(date) {
-    if (isDateAfter(date, this.state.endDate)) {
+    const start = setTime(date, this.state.time1);
+    const end = setTime(this.state.endDate, this.state.time2);
+
+    if (isDateAfter(start, end)) {
       this.setState({startDate: date})
     } else {
-      this.setState({startDate: date, endDate: minutesFromDate(30, date)})
+      this.setState({startDate: date, endDate: minutesFromDate(30, date), time2: approxTime(minutesFromDate(30, start))})
     }
     this.closeAllDatePickers()
   }
 
   endDateUpdate(date) {
-    if (isDateAfter(this.state.startDate, date)) {
+    const start = setTime(this.state.startDate, this.state.time1);
+    const end = setTime(date, this.state.time2);
+
+    if (isDateAfter(start, end)) {
       this.setState({endDate: date})
     } else {
       this.shakeError(".event-form__input--date");
