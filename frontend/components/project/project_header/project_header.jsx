@@ -47,6 +47,7 @@ class ProjectHeader extends React.Component {
             <img
               src={window.avatar}
               className="project-header__img"
+              id="project-header__img"
               onClick={this.togglePanel}
               />
           </nav>
