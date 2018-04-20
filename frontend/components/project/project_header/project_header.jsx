@@ -1,12 +1,15 @@
 import React from "react";
 import LoadingBar from 'react-redux-loading-bar';
 import DropDownMenu from "./dropdown_menu";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class ProjectHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { logout_panel_showing: false, scrolling: false };
+    this.state = {
+      logout_panel_showing: false,
+      scrolling: false
+    };
 
     this.handleScroll = this.handleScroll.bind(this);
     this.togglePanel = this.togglePanel.bind(this);
@@ -15,8 +18,10 @@ class ProjectHeader extends React.Component {
   }
 
   handleScroll() {
-    const scrolling = window.scrollY > 1 ? true : false
-    this.setState({ scrolling })
+    const scrolling = window.scrollY > 1
+      ? true
+      : false
+    this.setState({scrolling})
   }
 
   componentWillMount() {
@@ -32,36 +37,21 @@ class ProjectHeader extends React.Component {
       return null;
     }
 
-    return (
-      <div>
-        <div className="project-header">
-          <LoadingBar
-            progressIncrease={35}
-            className="loading-bar"/>
-          <nav className="project-header__nav">
-            <Link to="/project">
-              <img
-                src={window.smallLogo}
-                className="project-header__img" />
-            </Link>
-            <img
-              src={window.avatar}
-              className="project-header__img"
-              id="project-header__img"
-              onClick={this.togglePanel}
-              />
-          </nav>
-          {this.state.logout_panel_showing && (
-            <DropDownMenu
-              resetParentState={this.resetParentState}
-              logout={this.logout}
-              />
-          )}
-          <div className={`project-header__scroll ${this.state.scrolling ? "project-header__scroll--scrolling" : ""}`}>
-        </div>
-        </div>
+    return (<div>
+      <div className="project-header">
+        <LoadingBar progressIncrease={35} className="loading-bar"/>
+        <nav className="project-header__nav">
+          <Link to="/project">
+            <img src={window.smallLogo} className="project-header__img"/>
+          </Link>
+          <img src={window.avatar} className="project-header__img" id="project-header__img" onClick={this.togglePanel}/>
+        </nav>
+        {this.state.logout_panel_showing && (<DropDownMenu resetParentState={this.resetParentState} logout={this.logout}/>)}
+        <div className={`project-header__scroll ${this.state.scrolling
+            ? "project-header__scroll--scrolling"
+            : ""}`}></div>
       </div>
-    );
+    </div>);
   }
 
   logout() {
@@ -69,11 +59,11 @@ class ProjectHeader extends React.Component {
   }
 
   resetParentState() {
-    this.setState({ logout_panel_showing: false });
+    this.setState({logout_panel_showing: false});
   }
 
   togglePanel() {
-    this.setState({ logout_panel_showing: true });
+    this.setState({logout_panel_showing: true});
   }
 }
 
