@@ -63,7 +63,11 @@ class ProjectHeader extends React.Component {
   }
 
   togglePanel() {
-    this.setState({logout_panel_showing: true});
+    if (this.state.logout_panel_showing === true) {
+      this.setState({logout_panel_showing: false});
+    } else {
+      this.setState({logout_panel_showing: true});
+    }
   }
 }
 

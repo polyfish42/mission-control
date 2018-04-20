@@ -12,8 +12,10 @@ class DropDownMenu extends React.Component {
   }
 
   handleClickOutside(e) {
-    this.setState({logout_panel_showing: false});
-    this.props.resetParentState();
+    if (e.target !== document.getElementById('project-header__img')) {
+      this.setState({logout_panel_showing: false});
+      this.props.resetParentState();
+    }
   }
 
   menu() {
