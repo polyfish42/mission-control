@@ -28,6 +28,7 @@ module.exports = {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     filename: "bundle.js"
   },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   plugins: plugins,
   module: {
     rules: [
