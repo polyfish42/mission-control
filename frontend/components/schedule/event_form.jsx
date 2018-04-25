@@ -3,9 +3,11 @@ import PersonPickerContainer from '../form_helpers/person_picker_container';
 import ReactQuill from 'react-quill';
 import TimePicker from './time_picker';
 import DatePicker from './date_picker';
+import Breadcrumbs from '../app/breadcrumbs';
 import {merge} from 'lodash';
 import update from 'immutability-helper';
-import { now,
+import {
+  now,
   minutesFromNow,
   approxTime,
   timeTo30MinutesFormatted,
@@ -20,7 +22,10 @@ import { now,
 class EventForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = (this.props.event ? merge(this.defaultForm(), this.props.event) : this.defaultForm());
+    this.state = (
+      this.props.event
+      ? merge(this.defaultForm(), this.props.event)
+      : this.defaultForm());
 
     this.childUpdate = this.childUpdate.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -51,8 +56,8 @@ class EventForm extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log("nextProps event= ",nextProps.event);
-    console.log("nextState=",nextState);
+    console.log("nextProps event= ", nextProps.event);
+    console.log("nextState=", nextState);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,8 +67,12 @@ class EventForm extends React.Component {
       this.setState({event})
     } else {
       const newEvent = update(event, {
-        time1: { $set: formatTime(event.startDate)},
-        time2: { $set: formatTime(event.endDate)}
+        time1: {
+          $set: formatTime(event.startDate)
+        },
+        time2: {
+          $set: formatTime(event.endDate)
+        }
       })
 
       this.setState(newEvent);
@@ -101,27 +110,40 @@ class EventForm extends React.Component {
   modules() {
     return {
       toolbar: [
-        { 'header': '1'},
+        {
+          'header': '1'
+        },
         'bold',
         'italic',
-        'strike',
-        { 'color': [] },
-        { 'background': [] },
+        'strike', {
+          'color': []
+        }, {
+          'background': []
+        },
         'blockquote',
         'link',
-        'image',
-        {'list': 'ordered'},
-        {'list': 'bullet'}
+        'image', {
+          'list': 'ordered'
+        }, {
+          'list': 'bullet'
+        }
       ]
     }
   }
 
   formats() {
     [
-      'header', 'font', 'size',
-      'bold', 'italic', 'strike', 'blockquote',
-      'list', 'bullet',
-      'link', 'image'
+      'header',
+      'font',
+      'size',
+      'bold',
+      'italic',
+      'strike',
+      'blockquote',
+      'list',
+      'bullet',
+      'link',
+      'image'
     ]
   }
 
@@ -132,7 +154,11 @@ class EventForm extends React.Component {
     if (isDateAfter(start, end)) {
       this.setState({startDate: date})
     } else {
-      this.setState({startDate: date, endDate: minutesFromDate(30, date), time2: approxTime(minutesFromDate(30, start))})
+      this.setState({
+        startDate: date,
+        endDate: minutesFromDate(30, date),
+        time2: approxTime(minutesFromDate(30, start))
+      })
     }
     this.closeAllDatePickers()
   }
@@ -154,7 +180,10 @@ class EventForm extends React.Component {
     const end = setTime(this.state.endDate, this.state.time2);
 
     if (!isDateAfter(start, end) && menuOpen === false) {
-      this.setState({time1: t, time2: approxTime(minutesFromDate(30, start))})
+      this.setState({
+        time1: t,
+        time2: approxTime(minutesFromDate(30, start))
+      })
     } else {
       this.setState({time1: t})
     }
@@ -178,118 +207,103 @@ class EventForm extends React.Component {
   shakeError(c) {
     $($(c)[1]).addClass("shaking")
 
-    window.setTimeout(
-      () => $($(c)[1]).removeClass("shaking"),
-      420
-    )
+    window.setTimeout(() => $($(c)[1]).removeClass("shaking"), 420)
   }
 
   datePickerShowingClass(c, n) {
     if (n === 1) {
-      return c + (this.state.datePicker1Showing ? " " + "event-form__date-picker--showing" : "")
+      return c + (
+        this.state.datePicker1Showing
+        ? " " + "event-form__date-picker--showing"
+        : "")
     }
 
     if (n === 2) {
-      return c + (this.state.datePicker2Showing ? " " + "event-form__date-picker--showing" : "")
+      return c + (
+        this.state.datePicker2Showing
+        ? " " + "event-form__date-picker--showing"
+        : "")
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const event = update(this.state, {
-      start_date: { $set: setTime(this.state.startDate, this.state.time1)},
-      end_date: { $set: setTime(this.state.endDate, this.state.time2)},
-      attendees: { $set: this.state.attendees.map(a => parseInt(a.id))},
-      $unset: ['datePicker1Showing', 'datePicker2Showing', 'time1', 'time2', 'startDate', 'endDate']
+      start_date: {
+        $set: setTime(this.state.startDate, this.state.time1)
+      },
+      end_date: {
+        $set: setTime(this.state.endDate, this.state.time2)
+      },
+      attendees: {
+        $set: this.state.attendees.map(a => parseInt(a.id))
+      },
+      $unset: [
+        'datePicker1Showing',
+        'datePicker2Showing',
+        'time1',
+        'time2',
+        'startDate',
+        'endDate'
+      ]
     })
 
     this.props.handleSubmit(event)
   }
 
-  render () {
+  render() {
     const {title, startDate, endDate, attendees, notes} = this.state
 
-    return (
+    return (<div>
+      <Breadcrumbs links={[
+          ["Schedule", "/events"]
+        ]}/>
       <div className="main-content">
-        <form
-          className="event-form"
-          onSubmit={this.handleSubmit}>
+        <form className="event-form" onSubmit={this.handleSubmit}>
 
           <div className="event-form__row">
             <label className="event-form__label">Title:</label>
-            <input
-              onChange={this.update("title")}
-              value={title}
-              className="event-form__input"
-              placeholder="Type the name of the event..."/>
+            <input onChange={this.update("title")} value={title} className="event-form__input" placeholder="Type the name of the event..."/>
           </div>
 
           <div className="event-form__row event-form__row--date">
             <label className="event-form__label">Start:</label>
             <div className="event-form__input--date-wrapper">
-              <button
-                type="button"
-                className="event-form__input event-form__input--date"
-                onClick={() => this.setState({datePicker1Showing: true, datePicker2Showing: false})}>
+              <button type="button" className="event-form__input event-form__input--date" onClick={() => this.setState({datePicker1Showing: true, datePicker2Showing: false})}>
                 {this.formatDate(startDate)}
               </button>
-              <DatePicker
-                selectedDay={startDate}
-                inputRef={el => this.input1 = el}
-                updateParent={this.startDateUpdate}
-                className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
+              <DatePicker selectedDay={startDate} inputRef={el => this.input1 = el} updateParent={this.startDateUpdate} className={this.datePickerShowingClass("event-form__date-picker", 1)}/>
             </div>
-            <TimePicker
-              updateParent={this.time1Update}
-              time={this.state.time1}/>
+            <TimePicker updateParent={this.time1Update} time={this.state.time1}/>
           </div>
 
           <div className="event-form__row event-form__row--date">
             <label className="event-form__label">End:</label>
             <div className="event-form__input--date-wrapper">
-              <button
-                type="button"
-                className="event-form__input event-form__input--date"
-                onClick={() => this.setState({datePicker1Showing: false, datePicker2Showing: true})}>
+              <button type="button" className="event-form__input event-form__input--date" onClick={() => this.setState({datePicker1Showing: false, datePicker2Showing: true})}>
                 {this.formatDate(endDate)}
               </button>
-              <DatePicker
-                selectedDay={endDate}
-                inputRef={el => this.input2 = el}
-                updateParent={this.endDateUpdate}
-                className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
+              <DatePicker selectedDay={endDate} inputRef={el => this.input2 = el} updateParent={this.endDateUpdate} className={this.datePickerShowingClass("event-form__date-picker", 2)}/>
             </div>
-            <TimePicker
-              updateParent={this.time2Update}
-              time={this.state.time2}/>
+            <TimePicker updateParent={this.time2Update} time={this.state.time2}/>
           </div>
 
           <div className="event-form__row">
             <label className="event-form__label">With:</label>
-            <PersonPickerContainer
-              people={attendees}
-              update={this.childUpdate("attendees")}
-              className="event-form__person-picker" />
+            <PersonPickerContainer people={attendees} update={this.childUpdate("attendees")} className="event-form__person-picker"/>
           </div>
 
           <div className="event-form__row">
             <label className="event-form__label event-form__label--notes">Notes:</label>
-            <ReactQuill
-              value={notes}
-              readOnly={false}
-              modules={this.modules()}
-              onChange={(i) => this.setState({notes: i})}
-              className="event-edit__editor"/>
+            <ReactQuill value={notes} readOnly={false} modules={this.modules()} onChange={(i) => this.setState({notes: i})} className="event-edit__editor"/>
           </div>
 
-          <button
-            type="submit"
-            className="button button--green button--edit-form">
+          <button type="submit" className="button button--green button--edit-form">
             Post this event
           </button>
         </form>
       </div>
-    )
+    </div>)
   }
 }
 

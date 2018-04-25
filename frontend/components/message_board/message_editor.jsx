@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
+import Breadcrumbs from '../app/breadcrumbs';
 
 
 class Editor extends React.Component {
@@ -60,24 +61,27 @@ formats() {
 
 render() {
    return (
-     <div className="main-content">
-      <form onSubmit={this.handleSubmit}
-          className="editor__form">
-       <input value={this.state.title}
-          onChange={this.handleInput}
-          className="editor__title"
-          tabIndex={1}
-          placeholder="Title..."/>
-       <div className="editor">
-         <ReactQuill value={this.state.body}
-           modules={this.modules()}
-           formats={this.formats()}
-           onChange={this.handleChange}
-           tabIndex={2}
-           placeholder={'Write away...'} />
+     <div>
+       <Breadcrumbs links={[["Messages", "/messages"]]} />
+       <div className="main-content">
+         <form onSubmit={this.handleSubmit}
+           className="editor__form">
+           <input value={this.state.title}
+             onChange={this.handleInput}
+             className="editor__title"
+             tabIndex={1}
+             placeholder="Title..."/>
+           <div className="editor">
+             <ReactQuill value={this.state.body}
+               modules={this.modules()}
+               formats={this.formats()}
+               onChange={this.handleChange}
+               tabIndex={2}
+               placeholder={'Write away...'} />
+           </div>
+           <button type="submit" className="button button--green editor__button">Post this message</button>
+         </form>
        </div>
-       <button type="submit" className="button button--green editor__button">Post this message</button>
-      </form>
      </div>
    )
  }

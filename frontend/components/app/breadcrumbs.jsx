@@ -1,21 +1,21 @@
 import React from 'react';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Breadcrumbs = props => {
-  const links = props.links || []
+    let links = props.links || []
 
-  links.push(["Mission Control", "/"])
-  const length = links.length
-  debugger
-  return (
-    <div className="breadcrumbs">
-      {
-        links.map((link, idx) => {
-          return <Link key={idx} to={link[1]}>{link[0]}</Link>
-        })
-      }
-    </div>
-  )
-}
+    links = [["Mission Control", "/"],...links]
+    const length = links.length
+
+    return (
+      <div className="breadcrumbs">
+        {
+          links.map((link, idx) => {
+            return <span key={idx}><Link to={link[1]}>{link[0]}</Link>{ length === idx + 1 ? "" : " › " }</span>
+          })
+        }
+      </div>
+    );
+};
 
 export default Breadcrumbs;

@@ -3,6 +3,7 @@ import ToolHeaderEdit from '../../app/tool_header_edit';
 import TodoContainer from '../todo/todo_container';
 import TodoListTodos from './todo_list_todos';
 import CommentsContainer from '../../comments/comments_container';
+import Breadcrumbs from '../../app/breadcrumbs';
 import { isEmpty } from 'lodash';
 import EditTodoListFormContainer from './edit_todo_list_form_container';
 
@@ -30,40 +31,43 @@ class TodoListShow extends React.Component {
     const { todoList } = this.props;
 
     return (
-      <div className="main-content">
-        <div className="tool_header">
-          <div className="tool_header__edit_wrapper">
-            <ToolHeaderEdit
-              editable={ true }
-              editAction={this.props.showEditTodoListForm}
-              deleteAction={() => this.props.deleteTodoList(this.props.todoList.id)}/>
+      <div>
+        <Breadcrumbs links={[["To-dos", "/todolists"]]} />
+        <div className="main-content">
+          <div className="tool_header">
+            <div className="tool_header__edit_wrapper">
+              <ToolHeaderEdit
+                editable={ true }
+                editAction={this.props.showEditTodoListForm}
+                deleteAction={() => this.props.deleteTodoList(this.props.todoList.id)}/>
+            </div>
           </div>
-        </div>
-        <div className="main-content__inner">
-          <div className="todoListItem__container">
-            {
-              this.props.formShowing === false &&
-              <div>
-                <h1 className="todoListItem__name">
-                  { todoList.name }
-                </h1>
+          <div className="main-content__inner">
+            <div className="todoListItem__container">
+              {
+                this.props.formShowing === false &&
                 <div>
-                  {
-                    this.description(todoList)
-                  }
+                  <h1 className="todoListItem__name">
+                    { todoList.name }
+                  </h1>
+                  <div>
+                    {
+                      this.description(todoList)
+                    }
+                  </div>
                 </div>
-              </div>
-            }
+              }
 
-            <EditTodoListFormContainer todoList={ todoList }/>
+              <EditTodoListFormContainer todoList={ todoList }/>
+              {
+                !isEmpty(todoList) &&
+                <TodoListTodos todoList={todoList} />
+              }
+            </div>
             {
-              !isEmpty(todoList) &&
-              <TodoListTodos todoList={todoList} />
+              <CommentsContainer idName="todo_list_id" id={todoList.id}/>
             }
           </div>
-          {
-            <CommentsContainer idName="todo_list_id" id={todoList.id}/>
-          }
         </div>
       </div>
     );

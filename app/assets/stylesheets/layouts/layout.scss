@@ -4,12 +4,15 @@
   position: absolute;
 }
 
+.outerDiv {
+  margin-top: 50px;
+}
+
 .main-content {
   background-color: white;
   max-width: 930px;
   min-height: 900px;
   margin: 0 auto;
-  margin-top: 50px;
   border-radius: 5px;
   box-sizing: border-box;
   box-shadow: 0px 2px 10px #0000001d;
@@ -24,6 +27,23 @@
 
 .main-content__inner {
   margin-top: 20px;
+}
+
+.breadcrumbs {
+  background-color: white;
+  max-width: 800px;
+  height: 40px;
+  padding-top: 10px;
+  margin: 0 auto;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 10px #0000001d;
+}
+
+.breadcrumbs > span > a, .breadcrumbs > span > a:visited {
+  color: #007bb6;
 }
 
 .tool_header__edit_wrapper {

@@ -4,6 +4,7 @@ import Days from './days';
 import FromDateToDate from './from_date_to_date';
 import ReactQuill from 'react-quill';
 import CommentsContainer from '../comments/comments_container';
+import Breadcrumbs from '../app/breadcrumbs';
 import { abbrvMonth } from './date.js';
 
 class ShowEvent extends React.Component {
@@ -40,15 +41,17 @@ class ShowEvent extends React.Component {
     }
 
     return (
-      <div className="main-content">
-        <div className="tool_header">
-          <div className="tool_header__edit_wrapper">
-            <ToolHeaderEdit editable={true} editAction={editEventRedirect} deleteAction={deleteEvent} />
-            <div className="event">
-              { event && <Days startDate={event.startDate} endDate={event.endDate} /> }
-              <h1 className="event__title">{event && event.title}</h1>
-              { event && <FromDateToDate startDate={event.startDate} endDate={event.endDate} />}
-              <p className="event__postedOn">{ this.isFullName(author) && `${this.postedBy(author)} on ${this.postDate(event.createdAt)}`}</p>
+      <div>
+        <Breadcrumbs links={[["Schedule", "/events"]]} />
+        <div className="main-content">
+          <div className="tool_header">
+            <div className="tool_header__edit_wrapper">
+              <ToolHeaderEdit editable={true} editAction={editEventRedirect} deleteAction={deleteEvent} />
+              <div className="event">
+                { event && <Days startDate={event.startDate} endDate={event.endDate} /> }
+                <h1 className="event__title">{event && event.title}</h1>
+                { event && <FromDateToDate startDate={event.startDate} endDate={event.endDate} />}
+                <p className="event__postedOn">{ this.isFullName(author) && `${this.postedBy(author)} on ${this.postDate(event.createdAt)}`}</p>
                 {
                   event && event.notes &&
                   <div className="event__notes">
@@ -61,10 +64,11 @@ class ShowEvent extends React.Component {
                 }
                 {
                   event && comments && <CommentsContainer idName="event_id" id={event.id} type="event"/>
-                }
+              }
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
