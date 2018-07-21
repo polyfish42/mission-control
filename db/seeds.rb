@@ -36,7 +36,7 @@ User.create!([
   {name: "Selmer Mueller", title: "Education Consultant", bio: "According to the legends, the Magratheans lived most of their lives underground.", email: "koby.ward@walterruel.net", session_token: "RM2RFY7xka5FpyWFC0woUA", password_digest: "$2a$10$Fk8b1YxoeYlqm/ivvZpMJ.vETNgVtltRTQ6Zr/tL2amuVawdMtSIC", avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
 ])
 Event.create!([
-  {title: "Monday Standup Meeting", start_date: "2018-04-02 04:00:00", end_date: "2018-04-02 04:00:00", notes: "", user_id: 32},
+  {title: "Standup Meeting", start_date: Time.now.change(hour: 9), end_date: Time.now.change(hour: 10), notes: "", user_id: 32},
   {title: "Company Ping Pong Tournament", start_date: "2018-04-05 16:00:00", end_date: "2018-04-06 22:30:00", notes: "", user_id: 16},
   {title: "Video Team Meeting", start_date: "2018-04-03 18:30:00", end_date: "2018-04-03 19:00:00", notes: "", user_id: 13},
   {title: "Luke Dogwalker Interview", start_date: "2018-04-05 17:30:00", end_date: "2018-04-05 18:00:00", notes: "", user_id: 3},
